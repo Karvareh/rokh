@@ -37,6 +37,12 @@ measures everything else; remove the skip and the test fails.
 | `rokh/key` `TestOldEnvelopesOpenAfterTheOwnerRotates` | it and another review test ask opposite things of one session; the ruling is not made |
 | `rokh-home/archive` `TestALargeAttachmentStreamsBothWaysInBoundedMemory` | a large attachment is held in memory several times over; not repaired |
 
+Run by the superuser, two more fail, and are not skipped:
+`TestAMarkerNamingASeedGivenAndTakenIsRefused` and
+`TestAResumedSeedGivesNoCellToAKeyTakenBackSince`, in `rokh/cmd/rokh`. Each
+cuts a seed by making the source's slab files read-only, and the superuser
+writes them anyway, so the seed is not cut. Run by anyone else, they pass.
+
 ## Not built, or not finished
 
 - The command line has no `bring`: a file larger than 4,096 bytes is
@@ -46,7 +52,8 @@ measures everything else; remove the skip and the test fails.
 - A seed cannot be made growing; repeating a reconcile changes a few bytes
   on one side, though no event, head or key changes.
 - A large file that goes in or out through the home takes memory several
-  times its size.
+  times its size, and through the core (`content.Bring`, `content.Fetch`)
+  four times: 8 GiB for a file of 2 GiB (`rokh/docs/11-scale.md`).
 - A booth does not serve `content.put`, `content.get`, the keyring, or
   seeding between two booths; those are done with the command line on the
   folder.
@@ -62,6 +69,21 @@ measures everything else; remove the skip and the test fails.
   and carries a note saying so. The cryptography document of the previous
   version was withdrawn from this tree: its statements about the carrier no
   longer held. A document for version 1 is owed.
+- A commit writes every inventory segment, where the contract writes the
+  changed ones (2.6), and verifies every segment twice: once a vessel passes
+  4 GiB, each recording writes 1/4096 of it (256 MiB at 1 TiB) and takes
+  about 5 µs for every slab (`rokh/docs/11-scale.md`).
+- A door's answers take longer as the history grows: each commit drops the
+  vessel's index, the references are found by opening every branch pointer
+  ever recorded, and the ledger's order is made again whole. At 300,000
+  events a write takes 1.2 s and a status 0.75 s (`rokh/docs/11-scale.md`).
+- Every grant, revocation and keyring change keeps its own copy of all of
+  them in its causal past, so their memory grows as the square of the people
+  named: 2 GiB for 8,000 grants (`rokh/docs/11-scale.md`).
+- The writing turn goes to whichever door tries first once it is free, not to
+  the one that asked first: with many doors writing, the slowest wait far
+  longer than the rest, and among 128 writers on 32 doors 11 writes of 1,024
+  were refused after waiting 15 s (`rokh/docs/11-scale.md`).
 
 ## Not promised, by design
 
@@ -70,10 +92,24 @@ measures everything else; remove the skip and the test fails.
 - Two machines writing one synced folder is not supported. Each machine
   takes a seed.
 - What a key could read before it was taken back, it may have kept.
-- At most 31 keys beside the owner's open one vessel.
+- At most 31 keys beside the owner's open one vessel, and an envelope names
+  at most 32 readers, the owner's generations among them (contract 3.1): an
+  address that more keys read cannot be sealed.
+- Every opening verifies the whole history, one event after another, and
+  holds it in memory (N2.6): a door opened on 300,000 events in 44 s and held
+  about 3 KB for each.
 - Every recording writes whole slabs: with the default slab, about two
   megabytes for a small note. A small device takes a smaller slab.
 - What was recorded is not deleted.
+
+## Measured
+
+On one machine: a vessel to 1 TiB and one thing in it of 2 GiB, a history of
+a million events, eight thousand people named in one ledger and a million at
+an open address, 128 writers at once, two thousand seeds in one lineage and
+twenty-four through the command line. The numbers, the model they fit and
+where each ends are in `rokh/docs/11-scale.md`; the benchmarks that give them
+are in `rokh/bench` and `rokh/cmd/rokh`, and run only when asked.
 
 ## Never run
 
@@ -81,4 +117,6 @@ measures everything else; remove the skip and the test fails.
 - exFAT and a synced folder. FAT32 and the test machines' own file systems
   were run.
 - A real engine.
-- Vessels larger than a few hundred megabytes.
+- Vessels larger than 16 GiB on a disk. Larger ones, to 1 TiB, were made,
+  opened and written only in memory, with the slabs nobody wrote kept as
+  their length (`rokh/docs/11-scale.md`).

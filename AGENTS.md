@@ -13,7 +13,7 @@ rokh/              the core module (Go, standard library only)
   رساله.md         the treatise (Persian): the founding text, cited as T
   without-consensus.md   the ledger without consensus (English rendering), cited as N
   contracts/v1.md  the contract of version 1: bytes, vessel, envelope, keyring, seed, booth
-  docs/            grammar, authority, carrier, bandwidth, inventory, booth API, peering, sentences, screen
+  docs/            grammar, authority, carrier, bandwidth, inventory, booth API, peering, sentences, screen, scale
   conformance/     the code measured against T and N; obligations.tsv is the map, STATE.md is generated
   <package>/       one layer each; rokh/README.md lists them, and arch/ tests that layers point downwards only
   cmd/             rokh, rokh-shell, rokh-courier, rokh-forms, rokh-chest
