@@ -1,0 +1,20 @@
+◇ ROKH  ·  ledger home  ·  custody warm
+0 accepted · 2 system · 0 pending · 0 rejected
+▸ 1 ledger   2 sent.   3 auth.   4 layers
+room 58 MB free of 64 MB
+│ THE CHAIN, IN CAUSAL ORDER
+│ I am standing at 5d21c0e9, the only head of …
+│ 
+│ START HERE
+│ 1  write at home/journal: my first note   pu…
+│ 2  write   records it; there is no undo
+│ "?" lists every sentence; "go" leaves.
+│ 
+│ ● ACCEPTED  5d21c0e9  system  rokh.keyring a…
+│   the owner's key added, generation 1
+│   signed by root · under the owner's own rig…
+│ ● ACCEPTED  a0b6443e  system  rokh.genesis a…
+│   made: my notes
+│   signed by root · under the owner's own rig…
+› █ try write at home/journal: my first note
+  ? sentences   "go" or Ctrl-C leaves

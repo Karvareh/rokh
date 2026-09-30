@@ -1,0 +1,219 @@
+[
+ {
+  "name": "open",
+  "sentence": "open the ledger خانه",
+  "op": "open",
+  "slots": {
+   "ledger": "خانه"
+  },
+  "reply_template": "opened"
+ },
+ {
+  "name": "open, mixed case",
+  "sentence": "OpEn ThE LeDgEr خانه",
+  "op": "open",
+  "slots": {
+   "ledger": "خانه"
+  },
+  "reply_template": "opened"
+ },
+ {
+  "name": "open new",
+  "sentence": "open a new ledger named خانه",
+  "op": "open_new",
+  "slots": {
+   "ledger": "خانه"
+  },
+  "reply_template": "opened_new"
+ },
+ {
+  "name": "close",
+  "sentence": "go",
+  "op": "close",
+  "slots": {},
+  "reply_template": "closed"
+ },
+ {
+  "name": "write",
+  "sentence": "write at کارها: نخستین سطر",
+  "op": "write",
+  "slots": {
+   "address": "کارها",
+   "text": "نخستین سطر"
+  },
+  "reply_template": "drafted"
+ },
+ {
+  "name": "write zwnj payload",
+  "sentence": "write at کارها: می\u200cخواهیم نیم\u200cفاصله\u200cها بمانند",
+  "op": "write",
+  "slots": {
+   "address": "کارها",
+   "text": "می\u200cخواهیم نیم\u200cفاصله\u200cها بمانند"
+  },
+  "reply_template": "drafted"
+ },
+ {
+  "name": "write folded frame, decomposed payload",
+  "sentence": "WRITE AT يادها: ا\u0653ب",
+  "op": "write",
+  "slots": {
+   "address": "يادها",
+   "text": "ا\u0653ب"
+  },
+  "reply_template": "drafted"
+ },
+ {
+  "name": "write keeps a final period",
+  "sentence": "write at کارها: تمام.",
+  "op": "write",
+  "slots": {
+   "address": "کارها",
+   "text": "تمام."
+  },
+  "reply_template": "drafted"
+ },
+ {
+  "name": "write close",
+  "sentence": "write",
+  "op": "write_close",
+  "slots": {},
+  "reply_template": "written"
+ },
+ {
+  "name": "write close the second",
+  "sentence": "write 2",
+  "op": "write_close",
+  "slots": {
+   "n": 2
+  },
+  "reply_template": "written"
+ },
+ {
+  "name": "cancel",
+  "sentence": "cancel",
+  "op": "cancel",
+  "slots": {},
+  "reply_template": "cancelled"
+ },
+ {
+  "name": "cancel the first",
+  "sentence": "cancel 1",
+  "op": "cancel",
+  "slots": {
+   "n": 1
+  },
+  "reply_template": "cancelled"
+ },
+ {
+  "name": "read",
+  "sentence": "read کارها",
+  "op": "read",
+  "slots": {
+   "address": "کارها"
+  },
+  "reply_template": "listing"
+ },
+ {
+  "name": "see ledger",
+  "sentence": "see the ledger",
+  "op": "see_ledger",
+  "slots": {},
+  "reply_template": "seen"
+ },
+ {
+  "name": "see ledgers",
+  "sentence": "see the ledgers",
+  "op": "see_ledgers",
+  "slots": {},
+  "reply_template": "listing"
+ },
+ {
+  "name": "see grants",
+  "sentence": "see the grants",
+  "op": "see_grants",
+  "slots": {},
+  "reply_template": "listing"
+ },
+ {
+  "name": "import file",
+  "sentence": "bring /tmp/a b/note.md to کارها",
+  "op": "import",
+  "slots": {
+   "address": "کارها",
+   "path": "/tmp/a b/note.md"
+  },
+  "reply_template": "imported | import_failed"
+ },
+ {
+  "name": "reunite",
+  "sentence": "bring the returned ledger",
+  "op": "reunite",
+  "slots": {},
+  "reply_template": "reunited_ask | reunited_settled"
+ },
+ {
+  "name": "entrust write",
+  "sentence": "entrust writing at کارها to دستیار",
+  "op": "entrust_write",
+  "slots": {
+   "address": "کارها",
+   "who": "دستیار"
+  },
+  "reply_template": "granted"
+ },
+ {
+  "name": "entrust read",
+  "sentence": "entrust reading کارها to دستیار",
+  "op": "entrust_read",
+  "slots": {
+   "address": "کارها",
+   "who": "دستیار"
+  },
+  "reply_template": "shared"
+ },
+ {
+  "name": "take back",
+  "sentence": "take back the grant ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12",
+  "op": "take_back",
+  "slots": {
+   "id": "ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12ab12"
+  },
+  "reply_template": "revoked"
+ },
+ {
+  "name": "carry ledger",
+  "sentence": "carry the ledger to /tmp/berth one",
+  "op": "carry_ledger",
+  "slots": {
+   "path": "/tmp/berth one"
+  },
+  "reply_template": "copied"
+ },
+ {
+  "name": "carry address",
+  "sentence": "carry کارها to /tmp/out",
+  "op": "carry_address",
+  "slots": {
+   "address": "کارها",
+   "path": "/tmp/out"
+  },
+  "reply_template": "exported"
+ },
+ {
+  "name": "carry bundle",
+  "sentence": "carry the bundle for دستیار",
+  "op": "carry_bundle",
+  "slots": {
+   "who": "دستیار"
+  },
+  "reply_template": "bundled"
+ },
+ {
+  "name": "reconcile",
+  "sentence": "reconcile",
+  "op": "reconcile",
+  "slots": {},
+  "reply_template": "merged"
+ }
+]

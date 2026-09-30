@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm
+18 accepted events and 3 system events  ·  0 pending events  ·  0 rejected events  ·  1 head
+Star  a0b6443e  ·  3 system events
+Planet  home  ·  17 events  ·  Moons journal
+Planet  work  ·  1 event
+
+
+
+
+
+› █ try read home  ·  ? for the list
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

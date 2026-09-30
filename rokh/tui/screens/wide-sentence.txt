@@ -1,0 +1,36 @@
+╭─ ROKH ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                        │
+│ 3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head                      │
+│   1 ledger     ▸ 2 sentence       3 authority       4 layers                                 58 MB free of 64 MB │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ SENTENCE ───────────────────────────────────────────────────────────────────────╮ ╭─ STANDING ──────────────────╮
+│ 1 SENTENCE WAITING                                                               │ │ YOU ARE STANDING AT         │
+│ 1 ▸ “write at home/journal/today: Call the plumber about the kitchen tap.”       │ │ VAULT      /path/to/rokh    │
+│      at home/journal/today  ·  42 bytes  ·  signed by root under the owner's ow… │ │ LEDGER     home             │
+│                                                                                  │ │ ANCHOR     a0b6443e         │
+│ NOT RECORDED                                                                     │ │ HEAD       8c91d2af         │
+│ Nothing has crossed into the ledger.                                             │ │ CUSTODY    warm             │
+│ write crosses the recording boundary for the newest; write {n} for the n-th.     │ │ ROOM       64 MB            │
+│ There is no undo past it.                                                        │ │ FREE NOW   58 MB            │
+│ cancel lets the newest go; cancel {n} the n-th. Nothing is recorded.             │ │ GROWTH     fixed            │
+│                                                                                  │ │                             │
+│                                                                                  │ │ VERIFICATION SAYS           │
+│                                                                                  │ │ ● the stored bytes match    │
+│                                                                                  │ │ ● every signature checks    │
+│                                                                                  │ │ ● the ancestry is complete  │
+│                                                                                  │ │ ● the presented authority … │
+│                                                                                  │ │ NOT THIS: payload truth     │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+╰──────────────────────────────────────────────────────────────────────────────────╯ ╰─────────────────────────────╯
+
+╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                                                                 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

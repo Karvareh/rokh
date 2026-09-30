@@ -1,0 +1,62 @@
+{
+ "format": "rokh.engine-manifest/1",
+ "name": "holochain",
+ "namespace": "native/holochain",
+ "version_prefix": "holochain",
+ "conductor": {
+  "file": "holochain",
+  "version": "holochain 0.7.0"
+ },
+ "cli": {
+  "file": "hc",
+  "version": "holochain_cli 0.7.0"
+ },
+ "bridge": {
+  "file": "rokh-hc-bridge"
+ },
+ "app": {
+  "file": "rokh_review.happ",
+  "id": "rokh_review",
+  "zome": "review"
+ },
+ "functions": {
+  "publish": "publish_manuscript",
+  "chain_head": "chain_head",
+  "find_attempt": "find_attempt",
+  "read": [
+   "chain_head",
+   "list_manuscripts",
+   "list_reviews",
+   "get_excerpt",
+   "find_attempt",
+   "agent_activity",
+   "activity_head",
+   "probe_record",
+   "validation_receipts",
+   "get_my_body"
+  ],
+  "capability": [
+   "grant_excerpt_access",
+   "revoke_grant"
+  ],
+  "peer": [
+   "allow_excerpt_grant",
+   "lend_claim",
+   "remote_fetch_excerpt",
+   "submit_review"
+  ],
+  "admin": [
+   "list-capability-grants",
+   "revoke-zome-call-capability",
+   "dump-network-stats",
+   "list-agents",
+   "list-apps",
+   "list-dnas"
+  ]
+ },
+ "release_config_files": [
+  "conductor.yaml",
+  "runtime.json",
+  "ks/lair-keystore-config.yaml"
+ ]
+}

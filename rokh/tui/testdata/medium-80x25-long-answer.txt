@@ -1,0 +1,25 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 18 accepted and 3 system  ·  0 pending  ·  0 rejected  ·  1 head            │
+│ ▸ 1 ledger    2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ LEDGER ────────────────────────────────────────────────────────────────────╮
+│ THE CHAIN, IN CAUSAL ORDER                                                  │
+│ I am standing at 8c91d2af, the only head of home.                           │
+│ ▸ 2 sentences waiting in working state — write records, cancel lets go      │
+│ ● ACCEPTED  8c91d2af  note at home/journal/today                            │
+│   “I named what mattered before I moved on.”                                │
+│   signed by root · under the owner's own right · through rokh-shell         │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ ROKH SAYS ─────────────────────────────────────────────────────────────────╮
+│ — home/n01 (9e3779b1): note 1, written to be read whole, however narrow the │
+│ window it is read in happens to be                                          │
+│ — home/n02 (13c6ef362): note 2, written to be read whole, however narrow    │
+│ the window it is read in happens to be                                      │
+│ — home/n03 (1daa66d13): note 3, written to be read whole, however narrow    │
+│ (lines 1–5 of 25 · ↓ or PgDn reads the rest · esc closes)                   │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                            │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  ↓ or PgDn reads the whole answer   esc closes it   "go" or Ctrl-C leaves

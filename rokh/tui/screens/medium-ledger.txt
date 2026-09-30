@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 3 accepted and 4 system  ·  0 pending  ·  0 rejected  ·  1 head             │
+│ ▸ 1 ledger    2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ LEDGER ────────────────────────────────────────────────────────────────────╮
+│ THE CHAIN, IN CAUSAL ORDER                                                  │
+│ I am standing at 8c91d2af, the only head of home.                           │
+│ ▸ 1 sentence waiting in working state — write records, cancel lets go       │
+│                                                                             │
+│ ● ACCEPTED  8c91d2af  note at home/journal/today                            │
+│   “Walked to the river before work; the water was high.”                    │
+│   signed by root · under the owner's own right · through rokh-shell         │
+│ ● ACCEPTED  72b4e191  system  rokh.revoke at rokh                           │
+│   grant 0be21d6c taken back, from here on                                   │
+│   signed by root · under the owner's own right · through rokh-shell         │
+│ ● ACCEPTED  5c1f09aa  note at work/plans                                    │
+│   “Draft the budget by Friday.”                                             │
+│   signed by assistant · under grant 5f20c331 · through rokh-home/program    │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                            │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

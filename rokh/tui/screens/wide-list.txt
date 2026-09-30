@@ -1,0 +1,36 @@
+╭─ ROKH ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                        │
+│ 3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head                      │
+│   1 ledger       2 sentence       3 authority       4 layers                                 58 MB free of 64 MB │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ SENTENCES · 19 SENTENCES ───────────────────────────────────────────────────────╮ ╭─ STANDING ──────────────────╮
+│ FIND  type a verb to find a sentence█                                            │ │ YOU ARE STANDING AT         │
+│ 19 of 19 sentences  ·  eight verbs and a few small words                         │ │ VAULT      /path/to/rokh    │
+│ ▸ open a new ledger named {name}  ● records                                      │ │ LEDGER     home             │
+│   start a new ledger beside this one                                             │ │ ANCHOR     a0b6443e         │
+│   records one event: makes a new ledger, and this sentence is its genesis        │ │ HEAD       8c91d2af         │
+│   open the ledger {name}                                                         │ │ CUSTODY    warm             │
+│   go to a ledger that is already here                                            │ │ ROOM       64 MB            │
+│   reads only: verifies its carrier and stands at its head                        │ │ FREE NOW   58 MB            │
+│   write at {address}: {text}                                                     │ │ GROWTH     fixed            │
+│   put a note down; it waits until you say write                                  │ │                             │
+│   waits: puts a sentence in working state, beside any already waiting; nothing … │ │ VERIFICATION SAYS           │
+│   write  ● records                                                               │ │ ● the stored bytes match    │
+│   keep the waiting note for good; there is no undo                               │ │ ● every signature checks    │
+│   records one event: the newest waiting sentence (write {n}: the n-th); there i… │ │ ● the ancestry is complete  │
+│   cancel                                                                         │ │ ● the presented authority … │
+│   let the waiting note go                                                        │ │ NOT THIS: payload truth     │
+│   lets the newest waiting sentence go (cancel {n}: the n-th); nothing is record… │ │                             │
+│   read {address}                                                                 │ │                             │
+│   show what is written there                                                     │ │                             │
+│   reads only: what was written at that address and beneath it                    │ │                             │
+│   see the ledger                                                                 │ │                             │
+│   check the ledger and count what is in it                                       │ │                             │
+│   reads only: how many events, how many heads, all verified                      │ │                             │
+╰──────────────────────────────────────────────────────────────────────────────────╯ ╰─────────────────────────────╯
+
+╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ › /█                                                                                                             │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  type to find   ↑↓ move   enter choose   esc closes the list

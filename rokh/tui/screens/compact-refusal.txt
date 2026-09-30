@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm
+3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head
+● 8c91d2af  note at home/journal/today  “Walked to the river before work; the water was high.”
+● 72b4e191  system rokh.revoke at rokh  grant 0be21d6c taken back, from here on
+● 5c1f09aa  note at work/plans  “Draft the budget by Friday.”
+● 31ab770c  system rokh.grant at rokh  writing entrusted to 3fa9c1d2… at work/plans
+● 9e04d2b7  note at home/journal  “The first line belongs to this address.”
+● 5d21c0e9  system rokh.keyring at rokh  the owner's key added, generation 1
+no — this Rokh is full, so nothing was recorded. To make room, leave and run: rokh grow /path/to/rokh/ledgers/home
+--to 128M [vessel_full; not recorded]
+› █ try write  ·  ? for the list
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

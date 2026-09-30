@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 18 accepted and 3 system  ·  0 pending  ·  0 rejected  ·  1 head            │
+│   1 ledger    2 sentence    3 authority  ▸ 4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ LAYERS ────────────────────────────────────────────────────────────────────╮
+│ STAR, PLANETS AND MOONS                                                     │
+│ Star    a0b6443e  ·  3 system events  ·  1 key  ·  0 seeds                  │
+│ Planet  home  ·  17 events                                                  │
+│   Moon  journal  ·  17 events                                               │
+│         today                                                               │
+│ Planet  work  ·  1 event                                                    │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ try read home  ·  ? for the list                                        │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm
+3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head
+1 waiting “write at home/journal/today: Call the plumber about the kitchen tap.”
+NOT RECORDED  write records, no undo
+
+
+
+
+
+
+› █ try write  ·  ? for the list
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

@@ -1,0 +1,182 @@
+# Every row is an obligation, not a number: a compound proposition has several rows.
+# status: met | owed | ruling-open | outside | field | note
+# met: a production path exists, and a test whose own comment says which ruling it is for.
+# owed: the ruling is closed and the work is owed - the one status that never closes.
+#
+# id	part	kind	status	where	test	note
+T1	-	ruling	met	ledger/ledger.go:ClosedAndAlive	ledger:TestTheLedgerIsClosedToAuthorityFromAnywhereElse	closed: authority only from its own causal past; alive: it grows, and reopening does not start over
+T1.1	-	ruling	met	event/event.go:FreshSize	event:TestShapeRules	
+T1.2	-	ruling	met	carrier/carrier.go:Footprint	proof:TestFootprintIsTheWholeTrace	v1: everything a carrier writes lies in its one directory; removed, the folder is the person's again, untouched
+T1.3	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestAPlainLieIsAcceptedBecauseTheLedgerWitnessesTheWriter	
+T1.4	-	ruling	met	arch/arch.go:Complete	arch:TestNoCoreLayerImportsATransport	Rokh is complete without a network; no layer of the core brings in a transport
+T2	-	ruling	met	answer/answer.go:Answer.Check	answer:TestAllThreePillarsAreReportedTogether	
+T2.1	-	ruling	met	answer/answer.go:Answer.Check	answer:TestAnAnswerWithNoLedgerBehindItIsNotChecked	without a ledger nothing is checked at all; a quotation without an address and an outside address are both refused
+T2.2	-	ruling	met	daemon/ground.go:ground.Grants	daemon:TestTheLedgerRefusesEachPillarInTurn	the authority must be a grant standing in the causal past and the receipt an intent really opened; an ordinary event is neither
+T2.3	-	ruling	met	daemon/daemon.go:Server.answer	daemon:TestAHarnessAnswerPassesThroughTheThreePillars	a bound program passes its answer through the gate and the ledger judges, not the program itself
+T3	-	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestLedgerTrustsOnlyBytes	
+T3.1	-	ruling	met	frame/frame.go:BuildHead	proof:TestATamperedObjectOnDiskIsRefusedNotRead	v1 (contract C4): the signed head is the one byte string and names its body by hash; a damaged stored record is refused, never served
+T3.2	-	ruling	met	bond/bond.go:Leaf	bond:TestTheLeafsNameIsTheHashOfItsOwnBytes	
+T3.3	-	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestLedgerTrustsOnlyBytes	
+T3.4	-	profile	met	event/event.go:MaxPayload	event:TestInlinePayloadIsBounded	
+T3.5	full-name	ruling	met	ledger/ledger.go:Ledger.add	ledger:TestTwoDifferentEventsUnderOneNameAreRefused	v1: the ledger compares the bytes under a full name and refuses a second byte string; the collision is seen
+T3.5	lengthen	ruling	met	frame/frame.go:ID.ShortIn	frame:TestAShortNameLengthensWhenTwoWouldCollide	a short name lengthens byte by byte until it is unique among the names in view
+T3.6	nonce-field	ruling	met	event/event.go:Event	event:TestTheSameContentTwiceIsTwoEventsWhenItIsTwoActs	v1: freshness is tag 0x0009 of the signed head (contract 3.4); two acts are two events, a replay one; a head without it is refused
+T3.6	replay	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestTheSameEventAgainReturnsItsVerdict	the same bytes again: without effect, and valid
+T3.7	generations	ruling	met	frame/frame.go:Superseded	event:TestEarlierGenerationsAreRefusedByNameNotCalledMalformed	v1 reads RKH3 only; RKH1 and RKH2 are refused by name, not called malformed, and their bytes are untouched (contract 3.4, section 7)
+T3.7	verifier-kept	ruling	met	generation/generation.go:Set.Read	generation:TestAnOldGenerationReadsWhileItsVerifierIsKept	an old generation is read as long as its verifier is kept
+T4	-	ruling	met	event/event.go:Sign	shell:TestIdleSessionWritesNothing	
+T4.1	-	ruling	met	shell/ops.go:recorder	arch:TestOnlyOneWritingPathDrawsFreshness	
+T4.2	-	ruling	met	event/event.go:Sign	event:TestForeignKeyCannotClaimAuthorship	
+T4.3	-	ruling	met	covenant/covenant.go:Covenant	covenant:TestOnlyRootCanDisclose	
+T4.4	boundary	ruling	met	working/working.go:State.Close	working:TestNothingCrossesTheBoundaryWithoutTheExplicitAct	one explicit act, and no other way
+T4.4	wired	ruling	met	shell/ops.go:session.doWriteClose	shell:TestASentenceDoesNotReachTheLedgerUntilItIsClosed	the shell: a sentence sits in the working state, the shape of its effect is shown, and `write` closes it
+T4.5	-	ruling	met	shell/ops.go:session.doWriteClose	shell:TestASentenceDoesNotReachTheLedgerUntilItIsClosed	
+T5	-	ruling	met	ledger/ledger.go:Ledger.CausalPast	ledger:TestCausalPast	
+T5.1	-	ruling	met	event/event.go:FreshSize	event:TestParentsAreSortedOnTheWire	
+T5.2	-	ruling	met	ledger/ledger.go:Ledger.CausalPast	ledger:TestConcurrentEventsAreCausallyIncomparable	
+T5.3	-	ruling	met	bond/keeper.go:Bound	bond:TestNobodyComesToOwnAnotherPerson	
+T5.4	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestOrderOfArrivalDoesNotChangeVerdicts	
+T5.5	-	ruling	met	ledger/ledger.go:Ledger.Heads	ledger:TestTheLedgerNamesNoWinnerBetweenConcurrentActs	
+T5.6	-	ruling	met	ledger/reach.go:Ledger.Against	ledger:TestAVerifiedHistoryIsNotThereforeAWholeOne	verification is the ceiling of inference; a hidden branch comes to light only with earlier evidence
+T6	-	ruling	met	event/grant.go:Grant	ledger:TestADelegatesPowerIsOnlyWhatWasEntrustedAndItEnds	
+T6.1	-	ruling	met	event/grant.go:ScopeWithin	ledger:TestSubDelegationCannotWiden	
+T6.2	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestRevocationIsCausalNotGlobal	
+T6.3	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestRevocationIsCausalNotGlobal	
+T6.4	-	ruling	met	ledger/ledger.go:Ledger.settle	ledger:TestVerdictsAreFinal	
+T6.5	-	ruling	met	bond/keeper.go:Bound	bond:TestNobodyComesToOwnAnotherPerson	
+T7	-	ruling	met	covenant/covenant.go:Covenant	covenant:TestCovenantOnlyPermits	
+T7.1	-	ruling	met	bundle/sealed.go:ReadingKeyFor	covenant:TestCovenantOnlyPermits	
+T7.2	-	ruling	met	bundle/bundle.go:Disclosable	bundle:TestUnknownPeerGetsNothing	
+T7.3	-	ruling	met	bundle/sealed.go:ReadingKeyFor	covenant:TestOnlyRootCanDisclose	
+T7.4	-	ruling	met	bundle/bundle.go:Disclosable	bundle:TestNothingCrossesWithoutACovenant	
+T7.5	rule	ruling	met	selective/selective.go:Least	selective:TestOneFieldTravelsAndTheRestDoesNot	the least that is needed travels; the rule is closed and built
+T7.5	byte-form	ruling	ruling-open			the name, type and place of the field, order, repetition, the binding to the event: open by ruling 13.1
+T7.5	receiver	ruling	met	selective/selective.go:Check	selective:TestTheReceiverChecksHoldingOnlyWhatTravelled	the receiver holds only the shown part; the owner's audit is another question and a separate function
+T7.6	-	ruling	met	bundle/bundle.go:Disclosable	bundle:TestMissingAncestorsAreReported	
+T8	-	ruling	met	carrier/carrier.go:Footprint	proof:TestFootprintIsTheWholeTrace	v1: the footprint is the whole trace, and nothing in it is legible
+T8.1	-	ruling	met	vessel/names.go:SlabName	proof:TestASlabCannotBeRelocatedAndItsNameSaysNothing	v1: files are named by place alone, so a full and an empty carrier list alike; a slab moved under another name does not open (contract V3, V4)
+T8.2	-	ruling	met	shell/ops.go:session.doWrite	shell:TestASentenceDoesNotReachTheLedgerUntilItIsClosed	
+T8.3	-	ruling	met	carrier/carrier.go:Open	proof:TestSeveralCarriersOpenAtOnceAndNoneKnowsTheOther
+T8.4	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestRootMustOmitAuthorityAndStrangersCannotForgeCarrier	
+T8.5	atomic-file	ruling	outside			v1 keeps no atomic file write: contract C2 (the core never relies on an atomic rename or a directory flush), section 1 (no temporary file, no lock file, no rename) and 2.10 (Medium.Write writes in place). A cut at any byte is carried by the commit point, T8.5/the-point
+T8.5	the-point	ruling	met	vessel/tx.go:Tx.Commit	proof:TestBytesLeftBehindByACutAreNotAnEventAndNotPoison	v1: one recording is one commit whose point is the head file (contract 2.6); cut at any write before it, nothing is recorded and the reopened ledger holds only what the committed references reach
+T8.6	-	ruling	met	carrier/carrier.go:Open	proof:TestThereIsNoWayBackFromALostPassphrase	v1 (contract 4.6): the owner's passphrase has no recovery and gets none
+T8.7	-	profile	met	carrier/carrier.go:Footprint	proof:TestNothingIsCreatedBeyondTheInventory	v1 profile: one directory of N slab files and four head files (contract section 1), and nothing else
+T9	-	ruling	met	shell/parse.go:parse	shell:TestSentenceVectors	
+T9.1	-	ruling	met	shell/parse.go:parse	shell:TestSentenceVectors	
+T9.2	-	ruling	met	shell/ops.go:session.doWrite	shell:TestASentenceDoesNotReachTheLedgerUntilItIsClosed	what is seen before closing is a prediction of the effect and has no name
+T9.3	-	ruling	field			that a sentence can be read aloud and understood is not measured by a machine test
+T9.4	-	ruling	met	shell/parse.go:parse	shell:TestSentenceVectors	
+T10	-	ruling	met	receipt/receipt.go:Intent	arch:TestTheImportGraphKeepsTheCoreIgnorantOfReceipts	
+T10.1	-	ruling	met	receipt/ritual.go:Ritual.Close	receipt:TestBothHalvesAreRecordedEventsAndTheResultNamesTheIntent	both halves are signed events; the id of the intent is the name of those bytes, and the outcome names it as its parent
+T10.2	-	ruling	met	receipt/receipt.go:OpenIntent	receipt:TestAnEffectMustShowAllSixWitnesses	
+T10.3	-	ruling	met	receipt/receipt.go:CloseWith	receipt:TestFailureHasAReceipt	
+T10.4	-	ruling	met	receipt/receipt.go:CloseWith	receipt:TestALostEndingClosesAsUnknown	
+T10.5	-	ruling	met	arch/arch.go:Custom	arch:TestTheImportGraphKeepsTheCoreIgnorantOfReceipts	a custom, not a law of the core; the import graph is closed downwards
+T10.6	-	ruling	met	receipt/receipt.go:Concerns	receipt:TestAPayloadOfAnotherTypeIsNotClaimed	address, verb and the declared type of the payload, all three; never the name
+T10.7	-	ruling	met	receipt/ritual.go:Ritual.Closed	receipt:TestAHandleAlreadyUsedHereWillNotBeUsedAgainHere	the repeat handle takes hold in this same ledger; four policies are declared in harness.Effects
+T11	-	ruling	met	arch/arch.go:Position	arch:TestTheImportGraphShowsNoWheelRebuilt	
+T11.1	-	ruling	met	arch/arch.go:Position	arch:TestTheImportGraphShowsNoWheelRebuilt	
+T11.2	-	ruling	met	arch/arch.go:Position	arch:TestTheImportGraphShowsNoWheelRebuilt	
+T11.3	-	ruling	met	arch/arch.go:Position	arch:TestTheImportGraphShowsNoWheelRebuilt	
+T11.4	-	note	note			
+T11.5	-	ruling	met	bond/bond.go:Leaf	bond:TestEachPersonBringsTheirOwnAnchor	
+T11.6	-	ruling	met	bond/bond.go:Leaf	bond:TestClosingIsMutualAcceptanceAndTheLedgersStaySeparate	
+T11.7	-	ruling	met	bond/bond.go:Act	bond:TestClosingIsMutualAcceptanceAndTheLedgersStaySeparate	
+T11.8	bounds	ruling	met	bond/authority.go:Held	bond:TestNoneOfTheFourAuthoritiesFollowsFromAnother	four separate authorities: none follows from another (12 pairs tested); a shared pen with share, keep and a receipt of return in bond/pen.go
+T11.8	rotation	ruling	ruling-open			unfinished until root key rotation (13.2) is closed
+T11.8	life-cycle	ruling	met	bond/life.go:Passage.Check	bond:TestAtEveryStageAKeepingIsOverWorkAndNeverOverThePerson	eight named stages; the bound holds at every stage; the passages deliberately open: Permitted is always ErrCycleOpen
+T11.9	-	ruling	met	bond/keeper.go:Bound	bond:TestAKeeperDoesNotBecomeTheOwnerAndTheBondSurvivesTheHandover	
+T11.10	four-clauses	ruling	met	harness/harness.go:Covenant.Bind	harness:TestAllFourClausesAreRequired	four clauses, and no third answer that guesses
+T11.10	enforced	ruling	met	daemon/daemon.go:Server.write	daemon:TestAnUnknownVerbGetsTheAnswerTheHarnessDeclared	an undeclared verb inside the program's own space gets the answer the program itself declared; the core does not guess
+T11.10	payload-type	ruling	met	harness/stamp.go:Covenant.Reads	harness:TestAStampFromAnotherVersionGetsTheDeclaredAnswerNotAGuess	the stamp is inside the signed payload; the version is bound to the event itself
+T11.11	root-and-subtree	ruling	met	harness/harness.go:Covenant.Read	harness:TestTheRootIsTheHarnessOwnAndTheSubtreeItsVerbs	the exact root is the program itself and the receipt shelf; the subtree is the verb space, under 11.10; a receipt below the root is refused, not ignored
+T11.11	no-ritual-words-in-can	ruling	met	harness/harness.go:Covenant.Bind	harness:TestTheRitualsWordsAreNotAHarnessesToDeclare	intent and outcome are words of the procedure, not verbs of the covenant; declaring them does not close the covenant
+T11.11	enforced	ruling	met	daemon/receipt.go:Server.speaksHere	daemon:TestAReceiptIsWrittenAtTheHarnessRootAndNowhereUnderIt	a bound program puts its receipt at the root; below it is refused, and the refusal says where the root is
+T12	-	ruling	met	harness/harness.go:Register.Bind	harness:TestTwoHarnessesCannotClaimOneSpace	
+T12.1	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestAPlainLieIsAcceptedBecauseTheLedgerWitnessesTheWriter	
+T12.2	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestNoDegreeInThePayloadChangesTheVerdict	
+T12.3	-	ruling	met	ledger/ledger.go:Ledger.evaluate	proof:TestAnUnknownAncestryIsPendingNotRefusedAndCostsNothingToHold	v1: what has not arrived is pending, answered ancestry_unproven, not refused, and accepted once it arrives (contract C8, B8)
+T12.4	-	ruling	met	ledger/ledger.go:SeatOfJudgement	ledger:TestAnUntouchedLedgerProducesNothing	the seat of judgement is deliberately empty; an untouched ledger produces nothing
+T12.5	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestAPlainLieIsAcceptedBecauseTheLedgerWitnessesTheWriter	
+T12.6	-	ruling	outside			an epistemic bound: no test can prove that the binary that runs is the same code, and a test that claimed it would be exactly the over-claim this band warns against
+T13	-	note	note			
+T13.1	sealing	ruling	met	seal/seal.go:To	bundle:TestWhatLeavesIsAlreadyClosedForOneReader	sealing content for a specific receiver: X25519+HKDF+GCM, and the bundle is closed before it is handed to the courier
+T13.1	byte-form	ruling	ruling-open			the byte form of selective disclosure: ruling open
+T13.2	-	ruling	ruling-open			root key rotation: ruling open
+T13.3	real-folder	ruling	met	working/folder.go:Folder	working:TestTheWorkingStateOpensAsARealFolder	the real folder: one folder per draft, files for address, verb and payload; editing with any tool is rewriting the draft; saving records nothing
+T13.4	seat	ruling	met	shell/session.go:seat	shell:TestForeignAndUndeclaredSeatsAreRefused	a mirror declares its seat; its anchor is read from the carrier's public face, not from its claim, and the two never become one
+T13.4	read	ruling	met	shell/session.go:session.requireOwn	shell:TestAMirrorIsReadAndNeverWritten	a mirror is opened and read; any sentence written on it is refused at the door, not after signing
+T13.4	bond-reader	ruling	ruling-open			the reader of a bond: still an open ruling
+T13.5	covenant	ruling	met	daemon/daemon.go:Server.bind	daemon:TestAHarnessBindsFourClausesOrNothing	the gate takes the four-clause covenant and holds the program to it
+T13.5	field	ruling	field			that someone other than us writes is a field test
+T13.6	multi-ledger	ruling	met	bond/across.go:Settled	bond:TestABondSpansSeveralLedgersWithoutJoiningThem	two real ledgers: each accepts the same name in its own ledger; neither holds the other's event
+T13.6	succession	ruling	ruling-open			succession: the passages and the holders of authority are not closed
+T13.7	-	ruling	outside			key recovery: outside the design, by ruling 8.6
+T13.8	-	ruling	ruling-open			a full-name collision: seeing it is closed, what to do is open
+N1.1	-	note	note			
+N1.2	-	note	note			
+N1.3	-	note	note			
+N1.4	-	note	note			
+N1.5	-	note	note			
+N1.6	-	note	note			
+N2.1	-	note	note			
+N2.2	-	note	note			
+N2.3	-	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestTwoCopiesOfOneLedgerConvergeWithoutAnybodyDeciding	
+N2.4	-	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestTwoCopiesOfOneLedgerConvergeWithoutAnybodyDeciding	
+N2.5	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestOnePersonAloneJudgesTheWholeLedger	
+N2.6	-	ruling	met	ledger/ledger.go:Measure	ledger:TestOnePersonCheckingBytesIsWhatReplacesTheVote	one person, offline, verifies the whole ledger; Add is that program, event by event
+N2.7	-	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestTwoCopiesOfOneLedgerConvergeWithoutAnybodyDeciding	
+N2.8	-	ruling	met	carrier/carrier.go:Recording.Event	proof:TestRokhOffersNoWayToHoldASingleSpendableThing
+N2.9	-	ruling	met	carrier/carrier.go:Recording.Event	proof:TestRokhOffersNoWayToHoldASingleSpendableThing
+N2.10	-	ruling	met	carrier/carrier.go:Recording.Event	proof:TestRokhOffersNoWayToHoldASingleSpendableThing
+N2.11	-	ruling	met	content/content.go:Descriptor	proof:TestRokhOffersNoWayToHoldASingleSpendableThing
+N2.12	-	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestTwoCopiesOfOneLedgerConvergeWithoutAnybodyDeciding	
+N3.0	-	note	note			
+N-Axiom1	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestRootMustOmitAuthorityAndStrangersCannotForgeCarrier	
+N-Axiom2	-	ruling	met	ledger/ledger.go:Ledger.settle	ledger:TestVerdictsAreFinal	
+N-Axiom3	-	ruling	met	frame/frame.go:BuildHead	proof:TestOneFlippedBitIsNeverTheSameEvent	v1 (contract C4): the head is the one byte string, signed, hashed and stored; changed bytes are never the same event
+N-Axiom4	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestRevocationIsCausalNotGlobal	
+N-Axiom5	-	ruling	met	arch/arch.go:Complete	arch:TestNoCoreLayerImportsATransport	the same: a connection adds access, not completeness
+N-Axiom6	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestOnePersonAloneJudgesTheWholeLedger	
+N-Axiom7	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestAPlainLieIsAcceptedBecauseTheLedgerWitnessesTheWriter	
+N3.8	-	note	note			
+N4.1	-	ruling	met	canon/canon.go:Marshal	canon:TestASecondSpellingIsRefusedNotRepaired	one content, one encoding: keys sorted, no spaces, explicit escapes; a second spelling is refused, not repaired
+N4.2	-	ruling	met	frame/frame.go:Hash	event:TestTamperIsAlwaysCaught	
+N4.3	-	ruling	met	event/event.go:FreshSize	event:TestParentsAreSortedOnTheWire	
+N4.4	-	ruling	met	event/grant.go:ScopeWithin	ledger:TestSubDelegationCannotWiden	
+N4.5	-	ruling	met	content/content.go:Descriptor	content:TestDescriptorIsTiny	
+N4.6	-	ruling	met	carrier/carrier.go:Footprint	proof:TestFootprintIsTheWholeTrace
+N4.7	-	ruling	met	shell/ops.go:session.doWrite	shell:TestASentenceDoesNotReachTheLedgerUntilItIsClosed	
+N4.8	-	ruling	met	covenant/covenant.go:Covenant	covenant:TestCovenantOnlyPermits	
+N4.9	-	ruling	met	bundle/bundle.go:Disclosable	announce:TestAnnouncementCarriesNoAuthority	
+N4.10	-	profile	met	generation/generation.go:Profile	proof:TestTheBaseProfileIsExercisedNotJustNamed	v1 profile (contract C3): Ed25519, SHA-256, PBKDF2-HMAC-SHA256, X25519 envelopes, fixed slabs named by place; exercised, not only named
+N5.1	threats	ruling	met	carrier/carrier.go:Open	proof:TestWithThePassphraseEverythingOpensAndThatIsTheLimit	the adversary table: who took the carrier sees a rokh vessel and reads nothing; who holds the passphrase reads everything
+N5.1	host	ruling	outside			a compromised host: the trust boundary lies before Rokh, and Rokh can do nothing about it
+N5.2	-	note	note			
+N6.0	-	note	note			
+N6.1	-	ruling	met	carrier/carrier.go:Open	proof:TestWithThePassphraseEverythingOpensAndThatIsTheLimit
+N6.2	-	ruling	met	ledger/ledger.go:Ledger.ActiveGrants	ledger:TestRevocationIsCausalNotGlobal	the answer is always relative to a point; revocation closes the future, not the past
+N6.3	-	ruling	met	ledger/ledger.go:Witness	ledger:TestAPlainLieIsAcceptedBecauseTheLedgerWitnessesTheWriter	the ledger attests the author and the order, not the truth
+N6.4	-	ruling	met	oracle/oracle.go:Chance	ledger:TestTheLedgerKnowsOrderAndNotTheCalendar	
+N6.5	-	ruling	met	content/content.go:Descriptor	content:TestDescriptorIsTiny	
+N6.6	-	ruling	met	carrier/carrier.go:Open	proof:TestThereIsNoWayBackFromALostPassphrase
+N7.1	-	ruling	met	carrier/carrier.go:Footprint	proof:TestTakeItAndGo
+N7.2	-	ruling	met	carrier/carrier.go:Footprint	proof:TestTakeItAndGo
+N7.3	-	ruling	met	carrier/carrier.go:Footprint	proof:TestFootprintIsTheWholeTrace
+N7.4	-	ruling	met	ledger/ledger.go:Ledger.evaluate	ledger:TestOnePersonAloneJudgesTheWholeLedger	
+N7.5	-	ruling	outside			the same bound as T12.6, from the side of open code
+N7.6	-	ruling	met	event/grant.go:Grant	ledger:TestADelegatesPowerIsOnlyWhatWasEntrustedAndItEnds	
+N7.7	-	ruling	met	ledger/ledger.go:SeatOfJudgement	ledger:TestAnUntouchedLedgerProducesNothing	the seventeenth minute is not counted
+N8.1	-	note	note			
+N8.2	-	note	note			
+N8.3	-	note	note			
+N8.4	-	note	note			
+N8.5	-	note	note			
+N8.6	-	note	note			
+N8.7	-	note	note			
+N9.1	-	ruling	met	ledger/ledger.go:Ledger.Add	ledger:TestTwoCopiesOfOneLedgerConvergeWithoutAnybodyDeciding	
+N9.2	-	ruling	met	ledger/ledger.go:SeatOfJudgement	ledger:TestOnePersonAloneJudgesTheWholeLedger	verification in place of the vote, bytes in place of trust, and nothing in the seat of judgement
+N9.3	-	ruling	met	arch/arch.go:Position	arch:TestTheImportGraphShowsNoWheelRebuilt	
+N9.4	-	ruling	met	arch/arch.go:Position	arch:TestTheImportGraphShowsNoWheelRebuilt	
+N9.5	-	note	note			

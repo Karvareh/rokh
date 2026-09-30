@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 3 accepted and 4 system  ·  0 pending  ·  0 rejected  ·  1 head             │
+│ ▸ 1 ledger    2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ ROKH SAYS ─────────────────────────────────────────────────────────────────╮
+│ — home/journal/day01 (3a7c1e61): the note of day 1, as it was written       │
+│ — home/journal/day02 (3a7c1ec2): the note of day 2, as it was written       │
+│ — home/journal/day03 (3a7c1f23): the note of day 3, as it was written       │
+│ — home/journal/day04 (3a7c1f84): the note of day 4, as it was written       │
+│ — home/journal/day05 (3a7c1fe5): the note of day 5, as it was written       │
+│ — home/journal/day06 (3a7c2046): the note of day 6, as it was written       │
+│ — home/journal/day07 (3a7c20a7): the note of day 7, as it was written       │
+│ — home/journal/day08 (3a7c2108): the note of day 8, as it was written       │
+│ — home/journal/day09 (3a7c2169): the note of day 9, as it was written       │
+│ — home/journal/day10 (3a7c21ca): the note of day 10, as it was written      │
+│ — home/journal/day11 (3a7c222b): the note of day 11, as it was written      │
+│ — home/journal/day12 (3a7c228c): the note of day 12, as it was written      │
+│ 12 events at home/journal.                                                  │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                            │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  ↑↓ PgUp PgDn page the answer   esc back   "go" or Ctrl-C leaves

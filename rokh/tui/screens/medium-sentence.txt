@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 3 accepted and 4 system  ·  0 pending  ·  0 rejected  ·  1 head             │
+│   1 ledger  ▸ 2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SENTENCE ──────────────────────────────────────────────────────────────────╮
+│ 1 SENTENCE WAITING                                                          │
+│ 1 ▸ “write at home/journal/today: Call the plumber about the kitchen tap.”  │
+│      at home/journal/today  ·  42 bytes  ·  signed by root under the owner… │
+│                                                                             │
+│ NOT RECORDED                                                                │
+│ Nothing has crossed into the ledger.                                        │
+│ write crosses the recording boundary for the newest; write {n} for the n-t… │
+│ There is no undo past it.                                                   │
+│ cancel lets the newest go; cancel {n} the n-th. Nothing is recorded.        │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                            │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

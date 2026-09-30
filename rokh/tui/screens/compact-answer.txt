@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm
+3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head
+● 8c91d2af  note at home/journal/today  “Walked to the river before work; the water was high.”
+— home/journal/day01 (3a7c1e61): the note of day 1, as it was written
+— home/journal/day02 (3a7c1ec2): the note of day 2, as it was written
+— home/journal/day03 (3a7c1f23): the note of day 3, as it was written
+— home/journal/day04 (3a7c1f84): the note of day 4, as it was written
+— home/journal/day05 (3a7c1fe5): the note of day 5, as it was written
+— home/journal/day06 (3a7c2046): the note of day 6, as it was written
+(lines 1–6 of 13 · ↓ or PgDn reads the rest · esc closes)
+› █ try write  ·  ? for the list
+  ↓ or PgDn reads the whole answer   esc closes it   "go" or Ctrl-C leaves

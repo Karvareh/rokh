@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 18 accepted and 3 system  ·  0 pending  ·  0 rejected  ·  1 head            │
+│ ▸ 1 ledger    2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ ROKH SAYS ─────────────────────────────────────────────────────────────────╮
+│ the window it is read in happens to be                                      │
+│ — home/n08 (4f1bbcd88): note 8, written to be read whole, however narrow    │
+│ the window it is read in happens to be                                      │
+│ — home/n09 (58ff34739): note 9, written to be read whole, however narrow    │
+│ the window it is read in happens to be                                      │
+│ — home/n10 (62e2ac0ea): note 10, written to be read whole, however narrow   │
+│ the window it is read in happens to be                                      │
+│ — home/n11 (6cc623a9b): note 11, written to be read whole, however narrow   │
+│ the window it is read in happens to be                                      │
+│ — home/n12 (76a99b44c): note 12, written to be read whole, however narrow   │
+│ the window it is read in happens to be                                      │
+│ 12 events at home.                                                          │
+│ (lines 14–25 of 25 · ↑↓ PgUp PgDn page · esc back)                          │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                            │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  ↑↓ PgUp PgDn page the answer   esc back   "go" or Ctrl-C leaves

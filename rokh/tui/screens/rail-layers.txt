@@ -1,0 +1,20 @@
+◇ ROKH  ·  ledger home  ·  custody warm
+3 accepted · 4 system · 0 pending · 0 rejected
+  1 ledger   2 sent.   3 auth. ▸ 4 layers
+room 58 MB free of 64 MB
+│ STAR, PLANETS AND MOONS
+│ Star    a0b6443e  ·  4 system events  ·  1 k…
+│ Planet  home  ·  2 events
+│   Moon  journal  ·  2 events
+│         today
+│ Planet  work  ·  1 event
+│   Moon  plans  ·  1 event
+│ 
+│ 
+│ 
+│ 
+│ 
+│ 
+│ 
+› █ try read home  ·  ? for the list
+  ? sentences   "go" or Ctrl-C leaves

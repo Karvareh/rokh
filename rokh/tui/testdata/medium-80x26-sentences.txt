@@ -1,0 +1,26 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 18 accepted and 3 system  ·  0 pending  ·  0 rejected  ·  1 head            │
+│   1 ledger    2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SENTENCES · 19 SENTENCES ──────────────────────────────────────────────────╮
+│ FIND  entrust█                                                              │
+│ 3 of 19 sentences  ·  eight verbs and a few small words                     │
+│ ▸ see the grants                                                            │
+│   list who may write or read here                                           │
+│   reads only: the writing you have entrusted and the reading you have open… │
+│   entrust writing at {place} to {who}  ● records                            │
+│   let one key write in one place                                            │
+│   records one event: gives one key a narrow right to write there            │
+│   entrust reading {place} to {who}  ● records                               │
+│   let one key read one place; nothing is sent                               │
+│   records one event: opens one scope to one reader; nothing is sent         │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › /entrust█                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  type to find   ↑↓ move   enter choose   esc closes the list

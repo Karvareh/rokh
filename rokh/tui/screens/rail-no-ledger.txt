@@ -1,0 +1,20 @@
+◇ ROKH  ·  no ledger open
+vault /path/to/rokh
+▸ 1 ledger   2 sent.   3 auth.   4 layers
+
+│ NO LEDGER IS OPEN
+│ 
+│ Say open the ledger {name} to open one that …
+│ or open a new ledger named {name} to make on…
+│ 
+│ "/" lists every sentence. Nothing is recorde…
+│ 
+│ 
+│ 
+│ 
+│ 
+│ 
+│ 
+│ 
+› █ say a sentence, or ? for the list
+  ? sentences   "go" or Ctrl-C leaves

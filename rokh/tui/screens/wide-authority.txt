@@ -1,0 +1,36 @@
+╭─ ROKH ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                        │
+│ 3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head                      │
+│   1 ledger       2 sentence     ▸ 3 authority       4 layers                                 58 MB free of 64 MB │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ AUTHORITY ──────────────────────────────────────────────────────────────────────╮ ╭─ STANDING ──────────────────╮
+│ WRITING                                                                          │ │ YOU ARE STANDING AT         │
+│ ● 3fa9c1d2…  may note at work/plans                                              │ │ VAULT      /path/to/rokh    │
+│   grant 5f20c331                                                                 │ │ LEDGER     home             │
+│                                                                                  │ │ ANCHOR     a0b6443e         │
+│ DISCLOSURE                                                                       │ │ HEAD       8c91d2af         │
+│ ● 77be04ac…  may receive at home/journal                                         │ │ CUSTODY    warm             │
+│   covenant c91e407a  ·  nothing has been sent                                    │ │ ROOM       64 MB            │
+│                                                                                  │ │ FREE NOW   58 MB            │
+│ TAKEN BACK                                                                       │ │ GROWTH     fixed            │
+│ ● grant 0be21d6c  taken back by 72b4e191  ·  closed from there on; its past sta… │ │                             │
+│                                                                                  │ │ VERIFICATION SAYS           │
+│ FROM HERE ON                                                                     │ │ ● the stored bytes match    │
+│ Taking authority back closes the future; it does not erase the past.             │ │ ● every signature checks    │
+│                                                                                  │ │ ● the ancestry is complete  │
+│                                                                                  │ │ ● the presented authority … │
+│                                                                                  │ │ NOT THIS: payload truth     │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+╰──────────────────────────────────────────────────────────────────────────────────╯ ╰─────────────────────────────╯
+
+╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ › █ try see the grants  ·  ? for the list                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

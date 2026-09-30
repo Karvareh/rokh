@@ -1,0 +1,22 @@
+╭─ ROKH ────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  custody warm               │
+│ 18 accepted · 3 system · 0 pending · 0 rejected       │
+│ ▸ 1 ledger   2   3   4            58 MB free of 64 MB │
+╰───────────────────────────────────────────────────────╯
+╭─ LEDGER ──────────────────────────────────────────────╮
+│ THE CHAIN, IN CAUSAL ORDER                            │
+│ I am standing at 8c91d2af, the only head of home.     │
+│ ▸ 2 sentences waiting in working state — write recor… │
+│ ● ACCEPTED  8c91d2af  note at home/journal/today      │
+│   “I named what mattered before I moved on.”          │
+│   signed by root · under the owner's own right · thr… │
+╰───────────────────────────────────────────────────────╯
+╭─ ROKH SAYS ───────────────────────────────────────────╮
+│ — home/n01 (9e3779b1): note 1, written to be read     │
+│ whole, however narrow the window it is read in        │
+│ (lines 1–2 of 37 · ↓ reads the rest)                  │
+╰───────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                      │
+╰───────────────────────────────────────────────────────╯
+  ↓ reads on   esc closes   "go" or Ctrl-C leaves

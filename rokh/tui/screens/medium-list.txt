@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 3 accepted and 4 system  ·  0 pending  ·  0 rejected  ·  1 head             │
+│   1 ledger    2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SENTENCES · 19 SENTENCES ──────────────────────────────────────────────────╮
+│ FIND  type a verb to find a sentence█                                       │
+│ 19 of 19 sentences  ·  eight verbs and a few small words                    │
+│ ▸ open a new ledger named {name}  ● records                                 │
+│   start a new ledger beside this one                                        │
+│   records one event: makes a new ledger, and this sentence is its genesis   │
+│   open the ledger {name}                                                    │
+│   go to a ledger that is already here                                       │
+│   reads only: verifies its carrier and stands at its head                   │
+│   write at {address}: {text}                                                │
+│   put a note down; it waits until you say write                             │
+│   waits: puts a sentence in working state, beside any already waiting; not… │
+│                                                                             │
+│                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › /█                                                                        │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  type to find   ↑↓ move   enter choose   esc closes the list

@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm
+0 accepted events and 2 system events  ·  0 pending events  ·  0 rejected events  ·  1 head
+● 5d21c0e9  system rokh.keyring at rokh  the owner's key added, generation 1
+● a0b6443e  system rokh.genesis at rokh  made: my notes
+
+
+
+
+
+
+› █ try write at home/journal: my first note  ·  ? for the list
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

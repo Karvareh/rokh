@@ -1,0 +1,20 @@
+◇ ROKH  ·  ledger home  ·  custody warm
+3 accepted · 4 system · 0 pending · 0 rejected
+▸ 1 ledger   2 sent.   3 auth.   4 layers
+room 58 MB free of 64 MB
+│ THE CHAIN, IN CAUSAL ORDER
+│ I am standing at 8c91d2af, the only head of …
+│ ▸ 1 sentence waiting in working state — writ…
+│ No clock orders this list; parentage does.
+
+— home/journal/day01 (3a7c1e61): the note of
+day 1, as it was written
+— home/journal/day02 (3a7c1ec2): the note of
+day 2, as it was written
+— home/journal/day03 (3a7c1f23): the note of
+day 3, as it was written
+— home/journal/day04 (3a7c1f84): the note of
+day 4, as it was written
+(lines 1–8 of 25 · ↓ reads the rest)
+› █ try write  ·  ? for the list
+  ↓ reads on  go or Ctrl-C leaves

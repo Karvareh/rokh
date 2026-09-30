@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  no ledger open                     │
+│ vault /path/to/rokh                                                         │
+│ ▸ 1 ledger       2 sentence       3 authority       4 layers                │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ LEDGER ────────────────────────────────────────────────────────────────────╮
+│ NO LEDGER IS OPEN                                                           │
+│                                                                             │
+│ Say open the ledger {name} to open one that exists,                         │
+│ or open a new ledger named {name} to make one.                              │
+│                                                                             │
+│ "/" lists every sentence. Nothing is recorded until you say so.             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+│                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ say a sentence, or ? for the list                                       │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

@@ -1,0 +1,36 @@
+╭─ ROKH ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                        │
+│ 0 accepted events and 2 system events  ·  0 pending events  ·  0 rejected events  ·  1 head                      │
+│ ▸ 1 ledger       2 sentence       3 authority       4 layers                                 58 MB free of 64 MB │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ LEDGER ─────────────────────────────────────────────────────────────────────────╮ ╭─ STANDING ──────────────────╮
+│ THE CHAIN, IN CAUSAL ORDER                                                       │ │ YOU ARE STANDING AT         │
+│ I am standing at 5d21c0e9, the only head of home.                                │ │ VAULT      /path/to/rokh    │
+│                                                                                  │ │ LEDGER     home             │
+│ START HERE                                                                       │ │ ANCHOR     a0b6443e         │
+│ 1  write at home/journal: my first note   puts it down, waiting                  │ │ HEAD       5d21c0e9         │
+│ 2  write   records it; there is no undo                                          │ │ CUSTODY    warm             │
+│ "?" lists every sentence; "go" leaves.                                           │ │ ROOM       64 MB            │
+│                                                                                  │ │ FREE NOW   58 MB            │
+│ ● ACCEPTED  5d21c0e9  system  rokh.keyring at rokh                               │ │ GROWTH     fixed            │
+│   the owner's key added, generation 1                                            │ │                             │
+│   signed by root · under the owner's own right · after a0b6443e · through rokh   │ │ VERIFICATION SAYS           │
+│ ● ACCEPTED  a0b6443e  system  rokh.genesis at rokh                               │ │ ● the stored bytes match    │
+│   made: my notes                                                                 │ │ ● every signature checks    │
+│   signed by root  ·  under the owner's own right  ·  genesis  ·  through rokh    │ │ ● the ancestry is complete  │
+│                                                                                  │ │ ● the presented authority … │
+│ No clock orders this list; parentage does.                                       │ │ NOT THIS: payload truth     │
+│ Verification checks the event, not the truth of its payload.                     │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+╰──────────────────────────────────────────────────────────────────────────────────╯ ╰─────────────────────────────╯
+
+╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ › █ try write at home/journal: my first note  ·  ? for the list                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

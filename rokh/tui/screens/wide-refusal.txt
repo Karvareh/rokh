@@ -1,0 +1,36 @@
+╭─ ROKH ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                        │
+│ 3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head                      │
+│ ▸ 1 ledger       2 sentence       3 authority       4 layers                                 58 MB free of 64 MB │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ LEDGER ─────────────────────────────────────────────────────────────────────────╮ ╭─ STANDING ──────────────────╮
+│ THE CHAIN, IN CAUSAL ORDER                                                       │ │ YOU ARE STANDING AT         │
+│ I am standing at 8c91d2af, the only head of home.                                │ │ VAULT      /path/to/rokh    │
+│ ▸ 1 sentence waiting in working state — write records, cancel lets go            │ │ LEDGER     home             │
+│                                                                                  │ │ ANCHOR     a0b6443e         │
+│ ● ACCEPTED  8c91d2af  note at home/journal/today                                 │ │ HEAD       8c91d2af         │
+│   “Walked to the river before work; the water was high.”                         │ │ CUSTODY    warm             │
+│   signed by root · under the owner's own right · through rokh-shell              │ │ ROOM       64 MB            │
+│ ● ACCEPTED  72b4e191  system  rokh.revoke at rokh                                │ │ FREE NOW   58 MB            │
+│   grant 0be21d6c taken back, from here on                                        │ │ GROWTH     fixed            │
+│   signed by root · under the owner's own right · through rokh-shell              │ │                             │
+│ ● ACCEPTED  5c1f09aa  note at work/plans                                         │ │ VERIFICATION SAYS           │
+│   “Draft the budget by Friday.”                                                  │ │ ● the stored bytes match    │
+│   signed by assistant · under grant 5f20c331 · through rokh-home/program         │ │ ● every signature checks    │
+│ ● ACCEPTED  31ab770c  system  rokh.grant at rokh                                 │ │ ● the ancestry is complete  │
+│   writing entrusted to 3fa9c1d2… at work/plans                                   │ │ ● the presented authority … │
+│   signed by root · under the owner's own right · after 9e04d2b7 · through rokh   │ │ NOT THIS: payload truth     │
+│ No clock orders this list; parentage does.                                       │ │                             │
+│ Verification checks the event, not the truth of its payload.                     │ │                             │
+╰──────────────────────────────────────────────────────────────────────────────────╯ ╰─────────────────────────────╯
+
+╭─ ROKH SAYS ──────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ no — this Rokh is full, so nothing was recorded. To make room, leave and run: rokh grow                          │
+│ /path/to/rokh/ledgers/home --to 128M [vessel_full; not recorded]                                                 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                                                                 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

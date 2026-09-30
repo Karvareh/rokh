@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  no ledger open
+vault /path/to/rokh
+no ledger is open; say open the ledger {name}
+
+
+
+
+
+
+
+› █ say a sentence, or ? for the list
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

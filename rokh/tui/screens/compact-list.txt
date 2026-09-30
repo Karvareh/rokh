@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm
+3 accepted events and 4 system events  ·  0 pending events  ·  0 rejected events  ·  1 head
+▸ open a new ledger named {name}  start a new ledger beside this one
+open the ledger {name}  go to a ledger that is already here
+write at {address}: {text}  put a note down; it waits until you say write
+write  keep the waiting note for good; there is no undo
+cancel  let the waiting note go
+read {address}  show what is written there
+see the ledger  check the ledger and count what is in it
+see the ledgers  list the ledgers in this folder
+› /█
+  type to find   ↑↓ move   enter choose   esc closes the list

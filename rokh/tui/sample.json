@@ -1,0 +1,164 @@
+{
+  "vault": "/path/to/rokh",
+  "ledger": "home",
+  "anchor": "a0b6443e",
+  "head": "8c91d2af",
+  "heads": 1,
+  "custody": "warm",
+  "room": "64 MB",
+  "free": "58 MB",
+  "growth": "fixed",
+  "verified": true,
+  "accepted": 3,
+  "system": 4,
+  "events": [
+    {
+      "id": "8c91d2af",
+      "verdict": "accepted",
+      "verb": "note",
+      "address": "home/journal/today",
+      "payload": "Walked to the river before work; the water was high.",
+      "parent": "72b4e191",
+      "signer": "root",
+      "authority": "the owner's own right",
+      "door": "rokh-shell"
+    },
+    {
+      "id": "72b4e191",
+      "verdict": "accepted",
+      "verb": "rokh.revoke",
+      "address": "rokh",
+      "payload": "grant 0be21d6c taken back, from here on",
+      "parent": "5c1f09aa",
+      "signer": "root",
+      "authority": "the owner's own right",
+      "door": "rokh-shell",
+      "system": true
+    },
+    {
+      "id": "5c1f09aa",
+      "verdict": "accepted",
+      "verb": "note",
+      "address": "work/plans",
+      "payload": "Draft the budget by Friday.",
+      "parent": "31ab770c",
+      "signer": "assistant",
+      "authority": "grant 5f20c331",
+      "door": "rokh-home/program"
+    },
+    {
+      "id": "31ab770c",
+      "verdict": "accepted",
+      "verb": "rokh.grant",
+      "address": "rokh",
+      "payload": "writing entrusted to 3fa9c1d2… at work/plans",
+      "parent": "9e04d2b7",
+      "signer": "root",
+      "authority": "the owner's own right",
+      "door": "rokh",
+      "system": true
+    },
+    {
+      "id": "9e04d2b7",
+      "verdict": "accepted",
+      "verb": "note",
+      "address": "home/journal",
+      "payload": "The first line belongs to this address.",
+      "parent": "5d21c0e9",
+      "signer": "root",
+      "authority": "the owner's own right",
+      "door": "rokh-shell"
+    },
+    {
+      "id": "5d21c0e9",
+      "verdict": "accepted",
+      "verb": "rokh.keyring",
+      "address": "rokh",
+      "payload": "the owner's key added, generation 1",
+      "parent": "a0b6443e",
+      "signer": "root",
+      "authority": "the owner's own right",
+      "door": "rokh",
+      "system": true
+    },
+    {
+      "id": "a0b6443e",
+      "verdict": "accepted",
+      "verb": "rokh.genesis",
+      "address": "rokh",
+      "payload": "made: my notes",
+      "signer": "root",
+      "authority": "the owner's own right",
+      "door": "rokh",
+      "system": true
+    }
+  ],
+  "drafts": [
+    {
+      "index": 1,
+      "count": 1,
+      "sentence": "write at home/journal/today: Call the plumber about the kitchen tap.",
+      "address": "home/journal/today",
+      "verb": "note",
+      "payload_bytes": 42,
+      "signer": "root",
+      "authority": "the owner's own right",
+      "parent": "8c91d2af"
+    }
+  ],
+  "layers": {
+    "star": {
+      "anchor": "a0b6443e",
+      "system": 4,
+      "keys": 1
+    },
+    "planets": [
+      {
+        "name": "home",
+        "events": 2,
+        "moons": [
+          {
+            "name": "journal",
+            "events": 2,
+            "deeper": [
+              "today"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "work",
+        "events": 1,
+        "moons": [
+          {
+            "name": "plans",
+            "events": 1
+          }
+        ]
+      }
+    ]
+  },
+  "writing": [
+    {
+      "id": "5f20c331",
+      "subject": "3fa9c1d2…",
+      "scope": "work/plans",
+      "detail": "may note"
+    }
+  ],
+  "disclosure": [
+    {
+      "id": "c91e407a",
+      "subject": "77be04ac…",
+      "scope": "home/journal",
+      "detail": "may receive"
+    }
+  ],
+  "taken_back": [
+    {
+      "id": "0be21d6c",
+      "subject": "72b4e191",
+      "detail": "taken back by"
+    }
+  ]
+}

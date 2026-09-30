@@ -1,0 +1,20 @@
+◇ ROKH  ·  ledger home  ·  custody warm
+3 accepted · 4 system · 0 pending · 0 rejected
+  1 ledger   2 sent. ▸ 3 auth.   4 layers
+room 58 MB free of 64 MB
+│ WRITING
+│ ● 3fa9c1d2…  may note at work/plans
+│   grant 5f20c331
+│ 
+│ DISCLOSURE
+│ ● 77be04ac…  may receive at home/journal
+│   covenant c91e407a  ·  nothing has been sent
+│ 
+│ TAKEN BACK
+│ ● grant 0be21d6c  taken back by 72b4e191  · …
+│ 
+│ FROM HERE ON
+│ Taking authority back closes the future; it …
+│ 
+› █ try see the grants  ·  ? for the list
+  ? sentences   "go" or Ctrl-C leaves

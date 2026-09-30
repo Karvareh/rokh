@@ -1,0 +1,13 @@
+# Tests that are no evidence of conformance: they search the source text, not behaviour.
+# They stay as alarms; no obligation is met on them alone.
+#
+# test	why
+arch:TestNoConsensusMachineryAndNoToken	a word search; it does not catch dead code or a synonym
+arch:TestNoDatabase	only searches the source text
+arch:TestNoNetworkListenerOutsideTheDaemon	only searches the source text
+arch:TestNoThresholdTurnsDegreeIntoAcceptance	a word search; it should feed in graded data
+arch:TestNothingDecidesOnAPersonsBehalf	a word search; it should measure the path with no explicit act
+arch:TestRokhRebuildsNoWheelItCanTakeIntoService	a word search
+arch:TestTheCoreKnowsNothingOfTheReceiptCustom	a word search; it should be the import graph
+arch:TestTheLedgerProvesAuthorshipNotTruth	a word search; it should feed in a false proposition
+generation:TestThereIsNoFunctionThatRewritesOldBytes	searches the names of a few functions

@@ -1,0 +1,36 @@
+╭─ ROKH ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                        │
+│ 18 accepted events and 3 system events  ·  0 pending events  ·  0 rejected events  ·  1 head                     │
+│ ▸ 1 ledger       2 sentence       3 authority       4 layers                                 58 MB free of 64 MB │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ LEDGER ─────────────────────────────────────────────────────────────────────────╮ ╭─ STANDING ──────────────────╮
+│ THE CHAIN, IN CAUSAL ORDER                                                       │ │ YOU ARE STANDING AT         │
+│ I am standing at 8c91d2af, the only head of home.                                │ │ VAULT      ~/rokh           │
+│ ▸ 2 sentences waiting in working state — write records, cancel lets go           │ │ LEDGER     home             │
+│                                                                                  │ │ ANCHOR     a0b6443e         │
+│ ● ACCEPTED  8c91d2af  note at home/journal/today                                 │ │ HEAD       8c91d2af         │
+│   “I named what mattered before I moved on.”                                     │ │ CUSTODY    warm             │
+│   signed by root · under the owner's own right · through rokh-shell              │ │ ROOM       64 MB            │
+│ ● ACCEPTED  72b4e191  system  rokh.grant at rokh                                 │ │ FREE NOW   58 MB            │
+│   writing entrusted to 3fa9c1d2… at home/journal                                 │ │ GROWTH     fixed            │
+│   signed by root · under the owner's own right · after 31ab770c · through rokh   │ │                             │
+│ ● ACCEPTED  31ab770c  note at home/journal                                       │ │ VERIFICATION SAYS           │
+│   “The first line belongs to this address.”                                      │ │ ● the stored bytes match    │
+│   signed by assistant · under grant 5f20c331 · through rokh-home/program         │ │ ● every signature checks    │
+│                                                                                  │ │ ● the ancestry is complete  │
+│ No clock orders this list; parentage does.                                       │ │ ● the presented authority … │
+│ Verification checks the event, not the truth of its payload.                     │ │ NOT THIS: payload truth     │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+╰──────────────────────────────────────────────────────────────────────────────────╯ ╰─────────────────────────────╯
+
+╭─ ROKH SAYS ──────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ written. 4d80f7f6f0bb190030a35590640b8c5420d97d4d2b8d18a3a0d1812d7f5360bb                                        │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ › █ try write  ·  ? for the list                                                                                 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

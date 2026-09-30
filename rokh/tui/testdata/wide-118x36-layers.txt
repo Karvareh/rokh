@@ -1,0 +1,36 @@
+╭─ ROKH ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                        │
+│ 18 accepted events and 3 system events  ·  0 pending events  ·  0 rejected events  ·  1 head                     │
+│   1 ledger       2 sentence       3 authority     ▸ 4 layers                                 58 MB free of 64 MB │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭─ LAYERS ─────────────────────────────────────────────────────────────────────────╮ ╭─ STANDING ──────────────────╮
+│ STAR, PLANETS AND MOONS                                                          │ │ YOU ARE STANDING AT         │
+│ Star    a0b6443e  ·  3 system events  ·  1 key  ·  0 seeds                       │ │ VAULT      ~/rokh           │
+│ Planet  home  ·  17 events                                                       │ │ LEDGER     home             │
+│   Moon  journal  ·  17 events                                                    │ │ ANCHOR     a0b6443e         │
+│         today                                                                    │ │ HEAD       8c91d2af         │
+│ Planet  work  ·  1 event                                                         │ │ CUSTODY    warm             │
+│                                                                                  │ │ ROOM       64 MB            │
+│                                                                                  │ │ FREE NOW   58 MB            │
+│                                                                                  │ │ GROWTH     fixed            │
+│                                                                                  │ │                             │
+│                                                                                  │ │ VERIFICATION SAYS           │
+│                                                                                  │ │ ● the stored bytes match    │
+│                                                                                  │ │ ● every signature checks    │
+│                                                                                  │ │ ● the ancestry is complete  │
+│                                                                                  │ │ ● the presented authority … │
+│                                                                                  │ │ NOT THIS: payload truth     │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+│                                                                                  │ │                             │
+╰──────────────────────────────────────────────────────────────────────────────────╯ ╰─────────────────────────────╯
+
+╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ › █ try read home  ·  ? for the list                                                                             │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

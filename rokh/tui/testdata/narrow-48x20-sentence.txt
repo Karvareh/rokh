@@ -1,0 +1,20 @@
+◇ ROKH  ·  ledger home  ·  custody warm
+18 accepted · 3 system · 0 pending · 0 rejected
+  1 ledger ▸ 2 sent.   3 auth.   4 layers
+room 58 MB free of 64 MB
+│ 2 SENTENCES WAITING
+│ NEWEST     2
+│ ADDRESS    home/journal/later
+│ SIGNER     root
+│ AUTHORITY  the owner's own right
+│ PARENT     8c91d2af
+│ PAYLOAD    18 bytes
+│ 
+│ NOT RECORDED
+│ write records it; no undo.
+│ cancel lets it go.
+│ 
+│ 
+│ 
+› █ try write  ·  ? for the list
+  ? sentences   "go" or Ctrl-C leaves

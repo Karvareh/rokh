@@ -1,0 +1,12 @@
+◇ ROKH  AN INDIVIDUAL'S EVENT LEDGER  ·  ledger home  ·  anchor a0b6443e  ·  custody warm
+18 accepted events and 3 system events  ·  0 pending events  ·  0 rejected events  ·  1 head
+● 8c91d2af  note at home/journal/today  “I named what mattered before I moved on.”
+● 72b4e191  system rokh.grant at rokh  writing entrusted to 3fa9c1d2… at home/journal
+● 31ab770c  note at home/journal  “The first line belongs to this address.”
+
+
+
+
+26 events, 1 head, all verified.
+› █ try write  ·  ? for the list
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves

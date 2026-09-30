@@ -1,0 +1,24 @@
+╭─ ROKH ──────────────────────────────────────────────────────────────────────╮
+│ ◇ ROKH  ·  ledger home  ·  anchor a0b6443e  ·  custody warm                 │
+│ 0 accepted and 2 system  ·  0 pending  ·  0 rejected  ·  1 head             │
+│ ▸ 1 ledger    2 sentence    3 authority    4 layers     58 MB free of 64 MB │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ LEDGER ────────────────────────────────────────────────────────────────────╮
+│ THE CHAIN, IN CAUSAL ORDER                                                  │
+│ I am standing at 5d21c0e9, the only head of home.                           │
+│                                                                             │
+│ START HERE                                                                  │
+│ 1  write at home/journal: my first note   puts it down, waiting             │
+│ 2  write   records it; there is no undo                                     │
+│ "?" lists every sentence; "go" leaves.                                      │
+│                                                                             │
+│ ● ACCEPTED  5d21c0e9  system  rokh.keyring at rokh                          │
+│   the owner's key added, generation 1                                       │
+│   signed by root · under the owner's own right · through rokh               │
+│ No clock orders this list; parentage does.                                  │
+│ Verification checks the event, not the truth of its payload.                │
+╰─────────────────────────────────────────────────────────────────────────────╯
+╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
+│ › █ try write at home/journal: my first note  ·  ? for the list             │
+╰─────────────────────────────────────────────────────────────────────────────╯
+  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves
