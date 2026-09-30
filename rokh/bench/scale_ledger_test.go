@@ -239,6 +239,135 @@ func BenchmarkScaleAuthority(b *testing.B) {
 	}
 }
 
+// BenchmarkScaleSeedLedger follows seeds further than the command line can
+// make them in a measurement (BenchmarkScaleSeeds, in cmd/rokh, makes each
+// seed as a person does, in about a second). A seed adds four events to a
+// lineage, as newGiving and the take make them in cmd/rokh/v1_seedplan.go: the
+// keyring add of the seed's key, a grant to its signer, the give, and the take
+// the seed's key signs under that grant. Here one ledger judges them. In a
+// line each seed is given by the one before it, so the last seed holds every
+// seed event before it; in a fan one root gives every seed, and the root that
+// has reconciled them all holds them all. Every keyring event and every seed
+// event joins the system set that each later event carries, and a take reads
+// that set to find its signer. Run it with -benchtime 1x.
+func BenchmarkScaleSeedLedger(b *testing.B) {
+	for _, shape := range []string{"line", "fan"} {
+		for _, n := range []int{250, 500, 1000, 2000} {
+			b.Run(fmt.Sprintf("%s/seeds=%d", shape, n), func(b *testing.B) {
+				root := ed25519.NewKeyFromSeed(make([]byte, 32))
+				rnd := mrand.NewChaCha8([32]byte{23})
+				g, err := event.SignFrom(event.Event{Address: event.AddressRoot, Verb: event.VerbGenesis}, root, rnd)
+				if err != nil {
+					b.Fatal(err)
+				}
+				heap0 := liveHeap()
+				l, err := ledger.New(g.Raw)
+				if err != nil {
+					b.Fatal(err)
+				}
+				stored := map[frame.ID][]byte{g.ID: g.Raw}
+				sign := func(by ed25519.PrivateKey, authority *frame.ID, parent frame.ID, verb string, payload []byte) event.Signed {
+					e, err := event.SignFrom(event.Event{Carrier: &g.ID, Authority: authority, Parents: []frame.ID{parent},
+						Address: event.AddressRoot, Verb: verb, Payload: payload}, by, rnd)
+					if err != nil {
+						b.Fatal(err)
+					}
+					return e
+				}
+				var judged, lastTake time.Duration
+				add := func(e event.Signed) time.Duration {
+					start := time.Now()
+					if st, err := l.Add(e.Raw); st != ledger.Accepted {
+						b.Fatalf("%s: %v %v", e.Event.Verb, st, err)
+					}
+					took := time.Since(start)
+					judged += took
+					stored[e.ID] = e.Raw
+					return took
+				}
+				tip := g.ID
+				var takes []frame.ID
+				for i := 0; i < n; i++ {
+					var seed, kid, vessel [32]byte
+					binary.BigEndian.PutUint64(seed[:], uint64(i+1))
+					kid, vessel = seed, seed
+					seed[31], kid[31], vessel[31] = 1, 2, 3
+					signer := ed25519.NewKeyFromSeed(seed[:])
+					reader := make([]byte, 32)
+					rnd.Read(reader)
+					system := make([]byte, event.SealedKeySize)
+					rnd.Read(system)
+					kp, err := event.Keyring{Op: event.KeyringAdd, Key: kid, Gen: 1, Name: fmt.Sprintf("seed %d", i),
+						Reader: reader, Signer: signer.Public().(ed25519.PublicKey), System: system}.Encode()
+					if err != nil {
+						b.Fatal(err)
+					}
+					ka := sign(root, nil, tip, event.VerbKeyring, kp)
+					add(ka)
+					gp, _ := event.Grant{Subject: signer.Public().(ed25519.PublicKey), Scope: ""}.Encode()
+					gr := sign(root, nil, ka.ID, event.VerbGrant, gp)
+					add(gr)
+					sp, err := event.Seed{Op: event.SeedGive, Seed: seed, Key: kid}.Encode()
+					if err != nil {
+						b.Fatal(err)
+					}
+					gv := sign(root, nil, gr.ID, event.VerbSeed, sp)
+					add(gv)
+					tp, err := event.Seed{Op: event.SeedTake, Seed: seed, Key: kid, Give: gv.ID, Vessel: vessel}.Encode()
+					if err != nil {
+						b.Fatal(err)
+					}
+					tk := sign(signer, &gr.ID, gv.ID, event.VerbSeed, tp)
+					lastTake = add(tk)
+					takes = append(takes, tk.ID)
+					if shape == "line" {
+						tip = tk.ID // the next seed is given by this one
+					} else {
+						tip = gv.ID // the root gives on; the take stays in its seed
+					}
+				}
+				held := int64(liveHeap()) - int64(heap0)
+				last := takes[len(takes)-1]
+				// From the last take back to the first event, by the parents.
+				depth, at := 0, last
+				for at != g.ID {
+					e, ok := l.Get(at)
+					if !ok {
+						b.Fatalf("%s is not held", at.Short())
+					}
+					at = e.Event.Parents[0]
+					depth++
+				}
+				acc, _, _ := l.Tally()
+				heads := []frame.ID{last}
+				if shape == "fan" {
+					heads = takes // the root that reconciled every seed
+				}
+				l = nil
+				get := func(id frame.ID) ([]byte, error) {
+					if r, ok := stored[id]; ok {
+						return r, nil
+					}
+					return nil, fmt.Errorf("not held: %s", id.Short())
+				}
+				start := time.Now()
+				if _, err := ledger.Load(g.Raw, get, heads); err != nil {
+					b.Fatal(err)
+				}
+				loaded := time.Since(start)
+				b.ReportMetric(float64(acc), "events")
+				b.ReportMetric(float64(depth), "depth")
+				b.ReportMetric(mib(held), "heap-MiB")
+				b.ReportMetric(float64(held)/float64(n), "heap-B/seed")
+				b.ReportMetric(judged.Seconds()*1e6/float64(4*n), "judge-us/event")
+				b.ReportMetric(lastTake.Seconds()*1e6, "last-take-us")
+				b.ReportMetric(loaded.Seconds(), "load-s")
+				b.ReportMetric(float64(peakRSS())/(1<<30), "peak-rss-GiB")
+			})
+		}
+	}
+}
+
 // BenchmarkScaleEnvelope measures an envelope as the readers of one address
 // grow: its size, sealing it, and opening it by the last reader it names. The
 // format names at most key.MaxReaders; the thirty-third is refused.
