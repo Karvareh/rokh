@@ -36,14 +36,14 @@ import (
 // folder is removed when the test ends. Every passphrase is synthetic and
 // sits in a file of its own.
 type seedWorld struct {
-	t      *testing.T
+	t      testing.TB
 	bin    string
 	base   string
 	files  map[string]string // role: passphrase file
 	phrase map[string]string // role: the passphrase itself
 }
 
-func newSeedWorld(t *testing.T) *seedWorld {
+func newSeedWorld(t testing.TB) *seedWorld {
 	t.Helper()
 	short := os.Getenv("ROKH_SHORT_TMP")
 	if short == "" {
@@ -139,7 +139,7 @@ type seedRow struct {
 	Payload   string `json:"payload"`
 }
 
-func (r seedRow) payload(t *testing.T) []byte {
+func (r seedRow) payload(t testing.TB) []byte {
 	t.Helper()
 	b, err := base64.StdEncoding.DecodeString(r.Payload)
 	if err != nil {
