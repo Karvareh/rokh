@@ -190,7 +190,13 @@ func BenchmarkScaleAuthority(b *testing.B) {
 					if kind == "revokes" {
 						judged = 0
 						heap0 = liveHeap()
-						for _, id := range grants {
+						// Taken back newest first: a set of revocations
+						// that equalled a set of grants (the first k of
+						// each) would be kept once by the ledger's pool,
+						// and the measurement would show sharing that
+						// revocations in no particular order do not get.
+						for i := len(grants) - 1; i >= 0; i-- {
+							id := grants[i]
 							p, _ := event.Revoke{Target: id}.Encode()
 							e := sign(event.VerbRevoke, p)
 							start := time.Now()
