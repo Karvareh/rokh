@@ -157,7 +157,7 @@ func BenchmarkScaleDoor(b *testing.B) {
 // what grows with the writers is the wait. Run it with -benchtime 1x.
 func BenchmarkScaleWriters(b *testing.B) {
 	for _, c := range []struct{ doors, writers int }{
-		{1, 1}, {1, 4}, {1, 16}, {1, 64}, {2, 1}, {4, 1}, {8, 1}, {16, 1}, {8, 8},
+		{1, 1}, {1, 4}, {1, 16}, {1, 64}, {2, 1}, {4, 1}, {8, 1}, {16, 1}, {32, 1}, {8, 8}, {16, 4}, {32, 4},
 	} {
 		b.Run(fmt.Sprintf("doors=%d/writers=%d", c.doors, c.writers), func(b *testing.B) {
 			d := filled(b, b.TempDir(), 1000)
@@ -217,6 +217,102 @@ func BenchmarkScaleWriters(b *testing.B) {
 			if nfail > 0 {
 				b.Logf("failed writes by code: %v", failed)
 			}
+		})
+	}
+}
+
+// BenchmarkScaleReaders measures many readers at once: doors on one carrier
+// of 10,000 events, each with several readers asking in turn for the status
+// and for the last lines of the log, with no writer and then with one writer
+// recording through a door of its own all the while. Readers share a door and
+// its view; a commit makes every view stale, and the first reader after it
+// brings its door's view up while the others at that door wait. Run it with
+// -benchtime 1x.
+func BenchmarkScaleReaders(b *testing.B) {
+	for _, c := range []struct {
+		doors, readers int
+		writing        bool
+	}{
+		{1, 1, false}, {1, 4, false}, {1, 16, false}, {4, 4, false}, {1, 4, true}, {4, 4, true},
+	} {
+		name := fmt.Sprintf("doors=%d/readers=%d", c.doors, c.readers)
+		if c.writing {
+			name += "/writing"
+		}
+		b.Run(name, func(b *testing.B) {
+			d := filled(b, b.TempDir(), 10_000)
+			doors := []*daemon.Server{d.s}
+			for i := 1; i < c.doors; i++ {
+				doors = append(doors, openDoor(b, d.dir, d.root, d.clerk))
+			}
+			var writer *daemon.Server
+			if c.writing {
+				writer = openDoor(b, d.dir, d.root, d.clerk)
+			}
+			const each = 40 // requests per reader
+			lines := []string{`{"op":"status"}`, `{"op":"log","limit":50}`}
+			var mu sync.Mutex
+			var lat []time.Duration
+			failed := 0
+			stop := make(chan struct{})
+			var writes int
+			var ww sync.WaitGroup
+			if writer != nil {
+				ww.Add(1)
+				go func() {
+					defer ww.Done()
+					for i := 0; ; i++ {
+						select {
+						case <-stop:
+							return
+						default:
+						}
+						line := fmt.Sprintf(`{"op":"write","address":"home/journal","verb":"note","message":"while reading, %d","key":"clerk"}`, i)
+						if r := writer.Handle([]byte(line)); r["ok"] == true {
+							writes++
+						}
+					}
+				}()
+			}
+			var wg sync.WaitGroup
+			start := time.Now()
+			for _, s := range doors {
+				for r := 0; r < c.readers; r++ {
+					wg.Add(1)
+					go func(s *daemon.Server, r int) {
+						defer wg.Done()
+						for i := 0; i < each; i++ {
+							t0 := time.Now()
+							resp := s.Handle([]byte(lines[(r+i)%len(lines)]))
+							took := time.Since(t0)
+							mu.Lock()
+							if resp["ok"] == true {
+								lat = append(lat, took)
+							} else {
+								failed++
+							}
+							mu.Unlock()
+						}
+					}(s, r)
+				}
+			}
+			wg.Wait()
+			wall := time.Since(start)
+			close(stop)
+			ww.Wait()
+			sort.Slice(lat, func(i, j int) bool { return lat[i] < lat[j] })
+			pct := func(p float64) float64 {
+				if len(lat) == 0 {
+					return 0
+				}
+				return lat[int(p*float64(len(lat)-1))].Seconds() * 1000
+			}
+			b.ReportMetric(float64(len(lat))/wall.Seconds(), "reads/s")
+			b.ReportMetric(pct(0.5), "p50-ms")
+			b.ReportMetric(pct(0.99), "p99-ms")
+			b.ReportMetric(pct(1), "max-ms")
+			b.ReportMetric(float64(failed), "failed")
+			b.ReportMetric(float64(writes)/wall.Seconds(), "writes/s")
 		})
 	}
 }
