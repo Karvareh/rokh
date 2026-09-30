@@ -119,21 +119,8 @@ func (l *Ledger) ExtendWith(get func(frame.ID) ([]byte, error), complete Complet
 	// for a history that is whole, and judges each event exactly once.
 	var added []frame.ID
 	done := map[frame.ID]bool{}
-	var visit func(id frame.ID) error
-	visit = func(id frame.ID) error {
-		if done[id] {
-			return nil
-		}
-		done[id] = true
-		s, ok := found[id]
-		if !ok {
-			return nil // held already, or not reached by these references
-		}
-		for _, p := range s.Event.Parents {
-			if err := visit(p); err != nil {
-				return err
-			}
-		}
+	// judge adds one event whose parents have all been visited.
+	judge := func(id frame.ID, s event.Signed) error {
 		if complete != nil && s.HeadOnly {
 			raw, err := complete(l, s)
 			if err != nil {
@@ -158,6 +145,48 @@ func (l *Ledger) ExtendWith(get func(frame.ID) ([]byte, error), complete Complet
 		}
 		if st == Accepted && before != Accepted {
 			added = append(added, id)
+		}
+		return nil
+	}
+	// visit judges id after every parent the walk found, depth first and
+	// parents in the order the event names them. The walk keeps its own
+	// stack: a history is as deep as it is long, and a call per generation
+	// of ancestors ran out of the goroutine's stack at a few hundred thousand
+	// events on one branch, which ended the process rather than the read.
+	type step struct {
+		id      frame.ID
+		parents []frame.ID
+		next    int
+	}
+	visit := func(id frame.ID) error {
+		if done[id] {
+			return nil
+		}
+		done[id] = true
+		s, ok := found[id]
+		if !ok {
+			return nil // held already, or not reached by these references
+		}
+		stack := []step{{id: id, parents: s.Event.Parents}}
+		for len(stack) > 0 {
+			top := &stack[len(stack)-1]
+			if top.next < len(top.parents) {
+				p := top.parents[top.next]
+				top.next++
+				if done[p] {
+					continue
+				}
+				done[p] = true
+				if ps, ok := found[p]; ok {
+					stack = append(stack, step{id: p, parents: ps.Event.Parents})
+				}
+				continue
+			}
+			at := top.id
+			stack = stack[:len(stack)-1]
+			if err := judge(at, found[at]); err != nil {
+				return err
+			}
 		}
 		return nil
 	}
