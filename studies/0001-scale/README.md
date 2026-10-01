@@ -879,8 +879,10 @@ of content and any length of history.
   4.8, C6). It is not a synced folder: two machines on one folder are not kept
   apart (U5, G2). Nothing in the core runs by itself (T4); a machine may carry
   and unite events as long as it makes none (T4.1). Contract R6 asks that seeds
-  that meet reconcile without being asked; how far version 1 builds R6 was not
-  examined. A reconcile reads both histories whole (§M5).
+  that meet reconcile without being asked; version 1 does not build it, and the
+  comment above `cmdReconcile` (`cmd/rokh/v1_vessel.go`) says so by the owner's
+  word of 2026-09-29, which no reference text holds (STATE.md). A reconcile
+  reads both histories whole (§M5).
 - **Covenants.** What may be shown to a peer is decided by covenants: ordinary
   events at the address `peer` (`peer.share`, `peer.unshare`), read outside the
   core when a bundle is closed (docs/07, `covenant`). Being events, they are
@@ -897,7 +899,7 @@ For the owner's decision; each row is a meeting, not a verdict.
 |---|---|---|---|---|
 | 1 | readers that differ by seed | readers are a fold of the causal past (contract 4.4) | readers by address; seeds differ by scope | whether a role may seal otherwise, and in what generation |
 | 2 | a passphrase cost that differs by role | salt and cost one per Rokh (contract 2.3); another profile is allowed while the carrier's properties hold (T8.7) | one cost | a profile by role, as a new generation |
-| 3 | a seed others can reach | no code path of Rokh opens a network socket (N, Axiom 5); machines may carry events and make none (T4.1) | Unix sockets and loopback TCP only | whether reach lives inside Rokh or beside it |
+| 3 | a seed others can reach | no code path of Rokh opens a network socket (N, the requirement under Axiom 5), and the door for programs is a Unix socket (N, the base profile of §4); machines may carry events and make none (T4.1) | Unix sockets and loopback TCP only | whether reach lives inside Rokh or beside it |
 | 4 | an always-on frontier | an always-on machine holding the ledger and a key is an open case, answered by rotation and by keeping the signing key apart (N5.2); rotating the root key is open (T13.2) | cold custody exists (contract 4.6) | the open rulings themselves |
 | 5 | a frontier that is a mirror | a mirror between two owners: ruled, read-only, never merged (T13.4); open (N9.5); same-owner mirroring both settled as a berth and open (docs/07 §11) | no mirror is built | which text holds, and whether a frontier is a seed or a mirror |
 | 6 | a seed that keeps less over time | nothing recorded is erased (T3.7, T6.3) | a slice, made once | whether forgetting a body differs from erasing |
@@ -928,7 +930,8 @@ from each other; row 8 meets the tree's own rule of words.
   and no passphrase changed.
 - **Seeds.** No more than 24 seeds through the command line; no slice seeds; no
   cold seeds; no seed between two booths, which version 1 does not serve; no
-  reconcile of the 2,000-seed lineages; contract R6 not examined.
+  reconcile of the 2,000-seed lineages; contract R6 read in the code only
+  (§S4).
 - **The direction of §S.** Nothing of it was run.
 - **Repetition and spread.** Each size ran once; only the writers and the door
   at 100,000 events ran twice. No spread, no confidence interval.
