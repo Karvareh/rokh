@@ -117,29 +117,62 @@ on its issue, with the labels `claimed` and `in-review`. The check refuses a
 mission marked `ready` that waits for something, and one marked `blocked` that
 waits for nothing.
 
-## The owed items of rokh's AGENTS.md
+## The owner's order
 
-AGENTS.md of rokh keeps the owner's own list of what is owed, in order. These
-missions carry its items:
+This is the owner's own list of what is owed, in the owner's order. Until Rokh
+was set out in four repositories it was the section *What is owed, in order*
+of rokh's AGENTS.md; it is kept here as the owner wrote it there (rokh,
+ba7e695), unchanged to 45306df, and its history to then is in rokh. Whether the repair of the tests
+and the checks comes before its first item is question D-02 of rokh-lab.
 
-| owed | item | missions |
-|---|---|---|
-| 1 | the three skipped tests | W-26; W-19; the second waits for D-06 |
-| 2 | the English of the sentence surface | W-27, after W-10 |
-| 3 | `docs/06-api.md` | W-20 |
-| 4 | a cryptography document for version 1 | W-21 |
-| 5 | `rokh key passwd` | W-13 |
-| 6 | `bring` on the command line | W-28 |
-| 7 | seeds that grow; a reconcile that changes no byte | W-29 |
-| 8 | the booth's content, keyring and seeding | W-30 |
-| 9 | the engine out of `rokh-home/native`; the home on Windows | W-24, I-09 |
-| 10 | the twelve files behind build tags | W-04 |
-| 11 | field results | I-09 |
+1. The three skipped tests: rewrite the delegate test for version 1 keys;
+   obtain the ruling the two review tests contradict on, then keep one; make
+   the home stream a large attachment in bounded memory.
+2. The English of the sentence surface. The eight verbs were carried over
+   from Persian one word at a time, and some sentences do not read as
+   English: `go` closes the ledger where a person would say `leave`; `see
+   the ledgers`, `bring the returned`, `carry the ledger` are the same.
+   Rewrite every sentence a person types or reads until it reads as plain
+   English, keeping the eight meanings, and change `docs/08-sentences.md`,
+   the vectors in `rokh/shell/testdata/sentences.json`, the golden screens
+   (`go test ./tui -update`) and the screen's header line together.
+3. `rokh/docs/06-api.md`: rewrite against `rokh.booth/1` as built
+   (`rokh/booth`, `rokh/daemon`, `rokh-home/gate`); then remove its note.
+4. A cryptography document for version 1: what is sealed and what is not,
+   every sentence with a `path:Symbol` that exists.
+5. `rokh key passwd`.
+6. `bring` in the command line: a file above 4,096 bytes through
+   `rokh write`.
+7. Seeds that grow; a reconcile that changes no byte when nothing changed.
+8. The booth: `content.put`, `content.get`, the keyring, seeding between
+   two booths.
+9. The engine out of `rokh-home/native` into a module of its own; then the
+   home on Windows.
+10. The twelve test files behind build tags into a run that exercises them.
+11. Runs on Windows and Android; exFAT and a synced folder; a real engine;
+    vessels of hundreds of megabytes. These are field results, not code.
+
+Every item, when done, is struck from rokh's STATE.md in the same change. The
+missions that carry each item:
+
+| item | missions |
+|---|---|
+| 1 | W-26; W-19; the second waits for D-06 |
+| 2 | W-27, after W-10 |
+| 3 | W-20 |
+| 4 | W-21 |
+| 5 | W-13 |
+| 6 | W-28 |
+| 7 | W-29 |
+| 8 | W-30 |
+| 9 | W-24, I-09 |
+| 10 | W-04 |
+| 11 | I-09 |
 
 ## A proposed order
 
-For the owner to confirm (rokh-lab, D-02). The order of rokh's AGENTS.md
-stands until then.
+For the owner to confirm (rokh-lab, D-02). The owner's order, above, stands
+until then.
 
 1. The rulings that unblock the rest: D-01, D-02, D-03, D-04, D-06.
 2. The ground every later mission stands on: W-01, W-02, W-03, W-04, W-05,

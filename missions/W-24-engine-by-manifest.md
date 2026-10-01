@@ -26,7 +26,7 @@ the measurements in [study
 ## The change
 
 Names of products out of the code; the engine out of `rokh-home/native`,
-replaced by its manifest (B6; AGENTS.md, owed 9).
+replaced by its manifest (B6; the owner's order, item 9).
 
 ## Where
 

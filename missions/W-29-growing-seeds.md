@@ -6,7 +6,7 @@ priority: p3
 status: ready
 needs: none
 lands-in: rokh
-evidence: "Q-06; AGENTS.md, owed 7"
+evidence: "Q-06; the owner's order, item 7"
 ---
 
 # W-29. Seeds that grow, and a reconcile that changes no byte when nothing changed
@@ -16,8 +16,8 @@ evidence: "Q-06; AGENTS.md, owed 7"
 - **Q-06.** Synchronization runs only when asked, reads both histories whole,
   and a repeated reconcile changes bytes; R6 is not built — *evidence: M (§M5),
   C, R*
-- **rokh's AGENTS.md, owed item 7:** seeds that grow; a reconcile that changes
-  no byte when nothing changed.
+- **[The owner's order](../README.md#the-owners-order), item 7:** Seeds that
+  grow; a reconcile that changes no byte when nothing changed.
 
 The findings are kept, with their evidence, in rokh-lab, [study
 0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);

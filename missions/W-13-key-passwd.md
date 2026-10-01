@@ -27,8 +27,8 @@ the measurements in [study
 
 ## The change
 
-`rokh key passwd`, with the cells laid out as contract 4.6 says (AGENTS.md,
-owed 5).
+`rokh key passwd`, with the cells laid out as contract 4.6 says (the owner's
+order, item 5).
 
 ## Where
 

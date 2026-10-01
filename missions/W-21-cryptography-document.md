@@ -29,9 +29,9 @@ the measurements in [study
 
 ## The change
 
-The cryptography document of version 1 (AGENTS.md, owed 4), with what a closed
-carrier shows (U1; the head's first 64 bytes; the salt in every seed) and what
-one guess costs.
+The cryptography document of version 1 (the owner's order, item 4), with what a
+closed carrier shows (U1; the head's first 64 bytes; the salt in every seed)
+and what one guess costs.
 
 ## Where
 

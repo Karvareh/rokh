@@ -54,7 +54,7 @@ the measurements in [study
 
 The documents made true: `docs/01`, `04`, `05`, `07`, `08` rewritten or
 retired; `docs/02`'s citation; the README's `rokh seed` and `rokh-forms`;
-`docs/06` (AGENTS.md, owed 3).
+`docs/06` (the owner's order, item 3).
 
 ## Where
 

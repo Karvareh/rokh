@@ -51,7 +51,8 @@ Nothing.
 ## Done when
 
 `BenchmarkScaleContent` at 2 GiB stays under a bound that does not follow the
-size; the archive test passes with its skip removed (AGENTS.md, owed 1).
+size; the archive test passes with its skip removed (the owner's order, item
+1).
 
 ## Before beginning
 

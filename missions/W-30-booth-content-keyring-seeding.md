@@ -6,15 +6,15 @@ priority: p3
 status: blocked
 needs: W-01, W-19
 lands-in: rokh
-evidence: "AGENTS.md, owed 8"
+evidence: "the owner's order, item 8"
 ---
 
 # W-30. The booth's content, keyring and seeding
 
 ## Why
 
-- **rokh's AGENTS.md, owed item 8:** the booth: content.put, content.get, the
-  keyring, seeding between two booths.
+- **[The owner's order](../README.md#the-owners-order), item 8:** The booth:
+  `content.put`, `content.get`, the keyring, seeding between two booths.
 
 The findings are kept, with their evidence, in rokh-lab, [study
 0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);

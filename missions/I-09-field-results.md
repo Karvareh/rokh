@@ -6,7 +6,7 @@ priority: p3
 status: blocked
 needs: W-03, W-22
 lands-in: rokh-lab
-evidence: "S-14; AGENTS.md, owed 11"
+evidence: "S-14; the owner's order, item 11"
 ---
 
 # I-09. Field results
@@ -17,8 +17,9 @@ evidence: "S-14; AGENTS.md, owed 11"
   content over 2 GiB; any booth session, socket, courier, gate or network; any
   person; solid-state, removable, FAT32 or exFAT media, synced folders, the
   chest; another host; more than one sample a size — *evidence: R (§F)*
-- **rokh's AGENTS.md, owed item 11:** runs on Windows and Android; exFAT and a
-  synced folder; a real engine; vessels of hundreds of megabytes.
+- **[The owner's order](../README.md#the-owners-order), item 11:** Runs on
+  Windows and Android; exFAT and a synced folder; a real engine; vessels of
+  hundreds of megabytes. These are field results, not code.
 
 The findings are kept, with their evidence, in rokh-lab, [study
 0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);

@@ -6,14 +6,22 @@ priority: p2
 status: blocked
 needs: W-10
 lands-in: rokh
-evidence: "AGENTS.md, owed 2"
+evidence: "the owner's order, item 2"
 ---
 
 # W-27. The English of the sentence surface
 
 ## Why
 
-- **rokh's AGENTS.md, owed item 2:** the English of the sentence surface.
+- **[The owner's order](../README.md#the-owners-order), item 2:** The English
+  of the sentence surface. The eight verbs were carried over from Persian one
+  word at a time, and some sentences do not read as English: `go` closes the
+  ledger where a person would say `leave`; `see the ledgers`,
+  `bring the returned`, `carry the ledger` are the same. Rewrite every sentence
+  a person types or reads until it reads as plain English, keeping the eight
+  meanings, and change `docs/08-sentences.md`, the vectors in
+  `rokh/shell/testdata/sentences.json`, the golden screens
+  (`go test ./tui -update`) and the screen's header line together.
 
 The findings are kept, with their evidence, in rokh-lab, [study
 0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);

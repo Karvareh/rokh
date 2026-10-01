@@ -26,7 +26,8 @@ the measurements in [study
 
 ## The change
 
-The delegate test rewritten for the keys of version 1 (AGENTS.md, owed 1).
+The delegate test rewritten for the keys of version 1 (the owner's order, item
+1).
 
 ## Where
 
