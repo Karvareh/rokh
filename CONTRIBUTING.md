@@ -11,10 +11,10 @@ kept in [rokh-docs](https://github.com/Karvareh/rokh-docs).
 ## How to propose
 
 1. Fork the repository and make a branch for one task.
-2. Read [AGENTS.md](AGENTS.md): the map, the law, the language, and what is
-   owed. A change that settles an open ruling of the treatise is not a
-   proposal; it needs the owner's ruling first: ask it in rokh-lab, as a
-   question.
+2. Read [AGENTS.md](AGENTS.md): the map, the law and the language. What is
+   owed is kept in rokh-work, as missions in the owner's order. A change that
+   settles an open ruling of the treatise is not a proposal; it needs the
+   owner's ruling first: ask it in rokh-lab, as a question.
 3. Build and check both modules; `gofmt` and `go vet` clean; no new
    dependency; no new skipped test.
 4. Keep [STATE.md](STATE.md) true: strike what you finished, add what you

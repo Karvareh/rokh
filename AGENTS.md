@@ -2,7 +2,8 @@
 
 This file is for anyone who changes this repository, person or program. It
 says where things are, what the law of the code is, how to check a change,
-and what is owed. It does not repeat the texts it points to; read them.
+and where what is owed is kept. It does not repeat the texts it points to;
+read them.
 
 ## The four repositories
 
@@ -106,40 +107,13 @@ cd rokh      && go test ./conformance      # rewrites conformance/STATE.md
 - A test never opens the network, never sleeps for time to pass, never
   writes outside `t.TempDir()`.
 
-## What is owed, in order
+## What is owed
 
-This is the owner's order. The missions of
-[rokh-work](https://github.com/Karvareh/rokh-work) carry these items, and the
-findings around them, each with the test that says it is done.
-
-1. The three skipped tests: rewrite the delegate test for version 1 keys;
-   obtain the ruling the two review tests contradict on, then keep one; make
-   the home stream a large attachment in bounded memory.
-2. The English of the sentence surface. The eight verbs were carried over
-   from Persian one word at a time, and some sentences do not read as
-   English: `go` closes the ledger where a person would say `leave`; `see
-   the ledgers`, `bring the returned`, `carry the ledger` are the same.
-   Rewrite every sentence a person types or reads until it reads as plain
-   English, keeping the eight meanings, and change `docs/08-sentences.md`,
-   the vectors in `rokh/shell/testdata/sentences.json`, the golden screens
-   (`go test ./tui -update`) and the screen's header line together.
-3. `rokh/docs/06-api.md`: rewrite against `rokh.booth/1` as built
-   (`rokh/booth`, `rokh/daemon`, `rokh-home/gate`); then remove its note.
-4. A cryptography document for version 1: what is sealed and what is not,
-   every sentence with a `path:Symbol` that exists.
-5. `rokh key passwd`.
-6. `bring` in the command line: a file above 4,096 bytes through
-   `rokh write`.
-7. Seeds that grow; a reconcile that changes no byte when nothing changed.
-8. The booth: `content.put`, `content.get`, the keyring, seeding between
-   two booths.
-9. The engine out of `rokh-home/native` into a module of its own; then the
-   home on Windows.
-10. The twelve test files behind build tags into a run that exercises them.
-11. Runs on Windows and Android; exFAT and a synced folder; a real engine;
-    vessels of hundreds of megabytes. These are field results, not code.
-
-Every item, when done, is struck from STATE.md in the same change.
+What is owed is kept in [rokh-work](https://github.com/Karvareh/rokh-work):
+the owner's order of work, item by item, as this file held it until Rokh was
+set out in four repositories, and the missions that carry each item, every one
+with the test that says it is done. A mission that lands in this tree strikes
+its line from STATE.md in the same change as the work.
 
 ## How a change is made
 

@@ -11,6 +11,8 @@
 - The scale study and the findings of 1.0.0 are in rokh-lab, as studies 0001
   and 0002; the work they ask for is in rokh-work. STATE.md says what they
   found that this tree does not yet do.
+- The owner's list of what is owed, in order, moves from AGENTS.md to
+  rokh-work, unchanged, as the owner's order; AGENTS.md points to it.
 - `ledger.Load` walks a long history without a call per generation; a history
   of a million events loads.
 - Benchmarks of scale, in `rokh/bench` and `rokh/cmd/rokh`, run only when
