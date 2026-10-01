@@ -69,4 +69,7 @@ of every document here. `go run . -root ../.. index` writes the table again.
 Copyright (c) 2026 The Karvareh authors. The texts are free under the GNU
 Lesser General Public License, version 3 or later, as they were in rokh:
 [LICENSE](LICENSE), with the GNU General Public License it rests on in
-[GPL-3.0.txt](GPL-3.0.txt).
+[GPL-3.0.txt](GPL-3.0.txt). Whether they stay under it, or take a license
+written for texts, is question
+[D-23](https://github.com/Karvareh/rokh-lab/blob/main/questions/D-23-license-of-texts.md)
+of rokh-lab, and it stays open until the owner rules.
