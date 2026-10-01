@@ -71,19 +71,26 @@ writes them anyway, so the seed is not cut. Run by anyone else, they pass.
   longer held. A document for version 1 is owed.
 - A commit writes every inventory segment, where the contract writes the
   changed ones (2.6), and verifies every segment twice: once a vessel passes
-  4 GiB, each recording writes 1/4096 of it (256 MiB at 1 TiB) and takes
-  about 5 µs for every slab (`rokh/docs/11-scale.md`).
+  4 GiB of capacity, each recording writes 1/4096 of the capacity (256 MiB at
+  1 TiB), however little it holds, and takes about 5 µs for every slab
+  (`rokh/docs/11-scale.md`).
 - A door's answers take longer as the history grows: each commit drops the
   vessel's index, the references are found by opening every branch pointer
   ever recorded, and the ledger's order is made again whole. At 300,000
   events a write takes 1.2 s and a status 0.75 s (`rokh/docs/11-scale.md`).
 - Every grant, revocation and keyring change keeps its own copy of all of
-  them in its causal past, so their memory grows as the square of the people
-  named: 2 GiB for 8,000 grants (`rokh/docs/11-scale.md`).
+  them in its causal past, so their memory grows as the square of the keys
+  named: 2 GiB for grants to 8,000 keys (`rokh/docs/11-scale.md`).
+- Every opening verifies the whole history again and holds it in memory, and
+  nothing keeps a verification from one opening to the next: a door opened on
+  300,000 events in 44 s and held about 3 KB for each. N2.6 asks that one
+  person can verify the whole ledger, not that every opening does
+  (`rokh/docs/11-scale.md`).
 - The writing turn goes to whichever door tries first once it is free, not to
   the one that asked first: with many doors writing, the slowest wait far
-  longer than the rest, and among 128 writers on 32 doors 11 writes of 1,024
-  were refused after waiting 15 s (`rokh/docs/11-scale.md`).
+  longer than the rest, and among 128 concurrent writers on 32 doors, all
+  with one key, 11 writes of 1,024 were refused after waiting 15 s
+  (`rokh/docs/11-scale.md`).
 
 ## Not promised, by design
 
@@ -92,24 +99,23 @@ writes them anyway, so the seed is not cut. Run by anyone else, they pass.
 - Two machines writing one synced folder is not supported. Each machine
   takes a seed.
 - What a key could read before it was taken back, it may have kept.
-- At most 31 keys beside the owner's open one vessel, and an envelope names
-  at most 32 readers, the owner's generations among them (contract 3.1): an
-  address that more keys read cannot be sealed.
-- Every opening verifies the whole history, one event after another, and
-  holds it in memory (N2.6): a door opened on 300,000 events in 44 s and held
-  about 3 KB for each.
+- At most 31 keys beside the owner's open one vessel; and in version 1 an
+  envelope names at most 32 readers, the owner's generations among them
+  (contract 3.1), so an address that more keys read cannot be sealed.
 - Every recording writes whole slabs: with the default slab, about two
   megabytes for a small note. A small device takes a smaller slab.
 - What was recorded is not deleted.
 
 ## Measured
 
-On one machine: a vessel to 1 TiB and one thing in it of 2 GiB, a history of
-a million events, eight thousand people named in one ledger and a million at
-an open address, 128 writers at once, two thousand seeds in one lineage and
-twenty-four through the command line. The numbers, the model they fit and
-where each ends are in `rokh/docs/11-scale.md`; the benchmarks that give them
-are in `rokh/bench` and `rokh/cmd/rokh`, and run only when asked.
+On one machine: vessels of up to 1 TiB of capacity, each holding a few notes,
+and one thing of 2 GiB of content; a history of a million events; grants to
+8,000 keys in one ledger and a million keys at an open address; 128
+concurrent writers with one key; two thousand seeds in one lineage and
+twenty-four through the command line. What was measured, what was read in the
+code, what is extrapolated and what is proposed are kept apart in
+`rokh/docs/11-scale.md`, with its raw data in `rokh/docs/11-scale/`; the
+benchmarks are in `rokh/bench` and `rokh/cmd/rokh`, and run only when asked.
 
 ## Never run
 
@@ -117,6 +123,7 @@ are in `rokh/bench` and `rokh/cmd/rokh`, and run only when asked.
 - exFAT and a synced folder. FAT32 and the test machines' own file systems
   were run.
 - A real engine.
-- Vessels larger than 16 GiB on a disk. Larger ones, to 1 TiB, were made,
-  opened and written only in memory, with the slabs nobody wrote kept as
-  their length (`rokh/docs/11-scale.md`).
+- Vessels of more than 16 GiB of capacity on a disk. Larger capacities, to
+  1 TiB, were made, opened and written only in memory, with the slabs nobody
+  wrote kept as their length, and held a few notes each
+  (`rokh/docs/11-scale.md`).

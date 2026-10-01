@@ -1,65 +1,169 @@
 # Scale: how far one Rokh goes
 
-> Measured on one machine: a vessel from 4 MiB to 1 TiB, and one thing in it of
-> up to 2 GiB; a history from a thousand events to a million; from one person
-> to eight thousand named in one ledger, and a million at an open address; from
-> one seed to two thousand. Every number below came from a benchmark named
-> beside it. What could not be run is called a model, and says what it rests
-> on.
+> What one Rokh, as version 1 builds it, holds and costs as it grows, measured
+> on one host; why, where the code says so; what the numbers imply beyond what
+> was run; and what could change. Every statement is one of four kinds, and
+> says which: **measured** (M), **read in the code** (C), **extrapolated** (X),
+> **proposed** (P). A limit of version 1 is called a limit of version 1: of
+> this implementation, or of its contract. None of the limits found here is
+> shown to be a limit of Rokh as its texts describe it.
 
-## 0. How it was measured
+## Summary
 
-The measurements are benchmarks, and run only when asked:
+**What was run.** Fifteen benchmarks, in `rokh/bench` and `rokh/cmd/rokh`, on
+one host (§1), against the production code of commit 4111458; their raw outputs
+are in [`11-scale/`](11-scale/README.md). They measured vessels of 4 MiB to
+1 TiB of *capacity* holding thirteen short notes each (to 16 GiB on a disk,
+beyond that in memory); one thing of 1 MiB to 2 GiB of *content*; one history
+of up to a million events; up to 8,000 keys granted in one ledger and a million
+keys at an open address; envelopes of 1 to 33 readers; up to 128 concurrent
+writers on 32 doors, all with one key; up to 16 concurrent readers; 24 seeds
+through the command line and 2,000 in one ledger. No person, booth session,
+socket or network took part (§0).
 
-```sh
-cd rokh
-go test ./bench    -run '^$' -bench Scale      -benchtime 1x -timeout 0 -v
-go test ./cmd/rokh -run '^$' -bench ScaleSeeds -benchtime 1x -timeout 0 -v
-```
+**What was found.**
 
-`-benchtime 1x` makes each size once and measures it over its own operations
-(`BenchmarkScaleEnvelope` wants `-benchtime 300x`). Each benchmark reports with
-`b.ReportMetric`, one line per size, so the numbers can be read side by side.
-`go test ./...` runs none of them; of their files it runs only the test of the
-medium below.
+1. (M) One short note writes the last pack, every inventory segment and a head:
+   (1 + ⌈N/4096⌉) slabs. That is 0.56 MiB at 4 MiB of capacity and 256 MiB at
+   1 TiB, whatever the content; every commit writes at least 1/4096 of the
+   capacity, and takes about 5 µs for every slab of it, 23 s at 1 TiB (§M1).
+   (C) A commit writes and verifies every segment (§C1); the contract asks only
+   the changed ones.
+2. (M) Opening costs 86 µs an event of the history in a bare ledger, 146 at a
+   door, 210 for each command of the command line; a million events load in
+   86 s, in a process of 5.4 GiB at its highest (§M4, §M5). (C) Version 1
+   verifies every event at every opening and holds the whole ledger in memory
+   (§C8).
+3. (M) At a door a write, a status and a log grow with the history: a write
+   takes 25 ms at 1,000 events and 1.2 s at 300,000 (§M5). (C, and one profile)
+   6.5 s of the 7.0 s its answers took at 100,000 events went to finding the
+   branch references by opening every branch pointer ever recorded (§C2, §M12).
+4. (M) Grants, revocations and keyring changes take memory as the square of
+   their number: 2 GiB for grants to 8,000 keys, and as much again to revoke
+   them; a lineage of 2,000 seeds holds 1.3 GiB (§M6, §M11). (C) Every such
+   event keeps a whole copy of the set of all of them in its past (§C3).
+5. (M) A carrier records about 35 commits a second whatever the doors and
+   writers; a writer's wait grows with the queue, and unfairly: among 128
+   writers on 32 doors, 11 of 1,024 writes were refused after 15 s. No write
+   answered `recorded` was lost (§M9).
+6. (M) A large thing takes four times its size in memory, 8 GiB for 2 GiB, and
+   bringing it slows as it grows, 78 MiB/s to 26 (§M3).
+7. (C) Version 1 fixes: at most 32 readers in an envelope and 32 slot cells in
+   a vessel (contract 3.1, 4.6); at most 2^22 slabs of 2^26 bytes, 256 TiB of
+   capacity; 4 KiB of payload and sixteen parents to an event (§C6).
+8. (X) By the same rates: a vessel of 256 TiB writes 64 GiB for one note; a PiB
+   of capacity is beyond the version 1 format; a billion events take a day of
+   one processor to open and 2 to 3 TB of memory; grants to some 20,000 keys
+   fill this host; the billionth seed of a line holds four billion events (§X).
+9. (P) The limits of items 1 to 6 are choices of this implementation, which
+   changes inside version 1 remove without changing a byte form (§P1). The
+   numbers of item 7 belong to the version 1 contract, which a new generation
+   may change (§P2). Many people are, by a reading of the texts that is the
+   owner's to confirm, many Rokhs and the bonds between them (§P3).
 
-They were run one at a time on one machine: four virtual processors at 2.1 GHz
-with the processor's own AES and SHA instructions, 15.7 GiB of memory, one
-virtual disk, Linux, Go 1.26.4. The numbers belong to that machine. What
-carries over is how they grow.
+**The first limits a Rokh meets as it grows.**
 
-Two things stand in for what one machine cannot hold:
+| | met at | limit | evidence | belongs to |
+|---|---|---|---|---|
+| 1 | the 33rd reader of an address; the 32nd key besides the owner's to open a vessel | an envelope names at most 32 readers; a vessel holds 32 slot cells | C, M (the 33rd refused) | the v1 contract (3.1, 4.6) |
+| 2 | a few writers at once | one commit at a time per carrier, about 35 a second; waits unfair; refusals after 15 s among 128 writers | M, C | this implementation (`turn`, the door) |
+| 3 | about 10^5 events | a door's write, status and log walk the whole vessel or ledger | M, C, one profile | this implementation |
+| 4 | about 10^4 keys granted, or seeds given | authority sets copied whole per event: memory as the square | M, C | this implementation |
+| 5 | about 100 GiB of capacity | every commit writes and twice verifies every segment | M, C | this implementation (the contract writes the changed ones) |
+| 6 | a thing of a few GiB | a large thing held four times over; growing step by step | M, C | this implementation |
+| 7 | about 10^6 to 10^7 events | every opening verifies the whole history and holds it in memory | M, C (§C8) | this implementation; N2.6 asks that one person *can* verify everything, not that each opening does |
+| 8 | 256 TiB of capacity | the most slabs and the largest slab | C | the v1 contract (1) |
+| 9 | about 10^5 founders | a bond's leaf lists every founder and each must hold all of it | M, C | the leaf as v1 writes it (`bond.Leaf`); T11.6 says what a leaf must say, not how |
 
-- **The sparse medium** (`bench/scale_test.go`, `sparseMedium`, `quickRandom`).
-  A vessel fills every free slab, and every head file it has not written, with
-  randomness that nothing reads back. In the measurement that fill is left
-  zero, and the medium keeps an all-zero file as its length alone. Everything
-  the vessel writes or reads for itself (packs, inventory segments, heads) is
-  still sealed, written, read, hashed and opened, and every call and byte is
-  counted. So a vessel of 4,194,304 slabs, 1 TiB, is made, opened and committed
-  to in the memory of one machine, and what one commit reads and writes is
-  measured exactly. What the sparse medium does not measure is a disk's time:
-  vessels up to 16 GiB were made on the disk as well
-  (`BenchmarkScaleVesselDisk`).
-- **One ledger in memory** (`BenchmarkScaleChain`, `BenchmarkScaleAuthority`,
-  `BenchmarkScaleOpenAddress`, `BenchmarkScaleSeedLedger`): events signed and
-  judged as a door judges them, with no vessel under them.
-  `BenchmarkScaleDoor`, `BenchmarkScaleWriters`, `BenchmarkScaleReaders` and
-  `BenchmarkScaleReconcile` put a carrier on the disk under the same work.
+**Not run, no evidence, and the state of the tests:** §F and §T.
 
-## 1. The size of one vessel
+## 0. What is counted
 
-A vessel is N slabs of S bytes each: S from 256 KiB to 64 MiB, N from 16 to
-4,194,304 (`vessel/names.go`: `MinSlabLog2`, `MaxSlabLog2`, `MinSlabs`,
-`MaxSlabs`). Every 4,096 slabs have one inventory segment of 4,096 entries of
-46 bytes, held in a slab of its own (contract 2.4); G = ⌈N/4096⌉ segments in
-all. The recording measured is one short note, a head of 180 bytes and an
-envelope of 330, 510 bytes in all, after eight others, so that it lands behind
-records already in a pack (`BenchmarkScaleVessel`).
+The ledger knows keys, not people, and a carrier has a capacity apart from what
+it holds. The report keeps these apart.
 
-### 1.1 Measured in memory, slabs of 256 KiB
+- **Key.** A signing key (Ed25519, the author of an event) or a reader key
+  (X25519, named in an envelope); a keyring generation pairs the two. Every
+  count of keys below counts these.
+- **Person.** Not in the ledger. A person may hold several keys (generations,
+  devices, delegations), and a key does not show who holds it (contract U9). No
+  benchmark models a person. Where a table speaks of people (§X3), it assumes
+  one key each and says so; with more keys a person, the same limits come at
+  fewer people.
+- **Session.** A booth session of `rokh.booth/1` (hello, prove). None was used:
+  the doors were driven through `(*daemon.Server).Handle` in one process,
+  without a socket.
+- **Door.** One opening of a carrier by a daemon (`daemon.Server`), as a
+  separate program opens it. **Writer** and **reader**: one stream of requests
+  to one door, running beside the others. In `BenchmarkScaleWriters` every
+  writer signs with the same delegated key, `clerk`: 128 writers are 128
+  streams, one key, no session.
+- **Operation.** One request to a door: a write, a status, a log. One write is
+  one event and one commit.
+- **Event, commit, record.** An event is a signed entry of the ledger; a commit
+  is one generation of a vessel and may carry many events (the carriers behind
+  `BenchmarkScaleDoor` were filled 2,000 notes a commit); a record is what a
+  pack holds: an event, a chunk of content, a branch pointer.
+- **Founder.** An anchor named in a bond's leaf: one ledger, not one person and
+  not one key.
+- **Capacity and content.** A vessel's capacity is its N slabs of S bytes,
+  every one of them a file whether used or not; its content is the records its
+  packs hold. A vessel is always N + 4 files of N·S + 4·64 KiB, whatever it
+  holds (contract 1): its files show its capacity, never its content (U1). The
+  capacity sweeps (§M1, §M2) held thirteen notes of 510 bytes, about 6.6 KB, at
+  every capacity from 4 MiB to 1 TiB, and their costs follow the capacity.
+  Large content was measured apart: one thing of up to 2 GiB (§M3) and up to
+  300,000 notes at a door (§M5).
 
-| vessel | N | G | make | open | read to open | held open | one note | written | read | files written | written ÷ 510 B |
+## 1. Where, on what, and from which data
+
+- **Host.** Four virtual processors at 2.10 GHz with the processor's AES and
+  SHA instructions; 15.7 GiB of memory; one virtual disk, ext4; Linux 6.18; Go
+  1.26.4 linux/amd64. Everything ran as the superuser, which matters to two
+  tests (§T); nothing measured depends on permissions.
+- **Code.** The production code of every run is that of commit 4111458: the
+  release, ba7e695, with the repair of `ledger.Load` (§C7). Every later commit
+  changes only benchmarks and documents. The commit that holds each benchmark
+  as it ran is listed with its raw output in
+  [`11-scale/README.md`](11-scale/README.md).
+- **Raw data.** [`11-scale/`](11-scale/README.md) keeps the seventeen benchmark
+  outputs, the runner's start and end times, the summary of the one processor
+  profile, and the logs of the two test suites, with the SHA-256 of each as
+  written. One line of each benchmark output was changed: it named the
+  processor's product, which no document of this tree names.
+- **How often.** Each size ran once (`-benchtime 1x`): one sample, no spread.
+  Two measurements ran twice: the writers (the second run agrees with the first
+  within 15 per cent) and the door at 100,000 events (a write in 366 and
+  367 ms, a status in 211 and 213 ms). One measurement ran at a time; short
+  checks of seconds ran beside the sparse vessels of 256 GiB and 1 TiB and
+  beside the second run of the writers
+  ([`11-scale/README.md`](11-scale/README.md)), so those rows may carry a
+  little of that load.
+- **Memory.** "Held" is the live heap after a collection; "process at most" is
+  the process's high-water mark, which only rises within one run, so it is read
+  for the largest size of each run.
+
+## M. Measured
+
+Every number in this part was read from a raw output in
+[`11-scale/`](11-scale/README.md), named under each table with the benchmark
+that wrote it.
+
+### M1. Vessel capacity, in memory
+
+A vessel is N slabs of S bytes: S from 256 KiB to 64 MiB, N from 16
+to 4,194,304. Every 4,096 slabs have one inventory segment, held in a slab of
+its own; G = ⌈N/4096⌉. `BenchmarkScaleVessel` makes a vessel on the sparse
+medium (`bench/scale_test.go`): a vessel fills every free slab and every
+unwritten head file with randomness nothing reads back, the measurement leaves
+that fill zero, and the medium keeps an all-zero file as its length alone.
+Everything the vessel writes or reads for itself (packs, segments, heads) is
+still sealed, written, read, hashed, opened and counted; what is not measured
+is a disk's time. The note recorded is a head of 180 bytes and an envelope of
+330, 510 bytes in all, after eight others: thirteen notes, about 6.6 KB, at
+every capacity.
+
+| capacity | N | G | make | open | read to open | held open | one note | written | read | files written | written ÷ 510 B |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 4 MiB | 16 | 1 | 7 ms | 0.8 ms | 0.5 MiB | 0.26 MiB | 4.6 ms | 0.56 MiB | 1.8 MiB | 3 | 1,157 |
 | 64 MiB | 256 | 1 | 27 ms | 1.7 ms | 0.5 MiB | 0.27 MiB | 4.9 ms | 0.56 MiB | 1.8 MiB | 3 | 1,157 |
@@ -70,13 +174,7 @@ records already in a pack (`BenchmarkScaleVessel`).
 | 256 GiB | 1,048,576 | 256 | 94 s | 4.7 s | 64 MiB | 56 MiB | 5.2 s | 64.3 MiB | 129 MiB | 258 | 132,229 |
 | 1 TiB | 4,194,304 | 1,024 | 346 s | 19 s | 256 MiB | 224 MiB | 23.2 s | 256.3 MiB | 513 MiB | 1,026 | 526,987 |
 
-"make" here is the vessel's own work of making N files, without a disk's time.
-The 1 TiB vessel is the most slabs the format allows. The process held 7.1 GiB
-at its highest, most of it the medium's own record of the files.
-
-### 1.2 Measured in memory, larger slabs
-
-| vessel | S | N | one note | written | read | written ÷ 510 B |
+| capacity | S | N | one note | written | read | written ÷ 510 B |
 |---|---|---|---|---|---|---|
 | 16 MiB | 1 MiB | 16 | 9.2 ms | 2.06 MiB | 5.6 MiB | 4,241 |
 | 4 GiB | 1 MiB | 4,096 | 27 ms | 2.06 MiB | 5.6 MiB | 4,241 |
@@ -85,13 +183,19 @@ at its highest, most of it the medium's own record of the files.
 | 4 GiB | 64 MiB | 64 | 0.76 s | 128.1 MiB | 320.6 MiB | 263,301 |
 | 16 GiB | 64 MiB | 256 | 0.84 s | 128.1 MiB | 320.6 MiB | 263,301 |
 
-### 1.3 Measured on the disk
+"one note" is the mean of five commits (two where one writes 256 MiB or more);
+"make" is the vessel's own work of making N files, without a disk. The 1 TiB
+vessel is the most slabs the format allows. The process held 7.1 GiB at its
+highest, most of it the medium's record of the files. Raw:
+[`vessel.txt`](11-scale/vessel.txt), `BenchmarkScaleVessel`.
 
-`BenchmarkScaleVesselDisk` makes the vessel in a folder on the disk, with the
-host's randomness in every slab and every file flushed, and records the same
+### M2. Vessel capacity, on the disk
+
+`BenchmarkScaleVesselDisk` makes the vessel in a folder on the disk, every slab
+filled with the host's randomness and every file flushed, and records the same
 note.
 
-| vessel | S | N | make | made at | open | one note |
+| capacity | S | N | make | made at | open | one note |
 |---|---|---|---|---|---|---|
 | 4 MiB | 256 KiB | 16 | 0.04 s | 110 MiB/s | 2 ms | 7.5 ms |
 | 64 MiB | 1 MiB | 64 | 0.37 s | 173 MiB/s | 13 ms | 33 ms |
@@ -101,107 +205,31 @@ note.
 | 1 GiB | 64 MiB | 16 | 8.6 s | 119 MiB/s | 0.34 s | 1.34 s |
 | 4 GiB | 64 MiB | 64 | 33 s | 123 MiB/s | 0.40 s | 1.39 s |
 
-Making a vessel writes all of it, at the disk's pace. A note on the disk costs
-what the model below says for the medium in memory and about as much again for
-the disk: 59 ms against 27 at 4 GiB, 1.34 s against 0.72 with slabs of 64 MiB.
+On the disk a note took about twice what it took in memory at the same shape:
+59 ms against 27 at 4 GiB, 1.34 s against 0.72 with slabs of 64 MiB. Raw:
+[`vesseldisk.txt`](11-scale/vesseldisk.txt), `BenchmarkScaleVesselDisk`.
 
-### 1.4 What the numbers fit
+### M3. A large thing
 
-For one small note in a vessel of N slabs of S bytes:
+`BenchmarkScaleContent` brings one thing into a carrier on the disk in one
+recording, with the `content.put` event that names it, from a source read as a
+stream (`content.Bring`); then opens the folder afresh and reads the thing back
+whole (`content.Fetch`). The carrier starts at 64 slabs of 1 MiB and grows by
+itself 64 at a time, as `rokh init --growth auto:64:65536` makes one. Here the
+content is the thing; the capacity is what the vessel grew to.
 
-- **Written: (1 + G)·S + 64 KiB**, to the byte at every size run: the last
-  pack, rewritten whole with the note behind what it held; every inventory
-  segment; one head file. Once N passes 4,096, G·S is the vessel's size divided
-  by 4,096, whatever the slab: **every commit writes at least 1/4096 of the
-  vessel.** With the default slab of 1 MiB that is 2.06 MiB for half a
-  kilobyte, as STATE.md says, until the vessel passes 4 GiB, and then 1 MiB
-  more for every further 4 GiB.
-- **Read: (2G + 3)·S + 576 KiB**: every segment twice, the last pack and the
-  packs of the last generations, and nine head files. The commit's first step
-  takes the highest valid generation, and its fourth sees that it still is
-  (contract 2.6); both are answered by verifying the whole generation, every
-  segment by its digest and its tag (`vessel/vessel.go`, `(*Vessel).choose`,
-  `(*Vessel).verify`).
-- **Time: about 5 µs for every slab of the vessel, whatever its size, plus the
-  sealing and hashing of the bytes above.** The commit copies the whole
-  inventory, looks at every entry for a free slab, encodes every segment
-  (`vessel/tx.go`, `(*Tx).Commit`), and lists every slab file of the vessel to
-  report the missing (`vessel/vessel.go`, `(*Vessel).survey`). From 4.6 ms at
-  16 slabs to 23.2 s at 4,194,304: 4.9 µs a slab at a million, 5.5 at four
-  million.
-- **Opening** reads and verifies every segment, G·S bytes, and holds about 56
-  bytes a slab in memory: 224 MiB for the 1 TiB vessel.
+| content | bring | rate | growth steps | carrier's files after | open again | fetch | process at most |
+|---|---|---|---|---|---|---|---|
+| 1 MiB | 0.05 s | 20 MiB/s | 0 | 64.25 MiB | 9 ms | 0.02 s | 18 MiB |
+| 16 MiB | 0.20 s | 78 MiB/s | 0 | 64.25 MiB | 41 ms | 0.30 s | 75 MiB |
+| 256 MiB | 3.7 s | 70 MiB/s | 4 | 320.2 MiB | 0.36 s | 4.5 s | 1.0 GiB |
+| 1 GiB | 29 s | 35 MiB/s | 16 | 1,088 MiB | 4.5 s | 17 s | 4.0 GiB |
+| 2 GiB | 80 s | 26 MiB/s | 32 | 2,112 MiB | 8.1 s | 37 s | 8.0 GiB |
 
-The contract writes "the changed inventory segments" (2.6, step 3). This tree
-writes all of them at every commit, each to a new slab, and a segment moved
-changes the entries of the segments that cover its old place and its new one:
-every segment changes because every segment is written. A commit that wrote
-only the segments whose entries it changes (the pack's, and those of the slabs
-it frees and fills, its own new segments placed among them) would write the
-pack, a few segments and a head for a note, whatever the vessel's size. Nothing
-in the byte form changes for that.
+From 256 MiB up the process held four times the thing at its highest. Raw:
+[`content.txt`](11-scale/content.txt), `BenchmarkScaleContent`.
 
-### 1.5 The ceiling of the format, and a PiB
-
-The format ends at 2^22 slabs of 2^26 bytes: **256 TiB**. A vessel of a PiB is
-four times beyond it, and is not a version 1 vessel under any parameters.
-
-At the ceiling itself, S = 64 MiB and N = 4,194,304, the model above gives one
-small note: 1,025 slabs written, 64 GiB; 2,051 read, 128 GiB; about 23 s of the
-processor for the inventory (the 1 TiB row, which has the same N) and some five
-minutes more to seal, open and hash 192 GiB at the rate the 64 MiB rows show
-(about 1.6 ms a MiB), before any disk's time. A vessel of 256 TiB can be made,
-in some four weeks at the rates at which 1.3 made vessels; it then records one
-note every six minutes or more, and each writes 1/4096 of the vessel.
-
-Where a vessel stops being usable is set long before that, by the same
-per-commit cost, which is about 6.5 µs for every slab with the default slab of
-1 MiB: a note takes a second at about 150 GiB and ten seconds at about 1.5 TiB,
-before the disk's own time, which about doubled it in 1.3. Larger slabs make
-fewer of them and more to write: with slabs of 64 MiB no note takes less than
-0.7 s, and one takes about 5.5 s at 4 TiB. By this model a vessel of the same
-design at a PiB would write at least 256 GiB and read at least 512 GiB for
-every note, and spend some 90 s on an inventory of 16,777,216 slabs of 64 MiB:
-many minutes a note on any disk. What a PiB needs is in §7.
-
-### 1.6 A large thing
-
-A vessel of many GiB is filled by large things, not by notes: content, which a
-`content.put` event describes and which lives inside the vessel in chunks of at
-most S − 4 KiB (contract 2.5, E5). `BenchmarkScaleContent` brings one thing
-into a carrier on the disk in one recording, from a source read as a stream
-(`content.Bring`), then opens the folder afresh and reads the thing back whole
-(`content.Fetch`). The carrier has the default slabs, 64 of 1 MiB, and grows by
-itself 64 at a time, as `rokh init --growth auto:64:65536` makes it.
-
-| size | bring | rate | growth steps | open again | fetch | process at most |
-|---|---|---|---|---|---|---|
-| 1 MiB | 0.05 s | 20 MiB/s | 0 | 9 ms | 0.02 s | 18 MiB |
-| 16 MiB | 0.20 s | 78 MiB/s | 0 | 41 ms | 0.30 s | 75 MiB |
-| 256 MiB | 3.7 s | 70 MiB/s | 4 | 0.36 s | 4.5 s | 1.0 GiB |
-| 1 GiB | 29 s | 35 MiB/s | 16 | 4.5 s | 17 s | 4.0 GiB |
-| 2 GiB | 80 s | 26 MiB/s | 32 | 8.1 s | 37 s | 8.0 GiB |
-
-- **A large thing is held in memory four times over**, from 256 MiB up: the
-  recording keeps every sealed chunk until its commit (`carrier/carrier.go`,
-  `(*Recording).Content`, through `(*Tx).Put`), the commit packs them all into
-  slab bodies at once (`vessel/tx.go`, `(*Tx).Commit`), and reading it back
-  gathers the whole before anything is written (`content/vessel.go`, `Fetch`:
-  nothing is written before every chunk has opened and the whole has hashed,
-  E8). On this machine the largest thing that can go in or come out is about
-  3.5 GiB. STATE.md already says this of the home; it is so in the core too.
-- **Bringing slows as the thing grows**: a growing vessel grows one step and
-  tries the whole commit again, packing everything again, until it fits
-  (`vessel/tx.go`, `(*Tx).CommitGrowing`): 32 tries for 2 GiB, each copying
-  2 GiB. The rate falls from 78 MiB/s to 26.
-- **Reading it back opens every chunk twice**, once to hash the whole and once
-  to hand it over (`carrier/carrier.go`, `(*Carrier).ContentToSized`), and the
-  first opening after the commit verifies every slab the last generations
-  wrote: 8 s to open again after a thing of 2 GiB.
-
-## 2. The length of one history
-
-### 2.1 Measured: one branch, in memory
+### M4. One history, in memory
 
 `BenchmarkScaleChain` signs n notes on one branch, each naming the one before,
 with the testimony a door leaves (a clock and a chance); judges them one at a
@@ -218,22 +246,27 @@ the whole history again from its bytes, verifying every event, as opening does.
 Sign, judge and load are per event; held is the ledger's memory per event;
 stored is an event's bytes, head and body; "newest to first" follows the first
 parent of each event back to the genesis; the causal past is every ancestor of
-the newest, in the ledger's order.
+the newest, in the ledger's order. Raw: [`chain.txt`](11-scale/chain.txt),
+`BenchmarkScaleChain`.
 
-### 2.2 Measured: a door on the disk
+### M5. A door on the disk, and reconcile
 
-`BenchmarkScaleDoor` makes a carrier on the disk holding n notes and opens a
-door on it as a door opens: the carrier, the owner's session, the references,
-the ledger loaded from them, the daemon. Then it asks, through the door's own
-`Handle`, for ten writes, ten statuses and ten times the last 50 lines of the
-log.
+`BenchmarkScaleDoor` makes a carrier on the disk holding n notes, filled 2,000
+notes a commit, and opens a door on it as a door opens: the carrier, the
+owner's session, the references, the ledger loaded from them, the daemon. Then
+it asks, through the door's own `Handle`, for ten writes, ten statuses and ten
+times the last 50 lines of the log. The vessel column is capacity; the content,
+not measured, is by the byte forms about 560 bytes a note with one reader
+(contract 2.5, 3.1).
 
-| events | open | held per event | one write | status | last 50 of the log | vessel | process at most |
+| events | open | held per event | one write | status | last 50 of the log | capacity | process at most |
 |---|---|---|---|---|---|---|---|
 | 1,000 | 0.14 s | 4,438 B | 25 ms | 0.65 ms | 0.64 ms | 64 MiB | 24 MiB |
 | 10,000 | 1.5 s | 3,510 B | 36 ms | 4.5 ms | 3.6 ms | 64 MiB | 90 MiB |
 | 100,000 | 14.1 s | 2,709 B | 366 ms | 211 ms | 147 ms | 64 MiB | 0.71 GiB |
 | 300,000 | 43.8 s | 2,952 B | 1,175 ms | 752 ms | 523 ms | 192 MiB | 2.5 GiB |
+
+Raw: [`door.txt`](11-scale/door.txt), `BenchmarkScaleDoor`.
 
 `BenchmarkScaleReconcile` copies such a carrier, records one note in each copy,
 opens each copy as the command line opens it (`keyview.Open`, with the owner's
@@ -246,100 +279,16 @@ judged at its own point), and reconciles the two.
 | 10,000 | 2.2 s | 0.18 s | 2 | 0.18 GiB |
 | 100,000 | 20.6 s | 2.3 s | 2 | 1.4 GiB |
 
-Every command of the command line opens the carrier this way, so every command
-costs about 210 µs for every event of the history before it does anything: two
-seconds at ten thousand events, twenty at a hundred thousand. A reconcile goes
-through both histories whole, however little differs: 2.3 s to move two notes
-between two copies of a hundred thousand events.
+Raw: [`reconcile.txt`](11-scale/reconcile.txt), `BenchmarkScaleReconcile`.
 
-### 2.3 What the numbers fit
+### M6. Keys named in one ledger
 
-- **Judging and verifying cost the same for every event**, 65 to 90 µs, most of
-  it one signature; so a history is **verified in time linear in its length**:
-  86 µs an event in a bare ledger, 146 µs at a door, where the carrier, the
-  index and the door's own tables are read and built as well, and 210 µs as the
-  command line opens it, every envelope opened. Every opening verifies the
-  whole history, and that is the design: one person, offline, with a small
-  program, verifies the whole ledger (N2.6).
-- **Memory is linear**: about 2.1 KB an event in the ledger, about 3 KB at a
-  door, and the process at its highest holds about twice that while it loads.
-- **At a door, every answer grows with the history**, and nothing requires it:
-  a write costs 25 ms and then about 3.9 µs more for every event already held,
-  a status 2.5 µs, the last 50 lines of the log 1.7 µs. Three causes, all in
-  this tree:
-  1. Every commit drops the vessel's index of records (`vessel/tx.go`,
-     `(*Tx).Commit`), and the next read builds it again by reading, hashing and
-     opening every pack of the vessel (`vessel/vessel.go`,
-     `(*Vessel).indexOnce`).
-  2. The branch references are found by opening every branch pointer ever
-     recorded: each commit records one, and one superseded stays in its pack
-     (`carrier/carrier.go`, `(*Carrier).Refs`). The pointers lie in every pack,
-     and the vessel keeps at most eight slabs opened (`vessel/vessel.go`,
-     `(*Vessel).slab`), so each asking reads, hashes and opens the whole vessel
-     again. A door asks before every answer (`daemon/daemon.go`,
-     `(*Server).behind`) and again for a status or a write. In a profile of the
-     door at 100,000 events (`-cpuprofile` on the measurement above), this was
-     6.5 s of the 7.0 s its thirty answers took.
-  3. The ledger's order is dropped at every accepted event (`ledger/ledger.go`,
-     `(*Ledger).settle`) and made again whole when next asked for
-     (`(*Ledger).ordered`); `log` without a cursor takes the whole order and
-     walks it to keep its last lines (`daemon/daemon.go`, `(*Server).log`).
+`BenchmarkScaleAuthority` grants to n keys in one ledger (a key of its own and
+a scope of its own each), then takes every one of those grants back, newest
+first; and, apart from that, adds n keyring generations of n key ids. Each
+event is judged in its causal past.
 
-### 2.4 From the newest event to the first
-
-In a ledger already held in memory, the way back to the first event is linear
-and short: 0.49 µs a step by the parents, a million steps in half a second; the
-causal past with its order, 6.5 s for a million.
-
-From the carrier nothing is held until it is verified, so the first event is
-reached only by opening, which verifies the whole history first: 86 s for a
-million events in a bare ledger and, by the door's own rate, about two and a
-half minutes at a door. By the same rates a billion events take a day of one
-processor to reach their first, and some 2 to 3 TB of memory, which no machine
-of this kind has.
-
-### 2.5 How long a history can grow
-
-Nothing in the format counts generations: an event names up to sixteen parents
-(`event/event.go`, `MaxParents`) and carries up to 4 KiB (`MaxPayload`; T3.4
-calls that number a choice, not a limit of the world). A history is limited by
-what opening it holds and costs:
-
-- **Memory.** On this machine, 15.7 GiB: a bare ledger of some three million
-  events (the process reached 5.4 GiB at its highest for one million, though a
-  ledger holds 2.3 KB an event once loaded, which would allow seven), and a
-  door of some two million (2.5 GiB at its highest for 300,000).
-- **Time at a door.** A write takes a second at about 250,000 events and ten
-  seconds at about 2.5 million, by 2.2.
-- **Time to open.** At every opening: about 146 µs an event for a door, and
-  210 µs for every command of the command line, which opens the carrier each
-  time and opens every envelope as it goes. At a million events that is two and
-  a half minutes for a door and three and a half for each command; at five
-  million, on a machine with the memory for it, twelve and seventeen.
-
-One fault this measurement found and repaired: the walk that loads a history
-went into the parents of each event by recursion, about 1.9 KiB of stack for
-each generation it descended, and a branch of some 550,000 events ended the
-process with a stack overflow, so a longer history could not be opened at all.
-It now keeps its own stack (`ledger/load.go`, `(*Ledger).ExtendWith`;
-`ledger/deep_test.go`). A history of a million events opens, as 2.1 shows.
-
-## 3. The people one Rokh names
-
-A person enters a Rokh in one of six ways, and each grows differently: as a key
-that opens the vessel with a passphrase of its own; as a reader named in the
-envelopes of an address; as a grantee who writes under a grant; as a writer
-through a door, one commit at a time; as anyone at all, at an open address; and
-as a founder of a bond, whose ledger is their own.
-
-### 3.1 Measured: grants, revocations and keyring changes
-
-`BenchmarkScaleAuthority` names n people in one ledger: a grant to each (a key
-of their own, a scope of their own), then every one of those grants taken back,
-and apart from that n keyring generations. Each event is judged in its causal
-past.
-
-| people | grants: held | judge one | revocations: held | judge one | keyring: held | judge one | live keyring |
+| keys | grants: held | judge one | revocations: held | judge one | keyring: held | judge one | live keyring |
 |---|---|---|---|---|---|---|---|
 | 250 | 2.6 MiB | 83 µs | 2.6 MiB | 102 µs | 2.6 MiB | 96 µs | 0.9 ms |
 | 500 | 9.2 MiB | 90 µs | 9.1 MiB | 81 µs | 9.3 MiB | 86 µs | 1.1 ms |
@@ -348,21 +297,23 @@ past.
 | 4,000 | 523 MiB | 177 µs | 522 MiB | 211 µs | 523 MiB | 124 µs | 12 ms |
 | 8,000 | 2,027 MiB | 249 µs | 2,026 MiB | 1,061 µs | 2,029 MiB | 200 µs | 27 ms |
 
-"held" is the memory the ledger took for those events; for revocations it is
-what taking every grant back added to what the grants held. "live keyring" is
-the keyring as seen from the heads, which every sealing asks for. The
-revocations are taken back newest first: taken in the order they were made, the
-set of revocations after k of them would equal the set of the first k grants,
-and the ledger's pool would keep it once, which is sharing that revocations in
-no particular order do not get.
+"held" is the memory the ledger took for those events; for revocations, what
+taking every grant back added to what the grants held. "live keyring" is the
+keyring as seen from the heads, which every sealing asks for. Taken back in the
+order they were granted, the set of revocations after k of them equals the set
+of the first k grants and the ledger's pool keeps it once; that first run,
+which showed about 2 KB a key, is superseded. Raw:
+[`authority.txt`](11-scale/authority.txt) (grants, keyring),
+[`revokes.txt`](11-scale/revokes.txt) (revocations, newest first),
+`BenchmarkScaleAuthority`.
 
-### 3.2 Measured: readers, and the passphrase
+### M7. Readers of an envelope, and the passphrase
 
-`BenchmarkScaleEnvelope` seals a body of 300 bytes to r readers and opens it by
-the last one; `BenchmarkScalePassphrase` derives the owner's key at the default
-cost and tries it on every slot cell.
+`BenchmarkScaleEnvelope` seals a body of 300 bytes to r reader keys and opens
+it by the last; `BenchmarkScalePassphrase` derives the owner's key at the
+default cost and tries it on every slot cell.
 
-| readers | envelope | overhead | seal | open |
+| reader keys | envelope | overhead | seal | open |
 |---|---|---|---|---|
 | 1 | 432 B | 132 B | 132 µs | 54 µs |
 | 2 | 500 B | 200 B | 176 µs | 110 µs |
@@ -372,49 +323,56 @@ cost and tries it on every slot cell.
 | 32 | 2,540 B | 2,240 B | 1,785 µs | 53 µs |
 | 33 | refused | | | |
 
-The passphrase at the default 600,000 rounds: 128 ms; trying its key on all 32
-slot cells: 132 µs.
+The passphrase at the default 600,000 rounds: 128 ms; its key tried on all 32
+slot cells: 132 µs. Raw: [`envelope.txt`](11-scale/envelope.txt) (300 seals a
+size), [`passphrase.txt`](11-scale/passphrase.txt).
 
-### 3.3 Measured: an open address
+### M8. Keys at an open address
 
-`BenchmarkScaleOpenAddress` makes one open grant at `commons` (contract 4.5)
-and has n people, each a key of their own that nobody granted, added to the
-keyring or named in an envelope, write one note there.
+`BenchmarkScaleOpenAddress` makes one open grant at `commons` (contract 4.5),
+and n keys, each its own, that nobody granted, added to the keyring or named in
+an envelope, write one note there each: n keys, n events, n operations.
 
-| people | held per person | judge one | sign one | process at most |
+| keys | held per key | judge one | sign one | process at most |
 |---|---|---|---|---|
 | 1,000 | 2,454 B | 75 µs | 107 µs | 13 MiB |
 | 10,000 | 2,244 B | 72 µs | 103 µs | 47 MiB |
 | 100,000 | 2,111 B | 72 µs | 102 µs | 0.36 GiB |
 | 1,000,000 | 2,447 B | 78 µs | 105 µs | 3.7 GiB |
 
-### 3.4 Measured: writers and readers at once
+Raw: [`openaddress.txt`](11-scale/openaddress.txt),
+`BenchmarkScaleOpenAddress`.
 
-`BenchmarkScaleWriters` puts several doors on one carrier of 1,000 events, each
-its own daemon on the folder as separate programs open it, and several writers
-at each door, each recording eight notes at once.
+### M9. Writers and readers at once
 
-| doors × writers | writes a second | median | slowest 1% | slowest | refused |
-|---|---|---|---|---|---|
-| 1 × 1 | 37.6 | 26 ms | 29 ms | 30 ms | 0 |
-| 1 × 4 | 38.5 | 97 ms | 130 ms | 148 ms | 0 |
-| 1 × 16 | 32.4 | 483 ms | 550 ms | 574 ms | 0 |
-| 1 × 64 | 31.2 | 1.96 s | 2.28 s | 2.30 s | 0 |
-| 2 × 1 | 34.0 | 28 ms | 37 ms | 253 ms | 0 |
-| 4 × 1 | 33.2 | 28 ms | 505 ms | 754 ms | 0 |
-| 8 × 1 | 37.6 | 25 ms | 1.26 s | 1.49 s | 0 |
-| 16 × 1 | 40.3 | 22 ms | 2.51 s | 2.97 s | 0 |
-| 32 × 1 | 40.0 | 22 ms | 5.47 s | 6.21 s | 0 |
-| 8 × 8 | 38.3 | 204 ms | 11.6 s | 11.7 s | 0 |
-| 16 × 4 | 39.3 | 94 ms | 11.1 s | 12.1 s | 0 |
-| 32 × 4 | 36.7 | 96 ms | 23.1 s | 25.5 s | 11 of 1,024 |
+`BenchmarkScaleWriters` puts doors on one carrier of 1,000 events, each its own
+daemon on the folder, and writers at each door, each writing eight notes, all
+at once, all with the key `clerk`. The times are each write's, from asking to
+the answer.
 
-The times are each write's, from asking to the answer. An earlier run, without
-the rows at 32 doors and at 16 doors of four, gave the same to within 15 per
-cent.
+| doors × writers | writes | writes a second | median | slowest 1% | slowest | refused |
+|---|---|---|---|---|---|---|
+| 1 × 1 | 8 | 37.6 | 26 ms | 29 ms | 30 ms | 0 |
+| 1 × 4 | 32 | 38.5 | 97 ms | 130 ms | 148 ms | 0 |
+| 1 × 16 | 128 | 32.4 | 483 ms | 550 ms | 574 ms | 0 |
+| 1 × 64 | 512 | 31.2 | 1.96 s | 2.28 s | 2.30 s | 0 |
+| 2 × 1 | 16 | 34.0 | 28 ms | 37 ms | 253 ms | 0 |
+| 4 × 1 | 32 | 33.2 | 28 ms | 505 ms | 754 ms | 0 |
+| 8 × 1 | 64 | 37.6 | 25 ms | 1.26 s | 1.49 s | 0 |
+| 16 × 1 | 128 | 40.3 | 22 ms | 2.51 s | 2.97 s | 0 |
+| 32 × 1 | 256 | 40.0 | 22 ms | 5.47 s | 6.21 s | 0 |
+| 8 × 8 | 512 | 38.3 | 204 ms | 11.6 s | 11.7 s | 0 |
+| 16 × 4 | 512 | 39.3 | 94 ms | 11.1 s | 12.1 s | 0 |
+| 32 × 4 | 1,024 | 36.7 | 96 ms | 23.1 s | 25.5 s | 11 |
+
+The eleven refusals were `turn_busy`. Every write answered `recorded` was in
+the ledger read afresh afterwards (1,000 notes, the genesis and its grant, and
+every recorded write). An earlier run of the first eight rows and of 8 × 8
+agreed within 15 per cent. Raw: [`writers2.txt`](11-scale/writers2.txt), and
+[`writers.txt`](11-scale/writers.txt) for the earlier run.
 
 `BenchmarkScaleReaders` puts readers on a carrier of 10,000 events, each asking
-in turn for the status and for the last 50 lines of the log, forty times, first
+in turn for the status and the last 50 lines of the log, forty times; first
 with nobody writing, then with one writer recording through a door of its own
 all the while.
 
@@ -427,13 +385,14 @@ all the while.
 | 1 × 4 | one | 32 | 144 ms | 423 ms | 436 ms | 24.6 |
 | 4 × 4 | one | 107 | 72 ms | 417 ms | 486 ms | 17.6 |
 
-No read failed.
+No read failed. Raw: [`readers.txt`](11-scale/readers.txt),
+`BenchmarkScaleReaders`.
 
-### 3.5 Measured: a bond among many
+### M10. A bond's leaf
 
-`BenchmarkScaleLeaf` makes the founding leaf of a bond among n founders: its
-bytes, its name, reading it back, and its standing when all but one have
-accepted it.
+`BenchmarkScaleLeaf` makes the founding leaf of a bond among n founders
+(anchors): its bytes, its name, reading it back, and its standing when all but
+one have accepted it.
 
 | founders | leaf | name it | read it | standing |
 |---|---|---|---|---|
@@ -442,107 +401,9 @@ accepted it.
 | 10,000 | 670 KB | 31 ms | 44 ms | 2.4 ms |
 | 1,000,000 | 67 MB | 2.7 s | 3.4 s | 255 ms |
 
-### 3.6 What the numbers fit
+Raw: [`leaf.txt`](11-scale/leaf.txt), `BenchmarkScaleLeaf`.
 
-- **People named cost the square of their number.** Every grant, revocation and
-  keyring change is judged in its causal past, and the ledger keeps, for that
-  event, the set of every grant (or revocation, or keyring change) in that
-  past: a sorted list, copied whole with one more member (`ledger/set.go`,
-  `idset.add`), kept in a pool that shares equal lists under a key as long as
-  the list (`interner.canon`). So n people named hold about 33·n² bytes: 34 MiB
-  for a thousand and 2 GiB for eight thousand, as measured; 3.3 GB for ten
-  thousand, 330 GB for a hundred thousand and 33 TB for a million, by the same
-  square. Judging one more copies the list: 83 µs at 250, 249 µs at 8,000, and
-  more when memory is short (a revocation at 8,000: 1.06 ms).
-- **Readers cost their number, and stop at 32.** An envelope wraps its key once
-  for each reader of its address: 64 + 68·r bytes, and about 55 µs of sealing
-  for each reader, one key agreement each. Opening costs the same for any
-  number, since a reader finds its own wrap by its key id. The contract allows
-  1 to 32 (3.1) and a session asked for more refuses (`key/key.go`,
-  `SealReaders`); since every key whose reads cover an address is its reader
-  (contract 4.4, `(Ring).Readers`), an address read by more than 32 keys, the
-  owner's among them, can no longer be written. The seed's own key reads
-  nothing for that very reason (`cmd/rokh/v1_seedplan.go`).
-- **Openers stop at 32 slot cells**: the owner and 31 keys (`vessel/names.go`,
-  `SlotCells`). A passphrase costs 128 ms at the default rounds, whoever holds
-  it.
-- **At an open address every person costs the same**: about 2.1 to 2.5 KB and
-  72 to 78 µs each, from a thousand people to a million, because the one grant
-  is the same for all and no set grows (contract 4.5). It is the one way a Rokh
-  takes a crowd, and it takes it as a crowd: nobody there is named, nobody can
-  be taken back alone, and what they write is read by the address's readers, at
-  most 32.
-- **Writers take turns**, one commit at a time for the whole carrier, whatever
-  the doors: about 35 commits a second at 1,000 events, each writer waiting for
-  those ahead of it: 26 ms alone, 97 ms behind three others, 2 s behind 63.
-  Across doors the turn goes to whoever tries first once it is free, each door
-  trying again every 10 ms (`turn/turn.go`, `acquire`), so the median wait
-  stays short while the slowest grows far faster: the slowest 1% waited 5.5 s
-  at 32 doors of one writer each, and 11 s at 8 doors of eight. At 32 doors of
-  four writers, 11 of 1,024 writes were refused, `turn_busy`, having waited out
-  the turn's patience of 15 s (`daemon/commit.go`, `turnPatience`), and the
-  slowest 1% of the others waited 23 s, the door's own queue before the turn
-  counted in. Nothing answered `recorded` was lost: every such write was in the
-  ledger read afresh afterwards. And every commit costs more as the history
-  grows (§2.3): 2.7 writes a second at 100,000 events, 0.85 at 300,000.
-- **Readers share a door, and a writer stops them.** With nobody writing,
-  readers run side by side and the rate grows with the processors, not the
-  readers: 382 reads a second alone, about a thousand with four processors
-  busy. One writer brings it down to 32 at one door and 107 at four: every
-  commit makes every door's view stale, and the first reader after it brings
-  the view up under the door's lock held alone, reading and opening every pack
-  of the vessel again (§2.3), while the others wait.
-- **A bond's leaf is as long as its founders**: 67 bytes each, named in about
-  2.7 µs each, and a founder accepts it only by holding all of it and finding
-  their own anchor in it (`bond/across.go`, `Accept`).
-
-### 3.7 From a family to the Earth
-
-One carrier, each person in it in each of the six ways. What was measured is
-marked; the rest follows from the fits above, and says where it stops.
-
-| people | named (grants) | readers of one address | openers | one note each, through one carrier | at an open address | founders of a bond |
-|---|---|---|---|---|---|---|
-| a family, 5 | 0.8 KB | 404 B on each envelope, 0.35 ms to seal | 5 of 32 | 0.13 s | 11 KB | a 0.4 KB leaf |
-| a household, 30 | 30 KB | 2.1 KB, 1.7 ms | 30 of 32 | 0.8 s | 66 KB | 2 KB |
-| a village, 1,000 | 34 MiB, measured | cannot be sealed | cannot open | 27 s | 2.4 MB, measured | 67 KB |
-| a town, 10^4 | 3.3 GB | | | 7.4 min | 22 MB, measured | 670 KB, measured |
-| a city, 10^6 | 33 TB | | | 23 days (8 h at a steady 35 a second) | 2.4 GB, measured | 67 MB, measured |
-| a country, 10^8 | 330 PB | | | 600 years (33 days) | 210 GB | 6.7 GB |
-| the Earth, 8·10^9 | 2·10^21 B | | | 4 million years (7 years) | 17 TB | 536 GB |
-
-"One note each" is the time for every person to record one note through one
-carrier, one commit at a time at today's cost, 25 ms and 3.9 µs for every event
-already held (§2.3); in brackets, at the best rate measured, if a commit cost
-the same at any length. So:
-
-- **At 32 people** the design's own numbers are met: no more readers of one
-  address, no more openers of one vessel. Past them, a family shares a Rokh
-  only by grants that name each writer and by addresses each one reads with at
-  most 31 others.
-- **At some twenty thousand people named**, the authority sets alone fill a
-  machine of this size: 13 GB at 20,000 by the square. This is in this tree,
-  not in the design (§7.1.4).
-- **At some ten thousand writers**, one carrier's single turn and its growing
-  cost make a round of one note each take minutes; at a million, weeks.
-- **At about a hundred million**, even an open address, whose cost per person
-  is constant, holds more than one machine can, and its readers are still at
-  most 32.
-- **At eight billion**, nothing about one Rokh fits: not its memory, not its
-  turn, not its readers. By its own texts a multitude is many Rokhs, each a
-  person's, joined by bonds (§7.3); and a bond among all of them, as it is
-  written today, would be a leaf of 536 GB that every founder must hold.
-
-## 4. Seeds
-
-A seed is a new vessel for the same ledger, given by one Rokh and taken by the
-new one; two seeds become one again only by reconcile. Giving a seed records
-four events in the lineage, as `cmd/rokh/v1_seedplan.go` (`newGiving`) and the
-take make them: the keyring add of the seed's own key, a grant to its signer,
-the give on the source, and the take on the new vessel, signed by the seed's
-key under that grant.
-
-### 4.1 Measured through the command line
+### M11. Seeds
 
 `BenchmarkScaleSeeds` (in `cmd/rokh`) makes seeds as a person does, with
 `rokh seed`, 24 times: in a line, each seed given by the one before it, and in
@@ -563,14 +424,14 @@ Every seed held one note, the first, written in the root before any seed. Each
 folder was 4.25 MiB: the 4 MiB of slabs asked for, and the four head files.
 Reconciling the last seed, with its one new note, into the root took 1.76 s for
 the line and 1.87 s for the fan, and brought the note home: the root then held
-100 events (line) and 77 (fan), all but two of them the ledger's own.
+100 events (line) and 77 (fan), all but two of them the ledger's own. Raw:
+[`seeds.txt`](11-scale/seeds.txt), `BenchmarkScaleSeeds`.
 
-### 4.2 Measured in one ledger
-
-`BenchmarkScaleSeedLedger` (in `bench`) follows seeds past what the command
-line makes in a measurement: the same four events for every seed, judged by one
-ledger, as a line and as a fan (where the root holds every take once it has
-reconciled every seed), and the whole lineage loaded again from its bytes.
+`BenchmarkScaleSeedLedger` makes the same four events a seed adds (the keyring
+add of its key, a grant to its signer, the give, the take) for up to 2,000
+seeds, judged by one ledger, as a line and as a fan (where the root holds every
+take once it has reconciled every seed), and loads the whole lineage again from
+its bytes.
 
 | seeds | shape | events | depth | held | per seed | judge one | the last take | load all |
 |---|---|---|---|---|---|---|---|---|
@@ -584,201 +445,562 @@ reconciled every seed), and the whole lineage loaded again from its bytes.
 | 2,000 | fan | 8,001 | 6,001 | 926 MiB | 486 KB | 536 µs | 5.9 ms | 4.03 s |
 
 Depth is the number of steps from the last take back to the first event by the
-parents; "load all" is the lineage read again from its bytes, as the last seed
-(line) or the root that reconciled every seed (fan) opens it.
+parents. Raw: [`seedledger.txt`](11-scale/seedledger.txt),
+`BenchmarkScaleSeedLedger`.
 
-### 4.3 What the numbers fit
+### M12. One processor profile
 
-- **What a seed holds of those before it grows linearly with how many there
-  were.** In a line the n-th seed holds 3 + 4n events: the genesis, the owner's
-  keyring add and the first note, and four for itself and every seed before it.
-  In a fan the root gives three events a seed and the take stays in the seed,
-  so the n-th seed holds 4 + 3n. The notes do not grow at all: every seed held
-  the one note written before the first give.
-- **Its memory grows as the square of the seeds.** Every keyring event and
-  every seed event joins the system set that each later event carries, and
-  every grant the grant set (`ledger/ledger.go`, `(*Ledger).evaluate`), with
-  the same whole copies as in §3.6: about 340·n² bytes in a line and 240·n² in
-  a fan, 1.3 GiB for 2,000 seeds in a line. On a machine of this size the
-  lineage of some 7,000 seeds in a line, or 8,000 in a fan, can no longer be
-  opened.
-- **Judging grows linearly, and loading as a little less than the square**: one
-  event of the lineage costs 149 µs at 250 seeds and 623 µs at 2,000, and the
-  whole lineage of 8,001 events loads in 4.3 s, where 10,000 notes load in
-  0.7 s. A take also reads the whole system set to find the key that signs it
-  (rule S1 in `(*Ledger).evaluate`): 5.9 ms for the last of 2,000 in a fan.
-- **Giving a seed through the command line** costs about 0.8 s, almost all of
-  it the same for every seed (the passphrase at its rounds, a new vessel and
-  its cells), and rose to 0.94 s over 24 seeds as the source's history grew.
-- **Two seeds merge by reconcile**, the union of both, judged by each side:
-  each side is opened whole, so a merge costs at least the opening of both
-  (§2.2) and holds both lineages in memory. A lineage merges as long as it can
-  be opened: the 7,000 seeds above.
+The door at 100,000 events was measured again under the processor profile (the
+write in 367 ms, the status in 213 ms, against 366 and 211 in §M5). Of the
+7.0 s its thirty answers took, 6.5 s were inside `(*carrier.Carrier).Refs`:
+4.6 s opening branch pointers and 1.5 s rebuilding the vessel's index. Across
+both, slabs read again cost 2.5 s of SHA-256 and 1.2 s of AES-GCM. Raw:
+[`door-profile.txt`](11-scale/door-profile.txt).
 
-### 4.4 The billionth seed
+## C. Read in the code
 
-What was measured stops at 2,000 seeds; what follows is the same linear count
-and the same square, carried on.
+What the code of commit 4111458 does, read where it says it, to explain the
+numbers of part M. Nothing in this part was measured on its own, except where a
+section says so.
 
-- **What it holds of the first.** In a line, the billionth seed holds four
-  billion and three events: the genesis, the owner's first keyring add and the
-  note written before the first give — everything the root held when it gave
-  its first seed — and then, for every one of the billion seeds, the keyring
-  add of its key, its grant, its give and its take. The first seed is all
-  there: a seed carries the whole causal past of its give, and nothing recorded
-  is ever dropped (law 5). What is not there is what the first seed recorded
-  after it gave the second, until a reconcile brings it.
-- **What it costs.** Some 1.5 TB of events at about 385 bytes each; some 9 TB
-  of memory for the ledger at 2.3 KB each; and, by the square, about 3·10^20
-  bytes (some 340 EB) of authority sets. It cannot be opened, nor its take
-  judged: the take reads a system set of three billion members. By the square
-  it stops being possible at some 7,000 seeds on this machine, and at some 10^5
-  on a machine with a few TB of memory.
+### C1. What a commit reads and writes
+
+- A commit copies the whole inventory, frees every old segment and writes all
+  ⌈N/4096⌉ segments again, each to a new slab, and looks at every entry for a
+  free slab (`vessel/tx.go`, `(*Tx).Commit`). The contract writes "the changed
+  inventory segments" (2.6, step 3). Since a segment moved changes the entries
+  of the segments that cover its old place and its new one, every segment
+  changes because every segment is written.
+- The last pack is read and rewritten whole with the new records behind what it
+  held, when they fit (`(*Tx).Commit`).
+- The commit's first step takes the highest valid generation, and its fourth
+  sees that it still is (contract 2.6). Both are answered by verifying the
+  whole generation, every segment by its digest and its tag
+  (`vessel/vessel.go`, `(*Vessel).refresh`, `(*Vessel).choose`,
+  `(*Vessel).verify`), and the first also lists every slab file of the vessel
+  (`(*Vessel).survey`).
+
+So one note writes (1 + ⌈N/4096⌉)·S + 64 KiB and reads (2·⌈N/4096⌉ + 3)·S +
+576 KiB, both to the byte at every size of §M1, and spends processor time on
+every slab of the capacity.
+
+### C2. Why a door's answers grow with the history
+
+1. Every commit drops the vessel's index of records (`vessel/tx.go`,
+   `(*Tx).Commit`, `v.index = nil`), and the next read rebuilds it by reading,
+   hashing and opening every pack (`vessel/vessel.go`, `(*Vessel).indexOnce`).
+2. The branch references are found by opening every branch pointer ever
+   recorded (`carrier/carrier.go`, `(*Carrier).Refs`): each commit records one,
+   and a superseded one stays in its pack. The pointers lie in every pack, and
+   the vessel keeps at most eight opened slabs (`vessel/vessel.go`,
+   `(*Vessel).slab`), so each asking reads, hashes and opens nearly the whole
+   vessel again. A door asks before every answer (`daemon/daemon.go`,
+   `(*Server).behind`) and again for a status or a write. §M12 measured this as
+   6.5 s of 7.0 s.
+3. The ledger's order is dropped at every accepted event (`ledger/ledger.go`,
+   `(*Ledger).settle`) and made again whole when next asked for
+   (`(*Ledger).ordered`); `log` without a cursor takes the whole order and
+   walks it to keep its last lines (`daemon/daemon.go`, `(*Server).log`).
+
+### C3. Why authority takes memory as the square
+
+Every grant, revocation, keyring change and seed event is judged in its causal
+past, and the ledger keeps, for that event, the set of every grant (or
+revocation, or keyring and seed event) in that past: a sorted list copied whole
+with one more member (`ledger/set.go`, `idset.add`, `union`), kept in a pool
+that shares equal lists under a key as long as the list (`interner.canon`). A
+take also reads the whole system set to find its signer (`ledger/ledger.go`,
+`(*Ledger).evaluate`, rule S1).
+
+### C4. Why a large thing takes four times its size
+
+The recording keeps every sealed chunk until its commit (`carrier/carrier.go`,
+`(*Recording).Content`, through `(*Tx).Put`); the commit packs them all into
+slab bodies at once (`vessel/tx.go`, `(*Tx).Commit`); a growing vessel grows
+one step and tries the whole commit again, packing everything again, until it
+fits (`(*Tx).CommitGrowing`); reading back opens every chunk twice, once to
+hash the whole and once to hand it over (`carrier/carrier.go`,
+`(*Carrier).ContentToSized`), and gathers the whole before anything is written
+(`content/vessel.go`, `Fetch`, as E8 requires).
+
+### C5. How the writing turn is taken
+
+A writer takes the kernel's lock on `rokh/head0.rkh`, trying again every 10 ms
+(`turn/turn.go`, `acquire`), with a patience of 15 s at a door
+(`daemon/commit.go`, `turnPatience`), after waiting for the door's own lock,
+which has no patience. Nothing orders those who wait: whoever tries first once
+the lock is free takes it.
+
+### C6. The numbers version 1 fixes
+
+| what | value | where |
+|---|---|---|
+| readers named in one envelope | 1 to 32 | contract 3.1; `key/key.go`, `MaxReaders`, `SealReaders` |
+| readers of an address | owner generations and every live key whose reads cover it | contract 4.4; `(key.Ring).Readers` |
+| slot cells in a vessel | 32: the owner and 31 keys | contract 1, 4.6; `vessel/names.go`, `SlotCells` |
+| slabs, slab size | 16 to 2^22; 2^18 to 2^26 bytes, chosen to fit FAT32 | contract 1; `vessel/names.go` |
+| a vessel's files | always N + 4 files of N·S + 4·64 KiB, whatever it holds | contract 1, U1 |
+| generations a slab stays untouched | R = 3 | contract 1, 2.6; `vessel/names.go`, `Retention` |
+| salt and passphrase cost | one per rokh, inherited by every seed | contract 2.3 |
+| payload of an event | 4 KiB in the base profile | T3.4; `event/event.go`, `MaxPayload` |
+| parents of an event | 16 | `event/event.go`, `MaxParents` |
+| a booth's listener | a Unix socket, or TCP on the loopback interface only | `transport/transport.go`, `Listen` |
+
+An address read by more than 32 keys, the owner's generations among them,
+cannot be written: the session refuses to seal (`key/key.go`, `SealAt`). The
+seed's own key reads nothing for that reason (`cmd/rokh/v1_seedplan.go`).
+
+### C7. The fault found and repaired
+
+The walk that loads a history went into the parents of each event by recursion,
+about 1.9 KiB of stack for each generation it descended. A probe kept outside
+the tree loaded chains of 500,000 and 650,000 events and ended the process with
+a stack overflow at 1,000,000, whose walk went 645,365 generations deep.
+`(*Ledger).ExtendWith` in `ledger/load.go` now keeps its own stack (commit
+4111458), and `ledger/deep_test.go` loads 3,000 events under a stack of
+512 KiB, which the old walk overflowed at a few hundred. §M4 shows a million
+events loading.
+
+### C8. What an opening does
+
+`carrier.Open` reads the head files and verifies every segment and every slab
+the last three generations wrote (§C1). `ledger.Load` then reads every event
+the branch references reach and judges each one: its hash, its signature and
+its authority in its causal past; the whole ledger stays in memory
+(`ledger/load.go`). The command line opens through `keyview.Open`, which also
+opens every event's envelope at its own point. Nothing of a verification is
+kept between two openings.
+
+## X. Extrapolated
+
+What the measurements of part M imply beyond the sizes that were run, by the
+mechanisms of part C. Each model says what it rests on and how far the runs
+reach. None of it was run.
+
+### X1. Vessel capacity, to the format's end and past it
+
+The model, fit to every size of §M1 (16 ≤ N ≤ 4,194,304; S of 256 KiB, 1 MiB
+and 64 MiB; thirteen notes of content): one note writes (1 + ⌈N/4096⌉)·S +
+64 KiB and reads (2·⌈N/4096⌉ + 3)·S + 576 KiB, and takes about 5 µs of the
+processor for every slab of the capacity (4.9 µs at a million, 5.5 at four
+million) plus about 1.6 ms for every MiB sealed, opened and hashed (the rows of
+64 MiB slabs), before any disk's time, which about doubled it in §M2. Once N
+passes 4,096, ⌈N/4096⌉·S is the capacity divided by 4,096, whatever the slab:
+every commit writes at least 1/4096 of the capacity.
+
+- **Where a vessel stops being usable for notes.** With the default slab of
+  1 MiB a note takes about 6.5 µs for every slab: a second at about 150 GiB of
+  capacity and ten seconds at about 1.5 TiB, in memory. With slabs of 64 MiB no
+  note takes less than 0.7 s, and one takes about 5.5 s at 4 TiB.
+- **The format's end, 256 TiB** (S = 64 MiB, N = 4,194,304): one note writes
+  1,025 slabs, 64 GiB, and reads 2,051, 128 GiB; about 23 s of the processor
+  for the inventory (the 1 TiB row has the same N) and some five minutes to
+  seal, open and hash 192 GiB. Making such a vessel would take some four weeks
+  at the rates of §M2.
+- **A PiB of capacity** is four times beyond the version 1 format under any
+  parameters. A vessel of the same design at a PiB would write at least 256 GiB
+  and read at least 512 GiB for every note, and spend some 90 s on an inventory
+  of 16,777,216 slabs of 64 MiB: many minutes a note on any disk.
+- **Content is another matter.** These costs follow capacity. What content a
+  vessel can hold and bring in one recording is bounded first by memory, four
+  times the thing (§M3): about 3.5 GiB on this host, and for a person's PiB of
+  content, a thing at a time, far below the capacity of any vessel.
+
+### X2. History
+
+- **On this host**, 15.7 GiB: a bare ledger of some three million events (the
+  process reached 5.4 GiB at its highest for one million; once loaded a ledger
+  holds 2.3 KB an event, which alone would allow seven), and a door of some two
+  million (2.5 GiB at its highest for 300,000).
+- **A write at a door** costs about 25 ms and 3.9 µs more for every event
+  already held (§M5): a second at about 250,000 events, ten at about 2.5
+  million.
+- **Opening**: 86 µs an event in a bare ledger, 146 at a door, 210 for each
+  command of the command line; at a million events two and a half minutes for a
+  door and three and a half for each command; at five million, on a machine
+  with the memory for it, twelve and seventeen.
+- **A billion events**: about a day of one processor to open, at the bare
+  ledger's rate, and 2 to 3 TB of memory, which no machine of this kind has.
+- **From the newest event to the first.** In a ledger held in memory, 0.49 µs a
+  step by the parents (§M4): a million steps in half a second, a billion in
+  about eight minutes. From the carrier nothing is held until it is verified,
+  so the first event is reached only after opening, at the rates above. The
+  format counts no generations: an event names up to sixteen parents, and
+  nothing else bounds the length of a history.
+
+### X3. Keys, and people
+
+- **Keys granted** take about 33·n² bytes (§M6, fit from 250 to 8,000): 3.3 GB
+  for 10,000, 13 GB for 20,000 (the end of this host), 330 GB for 100,000,
+  33 TB for a million. Judging one more grant copies the list: about 80 µs and
+  20 ns more for every key already granted. Revocations and keyring changes go
+  the same way.
+- **Keys at an open address** cost the same each, about 2.1 to 2.5 KB and 72 to
+  78 µs from a thousand to a million (§M8): 210 GB for 10^8 keys, 17 TB for
+  8·10^9.
+- **One note each, through one carrier**, at today's cost (§M5): 25 ms·n +
+  1.95 µs·n². At the best rate measured, if a commit cost the same at any
+  length: n / 35 seconds.
+
+The table counts keys and assumes one key for each person. A person who holds
+several keys meets the same limits at fewer people.
+
+| people, one key each | keys granted: memory | reader keys of one address | slot cells | one note each, one carrier | keys at an open address: memory | founders of a bond: the leaf |
+|---|---|---|---|---|---|---|
+| a family, 5 | 0.8 KB | 404 B on each envelope, 0.35 ms to seal | 5 of 32 | 0.13 s | 11 KB | 0.4 KB |
+| a household, 30 | 30 KB | 2.1 KB, 1.7 ms | 30 of 32 | 0.8 s | 66 KB | 2 KB |
+| a village, 1,000 | 34 MiB (M) | cannot be sealed | all 32 used; 968 cannot open | 27 s | 2.4 MB (M) | 67 KB |
+| a town, 10^4 | 3.3 GB | | | 7.4 min | 22 MB (M) | 670 KB (M) |
+| a city, 10^6 | 33 TB | | | 23 days (8 h at 35 a second) | 2.4 GB (M) | 67 MB (M) |
+| a country, 10^8 | 330 PB | | | 600 years (33 days) | 210 GB | 6.7 GB |
+| the Earth, 8·10^9 | 2·10^21 B | | | 4 million years (7 years) | 17 TB | 536 GB |
+
+(M) marks a measured cell; the rest follow from the fits. A founder is a
+ledger's anchor: one for each person who keeps a Rokh.
+
+### X4. Seeds
+
+- **What a seed holds of those before it.** In a line the n-th seed holds 3 +
+  4n events (§M11): the genesis, the owner's keyring add and the first note,
+  and four for itself and every seed before it; in a fan the n-th holds 4 + 3n.
+  The notes do not grow; the ledger's own events do.
+- **Memory** grows as the square of the seeds: about 340·n² bytes in a line and
+  240·n² in a fan (§M11). On this host a lineage of some 7,000 seeds in a line,
+  or 8,000 in a fan, can no longer be opened, and therefore no longer
+  reconciled, since reconcile opens both sides whole (§M5).
+- **The billionth seed of a line** would hold four billion and three events:
+  everything the root held when it gave its first seed, the first seed whole as
+  it was when it gave the second, and for every seed the keyring add of its
+  key, its grant, its give and its take. Nothing of the first is lost, since a
+  seed carries the whole causal past of its give and nothing recorded is
+  erased; what the first seed recorded after it gave the second is not there
+  until a reconcile brings it. It would take some 1.5 TB of events, some 9 TB
+  of memory for the ledger and, by the square, some 3·10^20 bytes of authority
+  sets: it cannot be opened, and its take cannot be judged, since a take reads
+  a system set of three billion members.
 - **Cause and effect.** A take is refused unless its give is in its causal past
   (`(*Ledger).evaluate`), and in a line each give is made on the seed before
   it, after that seed's take. So the causes run in one line from the first
   event to the last: genesis, the first give, the first take, the second
-  keyring add, grant and give, the second take, and so on: 4·10^9 steps, each
-  an event naming the one before it. Walked in memory at 0.49 µs a step it
-  would take half an hour, if a machine held it; verified from the carrier, at
-  least four days of one processor at the rate of plain notes (86 µs an event),
-  and far longer with the sets as they are. In a fan every seed is a step from
-  the root, the depth grows by three a seed rather than four, and the root that
-  reconciles them all carries the same weight: three events a seed, as the
-  square.
+  keyring add, grant and give, the second take, and so on, four billion steps,
+  each an event naming the one before it. In a fan every seed is one step from
+  the root, and the root that reconciles them all carries three events a seed.
 
-## 5. How each thing grows
+### X5. How each thing grows
 
-| what | grows with | how | measured |
+| what | grows with | how | measured over |
 |---|---|---|---|
-| what one note writes | the vessel | linearly, at least 1/4096 of it | 0.56 MiB at 4 MiB, 256 MiB at 1 TiB |
-| what one note costs in time | the slabs | linearly, about 5 µs a slab | 4.6 ms at 16 slabs, 23 s at 4,194,304 |
-| opening a vessel | the slabs | linearly | 0.8 ms to 19 s |
-| judging one event | the history | constant | 65 to 90 µs |
-| opening a ledger | the history | linearly | 86 µs an event; 146 at a door; 210 at each command |
-| memory | the history | linearly | about 2.1 KB an event, 3 KB at a door |
-| a write, a status, a log at a door | the history | linearly, though nothing requires it | 25 ms to 1.2 s; 0.65 to 752 ms; 0.64 to 523 ms |
-| memory for grants, revocations, keyring | the people named | as the square | 2.6 MiB for 250, 2 GiB for 8,000 |
-| judging one more of them | the people named | linearly | 83 to 249 µs |
-| an envelope, and sealing it | its readers | linearly, and no further than 32 | 432 to 2,540 B; 0.13 to 1.8 ms |
-| opening an envelope | its readers | constant | 53 to 62 µs |
-| commits a second | writers and doors | constant | about 35 |
-| a writer's wait | the writers ahead | linearly, and unfairly | 26 ms alone, 2 s behind 63 at one door; the slowest 1% 23 s among 128 on 32 doors, 11 refused |
-| a person at an open address | the people there | constant | 2.1 to 2.5 KB and 72 to 78 µs, from a thousand to a million |
-| a bond's leaf | its founders | linearly | 67 B a founder |
-| what a seed holds of those before it | the seeds before it | linearly | 4 events a seed in a line, 3 in a fan |
-| memory for a lineage of seeds | the seeds | as the square | 23 MiB for 250, 1.3 GiB for 2,000 in a line |
-| a large thing brought in | its size | memory four times it; time as more than its size | 1.0 GiB for 256 MiB, 8.0 GiB for 2 GiB; 3.7 s, 80 s |
+| what one note writes | the capacity | linearly, at least 1/4096 of it | 4 MiB to 1 TiB |
+| what one note costs in time | the slabs of the capacity | linearly, about 5 µs a slab | 16 to 4,194,304 slabs |
+| opening a vessel | the slabs | linearly | 16 to 4,194,304 slabs |
+| a large thing: memory, time | its size | four times it; time more than its size | 1 MiB to 2 GiB |
+| judging one event | the history | constant, 65 to 90 µs | 1,000 to 10^6 events |
+| opening a ledger; its memory | the history | linearly | 1,000 to 10^6 events |
+| a write, a status, a log at a door | the history | linearly | 1,000 to 300,000 events |
+| memory of grants, revocations, keyring | the keys named | as the square | 250 to 8,000 keys |
+| judging one more of them | the keys named | linearly | 250 to 8,000 keys |
+| an envelope, and sealing it | its reader keys | linearly, to 32 | 1 to 33 reader keys |
+| opening an envelope | its reader keys | constant | 1 to 32 reader keys |
+| a key at an open address | the keys there | constant | 1,000 to 10^6 keys |
+| commits a second | writers and doors | constant, about 35 | 1 to 128 writers, 1 to 32 doors |
+| a writer's wait | the writers ahead | linearly, and unfairly | 1 to 128 writers |
+| reads a second | readers | with the processors, not the readers; a writer cuts them | 1 to 16 readers |
+| a bond's leaf | its founders | linearly, 67 B each | 2 to 10^6 founders |
+| what a seed holds of those before it | the seeds before it | linearly | 1 to 2,000 seeds |
+| the memory of a lineage of seeds | the seeds | as the square | 250 to 2,000 seeds |
+| reconcile | both histories | linearly, however little differs | 1,000 to 100,000 events |
 
-## 6. The first bottlenecks, in the order they are met
+Beyond "measured over", every line of this table is the model.
 
-In the order a Rokh meets them as it grows. The last column says whether the
-limit is in the design (the texts or the contract) or only in this tree.
+## P. Proposed
 
-| | met at | what | where | in |
-|---|---|---|---|---|
-| 1 | the 33rd reader of an address, the 32nd key besides the owner | an envelope names at most 32 readers and a vessel opens for 32 slot cells; beyond them an address cannot be sealed, a key cannot open | contract 3.1; `key/key.go` `MaxReaders`; `vessel/names.go` `SlotCells` | the contract |
-| 2 | a few writers at once | one commit at a time for the whole carrier, about 35 a second; the turn goes to whoever tries first, so the slowest wait grows much faster than the median, and among 128 writers on 32 doors some are refused after 15 s | `turn/turn.go` `acquire`; `daemon/commit.go` `turnPatience` | this tree |
-| 3 | about 10^5 events | a door's write, status and log each walk the whole vessel or the whole ledger: a write takes 0.37 s at 100,000 events and 1.2 s at 300,000 | §2.3 | this tree |
-| 4 | about 10^4 people named, or seeds given | grants, revocations, keyring changes and seed events are kept as whole sets per event: memory as the square of their number, 2 GiB at 8,000 | `ledger/set.go`; §3.6, §4.3 | this tree |
-| 5 | about 100 GiB of vessel | every commit writes every inventory segment and verifies all of them twice: 1/4096 of the vessel written for one note, a second of work at about 150 GiB | `vessel/tx.go` `(*Tx).Commit`; §1.4 | this tree (the contract writes only the changed segments) |
-| 6 | a thing of a few GiB | a large thing is held in memory four times over, and a growing vessel packs it again at every step it grows: 8 GiB and 80 s for 2 GiB | `carrier/carrier.go`, `vessel/tx.go`, `content/vessel.go`; §1.6 | this tree |
-| 7 | about 10^6 events | every opening verifies the whole history and holds it in memory: two and a half minutes and some 3 GB for a million events at a door, beyond one machine at some 10^7 | `ledger/load.go`; N2.6 | the design |
-| 8 | 256 TiB | the most slabs and the largest slab of the format | `vessel/names.go` | the contract |
-| 9 | about 10^5 founders | a bond's leaf lists every founder, and each must hold all of it to accept: 67 MB at a million | `bond/bond.go`, `bond/across.go` | the design |
+What could change, for the owner to decide. Nothing here is built, and nothing
+here is a ruling: the first kind keeps every byte form of version 1; the second
+is a new generation with a name of its own, since a byte form is never edited
+(T3.7, AGENTS.md); the third is a reading of the texts, which only the owner
+can confirm.
 
-The first is met by a large family. The next five are met by a village, a busy
-year, a large disk or a large file, and are all in this tree, not in the
-design: §7.1 removes them without changing a byte form. The last three are in
-the design and need a new generation (§7.2), or the reading of the texts that a
-multitude is many Rokhs, not one (§7.3).
-
-## 7. What would have to change
-
-Three kinds of change, in the order they can be made. The first keeps every
-byte form of version 1; the second is a new generation with a name of its own
-(the law of this tree: a byte form is never edited); the third is what the
-texts already say about many people.
-
-### 7.1 Within version 1
+### P1. Within version 1
 
 1. **Write only the changed inventory segments**, as contract 2.6 already says,
    and place a commit's new segments among the ranges it changes anyway; keep a
    list of free slabs instead of looking at every entry; see at the fourth step
    that no other commit came by the head files' tokens, and verify a generation
    whole only when they moved. A note would then cost its pack, a few segments
-   and a head at any size (§1.4).
-2. **Keep the vessel's index across commits**: add what a commit wrote to it
+   and a head at any capacity (§C1).
+2. **Keep the vessel's index across commits**, adding what a commit wrote
    instead of dropping it; and find a branch by the last pointer that names it,
    whose header already carries the branch's name (contract 2.5), so that one
-   pointer is opened for each branch, not every pointer ever recorded. A door's
-   status and its reads stop growing with the history (§2.3, causes 1 and 2).
+   pointer is opened for each branch, not every pointer ever recorded (§C2).
 3. **Keep the ledger's order and extend it**: an event accepted after every
    head it names goes at the end; only one that lands among older events makes
-   the order again. The last lines of a log are read from the end (§2.3, cause
-   3).
+   the order again. The last lines of a log are read from the end (§C2).
 4. **Authority sets that share their structure**: a persistent ordered set (a
    balanced tree, or a hash trie, copied along one path only) in place of a
    sorted slice copied whole. Every event still carries the whole set of its
-   causal past, and every verdict is the same (law 6 is about the causal past,
-   not about how it is held); one more grant then copies one path of the tree,
-   some twenty nodes and a kilobyte or so, not every person named, and a
-   million people named hold about a gigabyte, not 33 TB (§3.6).
+   causal past and every verdict is the same, since the law is about the causal
+   past, not about how it is held (T6.2); one more grant copies one path of
+   some twenty nodes, and a million keys granted hold about a gigabyte, not
+   33 TB (§C3).
 5. **A fair turn, and one commit for those already waiting**: writers queued at
-   a door go into the commit that the first of them makes, since they have all
-   asked; the turn is taken in the order it was asked for, not by whoever polls
-   first (`turn` is a host adapter, and the lock is its business, law 4). The
-   door's rate becomes the disk's, not one note per commit (§3.4).
+   a door go into the commit the first of them makes, since they have all
+   asked; the turn is taken in the order it was asked for, not by whoever tries
+   first (`turn` is a host adapter, and the lock is its business). The door's
+   rate becomes the disk's, not one note a commit (§C5).
 6. **Large things in bounded memory**: chunks sealed and packed as they are
    read, the recording holding where they went rather than their bytes; a
-   growing vessel grows at once by what a recording needs, not one step per try
-   (§1.6).
+   growing vessel grows at once by what a recording needs (§C4).
 
-None of these changes what a person can do or see; each removes a cost that
-grows where nothing requires it. Together they remove the five bottlenecks of
-§6 that are in this tree, and leave the ones that are in the design.
+None of these changes what a person can do or see. Together they remove the
+limits 2 to 6 of the summary's table, all of them this implementation's.
 
-### 7.2 New generations
+### P2. New generations
 
-1. **A vessel of a PiB.** The slab count must grow past 2^22, and the inventory
-   must stop being read whole: a tree of inventory segments with its root in
-   the head (each segment named by its hash, as the segments are now), packs
-   appended and never rewritten, small slabs for small records. A commit then
-   writes its records, the segments on one path of the tree and a head; opening
-   reads the head and what it walks. This is a new vessel format with a name of
-   its own.
-2. **Opening without verifying everything again.** A checkpoint: a record the
-   owner's key signs, saying that the history up to certain heads was verified
-   and what the authority sets were at them. An opening verifies from the last
-   checkpoint it trusts; the whole walk stays possible, and is what a
-   checkpoint is checked against, so one person offline can still verify
-   everything (N2.6). This is what lets a history of a billion events be opened
-   by a machine that cannot hold it.
-3. **Readers by key per address, not per envelope.** An address sealed to one
-   key for a period, the key given to its readers once, in the keyring; a
-   change of readers starts a new period (and a tree of keys makes the change
+1. **A vessel beyond 256 TiB.** The slab count must grow past 2^22, and the
+   inventory must stop being read whole: a tree of segments with its root in
+   the head, each segment named by its hash as the segments are now, and packs
+   appended, never rewritten. The contract itself names the second half as the
+   way to close its gap G1 ("committed bytes that are never overwritten and a
+   commit log that only grows"). A commit then writes its records, one path of
+   the tree and a head; opening reads the head and what it walks.
+2. **Opening from a checkpoint.** A record the owner's key signs, saying that
+   the history up to certain heads was verified and what the authority sets
+   were at them. An opening verifies from the last checkpoint it trusts; the
+   whole walk stays possible and is what a checkpoint is checked against, so
+   one person offline can still verify everything (N2.6). This is what would
+   let a billion events be opened by a machine that cannot hold them. Whether
+   an opening may rest on a checkpoint at all is the owner's to rule.
+3. **Readers by a key for each address, not each envelope.** An address sealed
+   to one key for a period, the key given to its readers once, in the keyring;
+   a change of readers starts a new period (and a tree of keys makes a change
    cost a logarithm of the readers). An envelope is then the same size for two
-   readers and for two million; taking a reader back closes the next period and
-   not the past, which is what revocation already is (N6.2, T6.2).
+   readers and for two million; taking a reader back closes the next period,
+   not the past, which is what revocation already is (T6.3).
 4. **A bond's leaf as a tree of its founders.** The name commits to the root;
    each founder accepts with the path from their anchor to the root, about 33
-   hashes among eight billion, instead of holding the whole leaf, which at that
-   size would be 536 GB.
-5. **Seeds that carry only what they rest on.** A seed holds the events its own
+   hashes among eight billion, instead of holding the whole leaf. T11.6 asks
+   that the leaf say the founders' anchors; whether a root that commits to them
+   says them is the owner's to rule.
+5. **Seeds that carry what they rest on.** A seed holds the events its own
    authority rests on and a checkpoint for the rest of its source's history,
-   instead of every event of its source's system set.
+   instead of every system event of its source (contract 4.7, S2).
 
-### 7.3 Billions of people
+### P3. Many people
 
-A Rokh is one person's ledger. Its texts say so and draw the line themselves:
-every ledger is the history of one person, and being common is the work of a
-higher layer (N2.7); the claim is about the ledger of a person, not about every
-possible institution (N2.8); shared, non-exclusive work is closed by each
-stakeholder in their own ledger (N2.10); a lasting knot among many is a bond,
-in which each keeps their own (T11). So billions of people are billions of
-Rokhs, and what has to scale to them is the bond (§7.2.4) and the carrying of
-events between ledgers, not one ledger. One Rokh, with 7.1 and 7.2 made, stays
-what it is: the ledger of one person and of the few who read and write with
-them, at any size of data and any length of history.
+A reading of the texts, for the owner to confirm: every ledger is the history
+of one person, and being common is the work of a higher layer (N2.7); the claim
+is about the ledger of a person, not about every institution (N2.8); shared,
+non-exclusive work is closed by each in their own ledger (N2.10); a lasting
+knot among many is a bond, in which each keeps their own ledger and the ledgers
+never become one (T11.5, T11.6). Read so, billions of people are billions of
+Rokhs, and what must grow to them is the bond (P2.4) and the carrying of events
+between ledgers, not one ledger. One Rokh, with P1 and P2 made, stays the
+ledger of one person and of the few who read and write with them, at any size
+of content and any length of history.
 
+## S. Seeds by role: a direction, not a capability
 
+> The owner's direction: one Rokh lives in several seeds, each with a role. A
+> mother seed is kept offline, a working seed lives on a solid-state disk, and
+> a frontier seed is reachable by others. This section asks what stays the same
+> in every seed of one Rokh and what may follow the role, the environment and
+> the covenants. It says what version 1 does, and writes down where the
+> direction meets a reference text (S5). It rules on nothing and changes no
+> reference text. "Mother", "working" and "frontier" are the owner's words, not
+> the documents'.
+
+### S1. The same in every seed (version 1, by contract)
+
+- **The anchor**: every seed has the genesis of its Rokh (contract 4.7, S2;
+  docs/03 §8), and a ledger accepts no event of another anchor (T8.4).
+- **The events and their verdicts**: the same bytes are judged in their own
+  causal past (T6.2) by the same rules (contract C4, C8), so the same past
+  gives the same verdict in every seed, and a verdict is final (T6.4).
+- **The lineage**: every seed holds every system event and the signed head of
+  every ancestor (S2, S3).
+- **The keyring and the readers**: the readers of an address at a point are a
+  fold of that point's causal past (contract 4.4), the same in every seed. The
+  readers of an event are fixed by the ledger, not by the seed that holds it.
+- **The root**: only the root gives a seed (S1).
+- **The passphrase's salt and cost**: one per Rokh, inherited by every seed
+  (contract 2.3).
+- **The byte forms**, the four heads and R = 3 of every vessel (contract 1, 2),
+  the payload's 4 KiB (T3.4), and that nothing recorded is erased (T3.7, T6.3).
+
+### S2. What may differ from seed to seed (version 1)
+
+- **The vessel**: its own id and VK (contract 4.7, S2), and its own key for
+  pointers; its slab size, slab count and growth (contract 1).
+- **Its scopes**: whole, or a slice that holds its scopes whole and every other
+  ancestor as a signed head only (S3).
+- **Its slot cells**: which keys open this vessel with a passphrase (contract
+  4.6).
+- **Its custody**: the owner's cell holds the root's signing seed, or zeros
+  ("cold custody", contract 4.6); `rokh init --cold FILE` keeps the root key
+  out of the vessel, in a file. Making a cold seed from a warm source was not
+  examined.
+- **Its branches** until a reconcile; **its medium and profile**: a folder, or
+  the chest (T8.7, docs/03); **its doors**: a booth listens on a Unix socket or
+  on the loopback interface only (`transport.Listen`).
+
+### S3. The three roles
+
+| | mother, offline | working, on a solid-state disk | frontier, reachable |
+|---|---|---|---|
+| what it is for (the direction) | the whole Rokh, kept apart | daily writing | what others may consult |
+| scopes, as version 1 allows | whole | whole or a slice | a slice: what may be shown |
+| the root key, as the direction places it | in its cell, or in a key file beside it | cold | cold |
+| capacity | large, fixed | small slabs: each note writes at least two slabs and a head (§M1), so the slab sets the disk's wear | small |
+| reached | not at all: a Rokh is whole without a network (T1.4) | by its owner's doors on its host | in version 1, by nothing outside the host; reach would come from a courier or a host service outside Rokh (T4.1, docs/07 §4) |
+| what it risks | old cells in an old copy (U6); a host that sees it while open (U8, T12.6) | a commit cut by power on a disk that does not honour a flush (U4) | an always-on machine holding the ledger and a key (N5.2), the case the texts leave open |
+
+### S4. Selective encryption, retention, backup, synchronization
+
+- **Selective encryption.** Version 1 seals each event to the readers of its
+  address at its point, the same in every seed (contract 4.4); each vessel's
+  own shared key seals only its pointers and the home's own records (E7); a
+  slice leaves out bodies, it does not seal them otherwise (S3). Sealing for a
+  named recipient is ruled and not built (T13.1, N9.5); showing one field alone
+  is wanted and its byte form is open (T7.5). What a frontier holds is decided
+  when it is made, as disclosure is decided when the bundle is closed, never
+  when it is sent (T7.4).
+- **Retention.** Nothing recorded is erased (T3.7, T6.3, STATE.md); a vessel
+  keeps every slab of its last three generations whole (contract 2.6). What a
+  seed keeps is decided by its scopes when it is made (S3). A seed that later
+  forgets is not in version 1, and every seed keeps every system event and
+  every ancestor's head (S2), so its lineage grows with every seed (§X4).
+- **Backup.** Keeping the key and multiplying the copies are the owner's work,
+  and a lost key is not recovered (T8.6, N6.6, U11). A copy of a folder opens
+  for certain only if no more than R = 3 commits start while it is made (G1,
+  U3); an older copy keeps the cells it had (U6). A seed is a copy with a VK of
+  its own. What the host itself copies is outside Rokh (T8).
+- **Synchronization.** Two seeds meet by reconcile: the union both ways, judged
+  by each side, commutative, recording no event unless asked (T5.4, contract
+  4.8, C6). It is not a synced folder: two machines on one folder are not kept
+  apart (U5, G2). Nothing in the core runs by itself (T4); a machine may carry
+  and unite events as long as it makes none (T4.1). Contract R6 asks that seeds
+  that meet reconcile without being asked; how far version 1 builds R6 was not
+  examined. A reconcile reads both histories whole (§M5).
+- **Covenants.** What may be shown to a peer is decided by covenants: ordinary
+  events at the address `peer` (`peer.share`, `peer.unshare`), read outside the
+  core when a bundle is closed (docs/07, `covenant`). Being events, they are
+  the same in every seed that holds their scope; a covenant permits and never
+  starts a transfer. An application's covenant with Rokh (T11.10) is ruled, and
+  its runtime is not built (N9.5). So in version 1 the role of a seed changes
+  which covenants it carries and serves, not what they say.
+
+### S5. Where the direction meets the reference texts
+
+For the owner's decision; each row is a meeting, not a verdict.
+
+| | the direction asks | the texts say | version 1 does | to decide |
+|---|---|---|---|---|
+| 1 | readers that differ by seed | readers are a fold of the causal past (contract 4.4) | readers by address; seeds differ by scope | whether a role may seal otherwise, and in what generation |
+| 2 | a passphrase cost that differs by role | salt and cost one per Rokh (contract 2.3); another profile is allowed while the carrier's properties hold (T8.7) | one cost | a profile by role, as a new generation |
+| 3 | a seed others can reach | no code path of Rokh opens a network socket (N, Axiom 5); machines may carry events and make none (T4.1) | Unix sockets and loopback TCP only | whether reach lives inside Rokh or beside it |
+| 4 | an always-on frontier | an always-on machine holding the ledger and a key is an open case, answered by rotation and by keeping the signing key apart (N5.2); rotating the root key is open (T13.2) | cold custody exists (contract 4.6) | the open rulings themselves |
+| 5 | a frontier that is a mirror | a mirror between two owners: ruled, read-only, never merged (T13.4); open (N9.5); same-owner mirroring both settled as a berth and open (docs/07 §11) | no mirror is built | which text holds, and whether a frontier is a seed or a mirror |
+| 6 | a seed that keeps less over time | nothing recorded is erased (T3.7, T6.3) | a slice, made once | whether forgetting a body differs from erasing |
+| 7 | synchronization that runs itself | no event by itself (T4), the core never acts on its own (AGENTS.md); R6 | reconcile when asked | where a synchronizing service may live |
+| 8 | three named roles | seed, berth, mirror and courier are the documents' words (AGENTS.md, docs/07), and no word is coined where one serves (AGENTS.md) | seeds without roles | whether roles become words of the documents |
+
+None of these is shown here to be a limit of Rokh. Rows 1 and 2 meet the
+version 1 contract, which a new generation may change; rows 3 to 7 meet the
+texts themselves, whose rulings are the owner's, and in row 5 the texts differ
+from each other; row 8 meets the tree's own rule of words.
+
+## F. Not run, and where there is no evidence
+
+- **Capacity.** No vessel of more than 16 GiB on a disk, none of more than
+  1 TiB anywhere, and none with more than thirteen notes of content in the
+  capacity sweeps; no PiB, which version 1 cannot express. No vessel on a
+  solid-state disk known as such, on removable media, on FAT32 or exFAT, in a
+  synced folder, or in the chest.
+- **Content.** Nothing larger than 2 GiB; no large content in a vessel of large
+  capacity; no fetch through a booth or the home.
+- **History.** No bare ledger of more than a million events, no door of more
+  than 300,000, no reconcile of more than 100,000; no history with many
+  branches or merges (every measured history but the seeds' is one branch).
+- **Keys and people.** No person was modelled, only keys (§0). No booth
+  session, socket, courier, gate or network took part. No more than 8,000 keys
+  granted or revoked, 32 reader keys in an envelope, or one key in the writers'
+  runs. The 32 slot cells were read in the code, not filled. No key was rotated
+  and no passphrase changed.
+- **Seeds.** No more than 24 seeds through the command line; no slice seeds; no
+  cold seeds; no seed between two booths, which version 1 does not serve; no
+  reconcile of the 2,000-seed lineages; contract R6 not examined.
+- **The direction of §S.** Nothing of it was run.
+- **Repetition and spread.** Each size ran once; only the writers and the door
+  at 100,000 events ran twice. No spread, no confidence interval.
+- **Causes.** One processor profile, of the door at 100,000 events. The cost of
+  a commit per slab (§C1) is read in the code, not profiled.
+- **Other machines.** Nothing on macOS, Windows or Android; no measurement of
+  energy, or of a disk's wear.
+- **Tests.** Which conditional skips fired in the suites was not recorded,
+  since the runs were not verbose; see §T.
+
+## T. The state of the tests
+
+| what | where | as whom | result | evidence |
+|---|---|---|---|---|
+| `gofmt -l`, `go vet ./...`, both modules | tree of 91f6101 | superuser | clean | the session's reading of the output; no log |
+| `go test -timeout 45m ./...`, the core | tree of 91f6101 | superuser | 35 packages ok, 5 without tests, `rokh/cmd/rokh` FAIL: `TestAMarkerNamingASeedGivenAndTakenIsRefused`, `TestAResumedSeedGivesNoCellToAKeyTakenBackSince` | [`suite-rokh.txt`](11-scale/suite-rokh.txt) |
+| `go test ./...`, the home | tree of 91f6101 | superuser | 8 packages ok, 2 without tests | [`suite-home.txt`](11-scale/suite-home.txt) |
+| `go test ./cmd/rokh` | tree of 91f6101 | an unprivileged account, uid 65534 | ok, 518.347 s | the session's reading of the output; no log |
+| the two tests above | release commit ba7e695 | superuser | both FAIL, as on 91f6101 | the session's reading of the output; no log |
+| the two tests above | release commit ba7e695 | uid 65534 | both pass | the session's reading of the output; no log |
+
+- The two tests fail only as the superuser: each cuts a seed by making the
+  source's slab files read-only, and the superuser writes them anyway, so the
+  seed is not cut. STATE.md records them. They were neither repaired nor
+  skipped.
+- The three tests STATE.md names as failing are skipped as before; no skip was
+  added. Whether the suites' conditional skips (a short socket folder, a
+  `python3`, the large-stream tests) fired was not recorded.
+- The conformance test ran within the core's suite and left
+  `conformance/STATE.md` as it was.
+- The commits after 91f6101 change documents and raw data only, and no test was
+  run on them.
+
+## Appendix: to reproduce
+
+**The measurements.** In `rokh/`, with Go 1.26.4, one at a time:
+
+```sh
+go test ./bench    -run '^$' -bench Scale      -benchtime 1x -timeout 0 -v
+go test ./cmd/rokh -run '^$' -bench ScaleSeeds -benchtime 1x -timeout 0 -v
+```
+
+or one benchmark at a time, with the commands listed beside each raw output in
+[`11-scale/README.md`](11-scale/README.md); `BenchmarkScaleEnvelope` wants
+`-benchtime 300x`. `go test ./...` runs none of them; of their files it runs
+only the test of the sparse medium.
+
+- **Time.** On this host the first round took 32 minutes and the second 13.
+- **Memory.** The sparse vessel of 1 TiB reached 7.1 GiB; the chain of a
+  million events 5.4 GiB; a thing of 2 GiB 8.0 GiB; grants and revocations of
+  8,000 keys some 4 GiB of live heap together.
+- **Disk.** `BenchmarkScaleVesselDisk` needs 16 GiB free where it makes its
+  vessels, a temporary folder or `ROKH_SCALE_DIR`; `BenchmarkScaleContent`
+  needs 2.2 GiB.
+- **The profile.**
+
+  ```sh
+  go test ./bench -run '^$' -bench 'BenchmarkScaleDoor/events=100000$' \
+      -benchtime 1x -timeout 0 -cpuprofile cpu.out
+  go tool pprof -top -cum -focus='daemon.\(\*Server\).Handle' bench.test cpu.out
+  ```
+
+- **Reading.** Each output line of a benchmark carries its metrics by name
+  (`commit-ms`, `write-MiB/commit`, `heap-B/event`); the tables of part M copy
+  them, rounded. Numbers of another host will differ; how they grow should not.
+
+**The tests.** In `rokh/` and in `rokh-home/`:
+`go vet ./... && go test -timeout 45m ./...`. Run as the superuser, the two
+tests of §T fail. Run by an unprivileged account, they pass: that account needs
+read access to a copy of the tree, the Go toolchain of `go.work`, and a
+writable `HOME`, `GOCACHE` and `TMPDIR`.
+
+**The commits.** 4111458 repairs `ledger.Load`; a72bc74, b2c436a, f459779,
+6e65793, 617ce7b and 91f6101 add and correct the benchmarks; 086b386 and the
+commits after it write this report, its raw data and STATE.md.

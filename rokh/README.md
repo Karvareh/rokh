@@ -125,7 +125,7 @@ Layers point downwards only; `arch/` holds a test that says so.
 | `docs/07-peering.md` | Disclosure, couriers, content. |
 | `docs/08-sentences.md` | The sentence shell: eight verbs, one human surface. |
 | `docs/10-terminal.md`, `tui/README.md` | The screen. |
-| `docs/11-scale.md` | How far one Rokh goes: measured, the model it fits, and where it ends. |
+| `docs/11-scale.md`, `docs/11-scale/` | How far one Rokh goes: what was measured, read in the code, extrapolated and proposed, with the raw data. |
 
 ## Deliberately absent
 
