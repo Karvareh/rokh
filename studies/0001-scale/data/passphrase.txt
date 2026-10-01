@@ -1,0 +1,8 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScalePassphrase
+BenchmarkScalePassphrase-4   	       1	 127839372 ns/op	       127.6 pbkdf2-ms	       132.4 try-32-cells-us
+PASS
+ok  	rokh/bench	0.134s

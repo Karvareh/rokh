@@ -1,0 +1,63 @@
+goos: linux
+goarch: amd64
+pkg: rokh/cmd/rokh
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleSeeds
+BenchmarkScaleSeeds/line=24
+    scale_seed_test.go:64: seed      took  events  system  seeds  keyring  notes     bytes
+    scale_seed_test.go:72: 1        809ms       7       6      2        2      1   4456448
+    scale_seed_test.go:72: 2        820ms      11      10      4        3      1   4456448
+    scale_seed_test.go:72: 3        797ms      15      14      6        4      1   4456448
+    scale_seed_test.go:72: 4        815ms      19      18      8        5      1   4456448
+    scale_seed_test.go:72: 5        862ms      23      22     10        6      1   4456448
+    scale_seed_test.go:72: 6        867ms      27      26     12        7      1   4456448
+    scale_seed_test.go:72: 7        833ms      31      30     14        8      1   4456448
+    scale_seed_test.go:72: 8        839ms      35      34     16        9      1   4456448
+    scale_seed_test.go:72: 9        843ms      39      38     18       10      1   4456448
+    scale_seed_test.go:72: 10       848ms      43      42     20       11      1   4456448
+    scale_seed_test.go:72: 11       873ms      47      46     22       12      1   4456448
+    scale_seed_test.go:72: 12       877ms      51      50     24       13      1   4456448
+    scale_seed_test.go:72: 13       891ms      55      54     26       14      1   4456448
+    scale_seed_test.go:72: 14       900ms      59      58     28       15      1   4456448
+    scale_seed_test.go:72: 15       928ms      63      62     30       16      1   4456448
+    scale_seed_test.go:72: 16       931ms      67      66     32       17      1   4456448
+    scale_seed_test.go:72: 17       948ms      71      70     34       18      1   4456448
+    scale_seed_test.go:72: 18       948ms      75      74     36       19      1   4456448
+    scale_seed_test.go:72: 19       906ms      79      78     38       20      1   4456448
+    scale_seed_test.go:72: 20       916ms      83      82     40       21      1   4456448
+    scale_seed_test.go:72: 21       940ms      87      86     42       22      1   4456448
+    scale_seed_test.go:72: 22       908ms      91      90     44       23      1   4456448
+    scale_seed_test.go:72: 23       902ms      95      94     46       24      1   4456448
+    scale_seed_test.go:72: 24       936ms      99      98     48       25      1   4456448
+    scale_seed_test.go:93: reconcile root with seed 24: 1.763s; the root now holds 100 events, 98 of them the ledger's own
+BenchmarkScaleSeeds/line=24-4         	       1	35168223110 ns/op	         0.8090 first-seed-s	         0.9355 last-seed-s	        98.00 last-seed-system-events	         1.763 reconcile-s	         4.000 system-events-per-seed
+BenchmarkScaleSeeds/fan=24
+    scale_seed_test.go:64: seed      took  events  system  seeds  keyring  notes     bytes
+    scale_seed_test.go:72: 1        855ms       7       6      2        2      1   4456448
+    scale_seed_test.go:72: 2        686ms      10       9      3        3      1   4456448
+    scale_seed_test.go:72: 3        816ms      13      12      4        4      1   4456448
+    scale_seed_test.go:72: 4        786ms      16      15      5        5      1   4456448
+    scale_seed_test.go:72: 5        811ms      19      18      6        6      1   4456448
+    scale_seed_test.go:72: 6        723ms      22      21      7        7      1   4456448
+    scale_seed_test.go:72: 7        833ms      25      24      8        8      1   4456448
+    scale_seed_test.go:72: 8        859ms      28      27      9        9      1   4456448
+    scale_seed_test.go:72: 9        853ms      31      30     10       10      1   4456448
+    scale_seed_test.go:72: 10       749ms      34      33     11       11      1   4456448
+    scale_seed_test.go:72: 11       848ms      37      36     12       12      1   4456448
+    scale_seed_test.go:72: 12       841ms      40      39     13       13      1   4456448
+    scale_seed_test.go:72: 13       940ms      43      42     14       14      1   4456448
+    scale_seed_test.go:72: 14       811ms      46      45     15       15      1   4456448
+    scale_seed_test.go:72: 15       871ms      49      48     16       16      1   4456448
+    scale_seed_test.go:72: 16       866ms      52      51     17       17      1   4456448
+    scale_seed_test.go:72: 17       862ms      55      54     18       18      1   4456448
+    scale_seed_test.go:72: 18       764ms      58      57     19       19      1   4456448
+    scale_seed_test.go:72: 19       928ms      61      60     20       20      1   4456448
+    scale_seed_test.go:72: 20       865ms      64      63     21       21      1   4456448
+    scale_seed_test.go:72: 21       919ms      67      66     22       22      1   4456448
+    scale_seed_test.go:72: 22       789ms      70      69     23       23      1   4456448
+    scale_seed_test.go:72: 23       902ms      73      72     24       24      1   4456448
+    scale_seed_test.go:72: 24       936ms      76      75     25       25      1   4456448
+    scale_seed_test.go:93: reconcile root with seed 24: 1.869s; the root now holds 77 events, 75 of them the ledger's own
+BenchmarkScaleSeeds/fan=24-4          	       1	33521687685 ns/op	         0.8549 first-seed-s	         0.9360 last-seed-s	        75.00 last-seed-system-events	         1.869 reconcile-s	         3.000 system-events-per-seed
+PASS
+ok  	rokh/cmd/rokh	69.035s
