@@ -202,3 +202,32 @@ func TestIssuesFollowTheRecords(t *testing.T) {
 		t.Errorf("the plan has %d steps, not 4:\n%s", n, got)
 	}
 }
+
+func TestTheFlagsMayStandOnEitherSideOfTheCommand(t *testing.T) {
+	for _, args := range [][]string{
+		{"-root", "../..", "-dry", "-from", "list.json", "issues"},
+		{"-root", "../..", "issues", "-dry", "-from", "list.json"},
+		{"issues", "-root", "../..", "-from", "list.json", "-dry"},
+	} {
+		o, err := ParseArgs(args)
+		if err != nil {
+			t.Fatalf("%q: %v", args, err)
+		}
+		if o != (Options{Command: "issues", Root: "../..", Dry: true, From: "list.json"}) {
+			t.Fatalf("%q read as %+v", args, o)
+		}
+	}
+	for _, args := range [][]string{
+		{},
+		{"-root", "../.."},
+		{"check", "index"},
+		{"publish"},
+		{"check", "-dry"},
+		{"index", "-from", "list.json"},
+		{"issues", "-nothing"},
+	} {
+		if o, err := ParseArgs(args); err == nil {
+			t.Errorf("%q read as %+v, without a fault", args, o)
+		}
+	}
+}
