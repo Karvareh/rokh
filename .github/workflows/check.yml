@@ -1,0 +1,22 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  records:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: tools/records/go.mod
+      - name: vet and test the program that checks the records
+        run: cd tools/records && go vet ./... && go test ./...
+      - name: check every record, index and link
+        run: cd tools/records && go run . -root ../.. check
