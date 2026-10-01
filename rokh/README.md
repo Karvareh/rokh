@@ -112,10 +112,11 @@ Layers point downwards only; `arch/` holds a test that says so.
 
 | | |
 |---|---|
-| `رساله.md` | The treatise, in Persian: the founding text. Cited as `T`. |
-| `without-consensus.md` | The ledger without consensus, an English rendering of the Persian original. Cited as `N`. |
-| `conformance.md` | How the two texts are read, cited and measured. |
-| `contracts/v1.md` | The contract of version 1. |
+| `texts/` | Copies of the texts of rokh-docs, pinned by SHA-256 in `texts/texts.tsv`, and never edited here: |
+| `texts/رساله.md` | The treatise, in Persian: the founding text. Cited as `T`. |
+| `texts/without-consensus.md` | The ledger without consensus, an English rendering of the Persian original. Cited as `N`. |
+| `texts/conformance.md` | How the two texts are read, cited and measured. |
+| `texts/contracts/v1.md` | The contract of version 1. |
 | `docs/01-grammar.md` | The byte grammar. |
 | `docs/02-authority.md` | Authority, and the monotonicity theorem. |
 | `docs/03-carrier.md` | The carrier. |

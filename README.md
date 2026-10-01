@@ -74,15 +74,14 @@ cd rokh-home && go vet ./... && go test ./...
 Three tests are skipped in this tree because they fail; they are named in
 [STATE.md](STATE.md), which says what is met, what is not, and what was never
 run. `go test ./conformance` in `rokh/` measures the code against the two
-texts that specify it and writes `rokh/conformance/STATE.md`.
+texts that specify it, as `rokh/texts/` holds them, and writes
+`rokh/conformance/STATE.md`.
 
 ## Where things are
 
 | | |
 |---|---|
-| [`rokh/رساله.md`](rokh/رساله.md) | The treatise, in Persian: the founding text of Rokh. Thirteen bands, ninety-one propositions. The code conforms to it; the conformance map cites it as `T`. It is the one Persian file in this repository. |
-| [`rokh/without-consensus.md`](rokh/without-consensus.md) | The ledger without consensus: nine sections and seven axioms, an English rendering of the Persian original with its numbering. Cited as `N`. |
-| [`rokh/contracts/v1.md`](rokh/contracts/v1.md) | The contract of version 1: bytes, vessel, envelope, keyring, seed, booth. |
+| [`rokh/texts/`](rokh/texts/README.md) | The texts this tree is measured against, as copies of rokh-docs pinned by SHA-256: the treatise, in Persian, the founding text of Rokh, cited as `T`; the ledger without consensus, its English rendering, cited as `N`; how the two are read; the contract of version 1. Never edited here. |
 | [`rokh/docs/`](rokh/docs/) | Grammar, authority, carrier, bandwidth, inventory, the booth API, peering, the sentence surface, the screen. |
 | [`rokh/`](rokh/README.md) | The core: packages, commands and layers. |
 | [`rokh-home/`](rokh-home/README.md) | The home and its gate. |

@@ -3,7 +3,7 @@
 > Rokh and its carrier are seen together. A ledger without a carrier has
 > nowhere to be; a carrier without a ledger is a directory like any other.
 
-This document describes the v1 carrier, contract `contracts/v1.md` sections 1
+This document describes the v1 carrier, contract `texts/contracts/v1.md` sections 1
 and 2. The 0.9 layout (`rokh.json`, `.rokh/objects`, `.rokh/refs`) is gone: v1
 neither reads nor converts it (contract section 7).
 

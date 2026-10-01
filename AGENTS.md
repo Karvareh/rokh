@@ -11,9 +11,11 @@ README.md          what Rokh is, in one page; build; check; where things are
 STATE.md           what is met, what is not, what was never run — keep it true
 WORKPLAN.md        every finding of the audit and the scale measurements, and the work they ask for
 rokh/              the core module (Go, standard library only)
-  رساله.md         the treatise (Persian): the founding text, cited as T
-  without-consensus.md   the ledger without consensus (English rendering), cited as N
-  contracts/v1.md  the contract of version 1: bytes, vessel, envelope, keyring, seed, booth
+  texts/           copies of the texts of rokh-docs, pinned by SHA-256 in texts.tsv; never edited here
+    رساله.md       the treatise (Persian): the founding text, cited as T
+    without-consensus.md   the ledger without consensus (English rendering), cited as N
+    conformance.md how the two texts are read and cited
+    contracts/v1.md  the contract of version 1: bytes, vessel, envelope, keyring, seed, booth
   docs/            grammar, authority, carrier, bandwidth, inventory, booth API, peering, sentences, screen, scale
   conformance/     the code measured against T and N; obligations.tsv is the map, STATE.md is generated
   <package>/       one layer each; rokh/README.md lists them, and arch/ tests that layers point downwards only
@@ -24,15 +26,18 @@ go.work            names both modules
 
 ## The law
 
-1. **The two texts bind.** `rokh/رساله.md` (T) and `rokh/without-consensus.md`
-   (N) are the specification; `rokh/conformance.md` says how their
-   propositions are read and cited. A design ruling in them is binding: the
-   code implements it or the obligation is owed. Nothing in the code settles
-   an open ruling quietly; an open ruling stays open until the owner rules.
-2. **The contract binds the bytes.** `rokh/contracts/v1.md` fixes the byte
-   forms, the vessel, the envelope, the keyring, the seed and the booth
-   protocol. A change of a byte form is a new generation with its own name,
-   never an edit of the old one.
+1. **The two texts bind.** The treatise (T) and the ledger without consensus
+   (N) are the specification; `conformance.md` says how their propositions are
+   read and cited. They are kept in rokh-docs, and this tree is measured
+   against their copies in `rokh/texts/`, at the SHA-256 that
+   `rokh/texts/texts.tsv` names. A design ruling in them is binding: the code
+   implements it or the obligation is owed. Nothing in the code settles an
+   open ruling quietly; an open ruling stays open until the owner rules, and a
+   ruling is recorded in rokh-docs.
+2. **The contract binds the bytes.** `contracts/v1.md` fixes the byte forms,
+   the vessel, the envelope, the keyring, the seed and the booth protocol. A
+   change of a byte form is a new generation with its own name, never an edit
+   of the old one.
 3. **The core never acts on its own.** No timer, no watcher, no poller, no
    background goroutine that writes. An event exists only because a person or
    a program asked for it through a door.
@@ -79,6 +84,10 @@ cd rokh      && go test ./conformance      # rewrites conformance/STATE.md
   and the test's own comment says which ruling it is for.
 - Three tests are skipped because they fail; STATE.md names them. Do not
   add a fourth skip; repair or leave the failure visible and recorded.
+- The copies in `rokh/texts/` are never edited here; a test refuses a copy
+  that differs from its pin. A new version of the texts is taken up from
+  rokh-docs whole, by a mission: the copies, `texts.tsv`, and the obligations
+  and code it asks for, in one change.
 - A test never opens the network, never sleeps for time to pass, never
   writes outside `t.TempDir()`.
 
