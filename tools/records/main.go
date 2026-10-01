@@ -140,23 +140,58 @@ func (r *Record) Link(from string) string {
 	return p
 }
 
-func main() {
-	root := flag.String("root", ".", "the root of the repository")
-	dry := flag.Bool("dry", false, "issues: say what would be done, and do nothing")
-	from := flag.String("from", "", "issues: read the existing issues from this file, as the issue tool lists them, instead of asking for them")
-	flag.Usage = func() {
-		fmt.Fprintln(os.Stderr, "usage: records [-root DIR] check | index | issues [-dry] [-from FILE]")
-		flag.PrintDefaults()
+// Options are what the command line asks for.
+type Options struct {
+	Command string // check, index or issues
+	Root    string
+	Dry     bool
+	From    string
+}
+
+// ParseArgs reads the command line. Its flags may stand before the command
+// or after it: "-root ../.. issues -dry" asks what "-root ../.. -dry issues"
+// asks.
+func ParseArgs(args []string) (Options, error) {
+	var o Options
+	fs := flag.NewFlagSet("records", flag.ContinueOnError)
+	fs.SetOutput(io.Discard)
+	fs.StringVar(&o.Root, "root", ".", "the root of the repository")
+	fs.BoolVar(&o.Dry, "dry", false, "issues: say what would be done, and do nothing")
+	fs.StringVar(&o.From, "from", "", "issues: read the existing issues from this file, as the issue tool lists them, instead of asking for them")
+	if err := fs.Parse(args); err != nil {
+		return o, err
 	}
-	flag.Parse()
-	if flag.NArg() != 1 {
-		flag.Usage()
+	if fs.NArg() == 0 {
+		return o, errors.New("no command: check, index or issues")
+	}
+	o.Command = fs.Arg(0)
+	if err := fs.Parse(fs.Args()[1:]); err != nil {
+		return o, err
+	}
+	if fs.NArg() != 0 {
+		return o, fmt.Errorf("more than one command: %s", strings.Join(append([]string{o.Command}, fs.Args()...), " "))
+	}
+	switch o.Command {
+	case "check", "index", "issues":
+	default:
+		return o, fmt.Errorf("no command %q: check, index or issues", o.Command)
+	}
+	if o.Command != "issues" && (o.Dry || o.From != "") {
+		return o, errors.New("-dry and -from are for issues")
+	}
+	return o, nil
+}
+
+func main() {
+	o, err := ParseArgs(os.Args[1:])
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "records:", err)
+		fmt.Fprintln(os.Stderr, "usage: records [-root DIR] check | index | issues [-dry] [-from FILE]")
 		os.Exit(2)
 	}
-	var err error
-	switch flag.Arg(0) {
+	switch o.Command {
 	case "check":
-		faults := Check(*root, collections)
+		faults := Check(o.Root, collections)
 		for _, f := range faults {
 			fmt.Println(f)
 		}
@@ -166,12 +201,9 @@ func main() {
 			fmt.Println("records: every record, index and link holds")
 		}
 	case "index":
-		err = WriteIndexes(*root, collections)
+		err = WriteIndexes(o.Root, collections)
 	case "issues":
-		err = Issues(*root, collections, *dry, *from, os.Stdout)
-	default:
-		flag.Usage()
-		os.Exit(2)
+		err = Issues(o.Root, collections, o.Dry, o.From, os.Stdout)
 	}
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "records:", err)
