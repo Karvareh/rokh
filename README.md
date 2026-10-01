@@ -28,7 +28,7 @@ commit and the host it was measured on.
 | Question | What is asked | Priority | Status | Blocks | Ruling |
 |---|---|---|---|---|---|
 | [D-01](questions/D-01-socket-folders-and-the-report.md) | May a test make its socket folder outside t.TempDir(), and may the conformance report rewrite its STATE.md? | p1 | open | W-01 | — |
-| [D-02](questions/D-02-order-of-work.md) | Does the repair of the tests and the checks come before AGENTS.md's first owed item? | p1 | open | — | — |
+| [D-02](questions/D-02-order-of-work.md) | Does the repair of the tests and the checks come before the first item of the owner's order? | p1 | open | — | — |
 | [D-03](questions/D-03-tcp-and-reach.md) | TCP at the loopback interface, and how a seed is reached from outside the host | p1 | open | — | — |
 | [D-04](questions/D-04-r6.md) | R6: the owner's word of 2026-09-29 written into the contract, or R6 built | p1 | open | — | — |
 | [D-05](questions/D-05-cited-texts.md) | The texts the comments cite: brought into a repository, or the citations replaced | p2 | open | — | — |

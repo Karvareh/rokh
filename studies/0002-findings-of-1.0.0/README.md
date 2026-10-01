@@ -21,7 +21,9 @@ date: 2026-10-01
 *This study was `WORKPLAN.md` in rokh at commit b8f909a, where it was written
 as a plan of work; its plan is now the missions of rokh-work and the questions
 of this repository, and the study keeps the findings. Paths named here are
-paths of rokh, and `STATE.md` and `AGENTS.md` are rokh's.*
+paths of rokh, and `STATE.md` and `AGENTS.md` are rokh's. Where a finding says
+"AGENTS.md, owed n", that list is now the owner's order, kept in the README of
+rokh-work.*
 
 ## 0. How to read this study
 

@@ -13,7 +13,7 @@ ruling: none
 ## The question
 
 The two review tests of `rokh/key` ask opposite things of one session: which
-holds (AGENTS.md, owed 1).
+holds (the owner's order, item 1).
 
 ## Why it is asked
 
