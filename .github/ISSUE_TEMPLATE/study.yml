@@ -1,0 +1,27 @@
+name: A study
+description: Say what you mean to examine, so that it is not done twice, before you bring it.
+labels: [study]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A study examines one thing and keeps its evidence beside it. Every statement says whether it was measured, read in the code, extrapolated or proposed; every measurement names its command, its host and its commit.
+  - type: input
+    id: what
+    attributes:
+      label: What is examined, in a few words
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why, and what it would tell
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: How
+      description: What will be run or read, on what host and which commit, and what will be kept.
+    validations:
+      required: true

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: A piece of work to take up
+    url: https://github.com/Karvareh/rokh-work
+    about: Missions, each with the test that says it is done, are in rokh-work.
+  - name: A defect of the code
+    url: https://github.com/Karvareh/rokh/issues/new/choose
+    about: What the code does wrong is reported in rokh.
+  - name: A weakness in security
+    url: https://github.com/Karvareh/rokh/security/advisories/new
+    about: Report it privately, never in an issue.
