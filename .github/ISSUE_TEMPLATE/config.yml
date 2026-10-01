@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: A weakness in security
+    url: https://github.com/Karvareh/rokh/security/advisories/new
+    about: Report it privately, never in an issue.
+  - name: A question for the owner's ruling
+    url: https://github.com/Karvareh/rokh-lab/issues/new/choose
+    about: What Rokh should do, and what the texts leave open, is asked in rokh-lab.
+  - name: Work to pick up
+    url: https://github.com/Karvareh/rokh-work
+    about: Missions anyone can carry out, each with the test that says it is done.

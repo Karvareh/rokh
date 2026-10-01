@@ -25,8 +25,8 @@ func load(t *testing.T) *world {
 	t.Helper()
 	w := &world{items: map[string]Item{}, byID: map[string][]Obligation{}}
 	for _, s := range []struct{ path, prefix string }{
-		{filepath.Join(root, "رساله.md"), Treatise},
-		{filepath.Join(root, "without-consensus.md"), Ledger},
+		{filepath.Join(texts, "رساله.md"), Treatise},
+		{filepath.Join(texts, "without-consensus.md"), Ledger},
 	} {
 		got, err := ParseSpec(s.path, s.prefix)
 		if err != nil {
@@ -167,7 +167,7 @@ func TestNothingBindingIsLeftOwed(t *testing.T) {
 // where the work stands, not to judge.
 func TestReport(t *testing.T) {
 	w := load(t)
-	lines, _ := readLines(filepath.Join(root, "رساله.md"))
+	lines, _ := readLines(filepath.Join(texts, "رساله.md"))
 	_ = lines
 
 	count := map[Status]int{}

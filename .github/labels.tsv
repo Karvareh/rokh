@@ -1,0 +1,18 @@
+# The labels of this repository: name, colour and description, separated by
+# tabs. The labels workflow makes the repository's labels these, and leaves
+# every label this file does not name as it is.
+p1	b60205	First: a fault that hides others, or what every later item stands on
+p2	d93f0b	Second: a fault or a limit a person meets
+p3	fbca04	Later
+ready	0e8a16	Can be taken up now
+blocked	bfdadc	Waits for a mission or a ruling it names
+claimed	5319e7	Someone is carrying it out; see the comments
+in-review	1d76db	A pull request is open for it
+needs-ruling	b60205	Waits for the owner's ruling
+good first issue	7057ff	A good first piece of work in Rokh
+help wanted	008672	Help is welcome
+agent-ready	0052cc	Its test can be run by a program from the command line alone
+defect	d73a4a	Source does what the texts or the contract say it must not, or fails
+core	c5def5	The core module, rokh/
+home	c5def5	The home module, rokh-home/
+checks	c5def5	The tests, the conformance map and the checks

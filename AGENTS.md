@@ -2,7 +2,24 @@
 
 This file is for anyone who changes this repository, person or program. It
 says where things are, what the law of the code is, how to check a change,
-and what is owed. It does not repeat the texts it points to; read them.
+and where what is owed is kept. It does not repeat the texts it points to;
+read them.
+
+## The four repositories
+
+Rokh is kept in four repositories, and each holds one standing of what is
+said about it:
+
+| repository | standing | holds |
+|---|---|---|
+| rokh, this one | source: what runs | the code, its tests, its own documents, STATE.md |
+| [rokh-docs](https://github.com/Karvareh/rokh-docs) | docs: what is ruled | the treatise, the ledger without consensus, the contract, the register of rulings |
+| [rokh-lab](https://github.com/Karvareh/rokh-lab) | lab: examined, not ruled | studies, measurements, proposals, the questions that wait for a ruling |
+| [rokh-work](https://github.com/Karvareh/rokh-work) | work: to be examined or done | missions, each with the test that says it is done |
+
+A study, a plan or a proposal does not enter this tree: it goes to the lab, or
+to work, and this tree points to it where it is evidence. A document stays in
+this tree when it must change in the same change as the code it describes.
 
 ## The map
 
@@ -10,9 +27,11 @@ and what is owed. It does not repeat the texts it points to; read them.
 README.md          what Rokh is, in one page; build; check; where things are
 STATE.md           what is met, what is not, what was never run — keep it true
 rokh/              the core module (Go, standard library only)
-  رساله.md         the treatise (Persian): the founding text, cited as T
-  without-consensus.md   the ledger without consensus (English rendering), cited as N
-  contracts/v1.md  the contract of version 1: bytes, vessel, envelope, keyring, seed, booth
+  texts/           copies of the texts of rokh-docs, pinned by SHA-256 in texts.tsv; never edited here
+    رساله.md       the treatise (Persian): the founding text, cited as T
+    without-consensus.md   the ledger without consensus (English rendering), cited as N
+    conformance.md how the two texts are read and cited
+    contracts/v1.md  the contract of version 1: bytes, vessel, envelope, keyring, seed, booth
   docs/            grammar, authority, carrier, bandwidth, inventory, booth API, peering, sentences, screen
   conformance/     the code measured against T and N; obligations.tsv is the map, STATE.md is generated
   <package>/       one layer each; rokh/README.md lists them, and arch/ tests that layers point downwards only
@@ -23,15 +42,18 @@ go.work            names both modules
 
 ## The law
 
-1. **The two texts bind.** `rokh/رساله.md` (T) and `rokh/without-consensus.md`
-   (N) are the specification; `rokh/conformance.md` says how their
-   propositions are read and cited. A design ruling in them is binding: the
-   code implements it or the obligation is owed. Nothing in the code settles
-   an open ruling quietly; an open ruling stays open until the owner rules.
-2. **The contract binds the bytes.** `rokh/contracts/v1.md` fixes the byte
-   forms, the vessel, the envelope, the keyring, the seed and the booth
-   protocol. A change of a byte form is a new generation with its own name,
-   never an edit of the old one.
+1. **The two texts bind.** The treatise (T) and the ledger without consensus
+   (N) are the specification; `conformance.md` says how their propositions are
+   read and cited. They are kept in rokh-docs, and this tree is measured
+   against their copies in `rokh/texts/`, at the SHA-256 that
+   `rokh/texts/texts.tsv` names. A design ruling in them is binding: the code
+   implements it or the obligation is owed. Nothing in the code settles an
+   open ruling quietly; an open ruling stays open until the owner rules, and a
+   ruling is recorded in rokh-docs.
+2. **The contract binds the bytes.** `contracts/v1.md` fixes the byte forms,
+   the vessel, the envelope, the keyring, the seed and the booth protocol. A
+   change of a byte form is a new generation with its own name, never an edit
+   of the old one.
 3. **The core never acts on its own.** No timer, no watcher, no poller, no
    background goroutine that writes. An event exists only because a person or
    a program asked for it through a door.
@@ -78,39 +100,20 @@ cd rokh      && go test ./conformance      # rewrites conformance/STATE.md
   and the test's own comment says which ruling it is for.
 - Three tests are skipped because they fail; STATE.md names them. Do not
   add a fourth skip; repair or leave the failure visible and recorded.
+- The copies in `rokh/texts/` are never edited here; a test refuses a copy
+  that differs from its pin. A new version of the texts is taken up from
+  rokh-docs whole, by a mission: the copies, `texts.tsv`, and the obligations
+  and code it asks for, in one change.
 - A test never opens the network, never sleeps for time to pass, never
   writes outside `t.TempDir()`.
 
-## What is owed, in order
+## What is owed
 
-1. The three skipped tests: rewrite the delegate test for version 1 keys;
-   obtain the ruling the two review tests contradict on, then keep one; make
-   the home stream a large attachment in bounded memory.
-2. The English of the sentence surface. The eight verbs were carried over
-   from Persian one word at a time, and some sentences do not read as
-   English: `go` closes the ledger where a person would say `leave`; `see
-   the ledgers`, `bring the returned`, `carry the ledger` are the same.
-   Rewrite every sentence a person types or reads until it reads as plain
-   English, keeping the eight meanings, and change `docs/08-sentences.md`,
-   the vectors in `rokh/shell/testdata/sentences.json`, the golden screens
-   (`go test ./tui -update`) and the screen's header line together.
-3. `rokh/docs/06-api.md`: rewrite against `rokh.booth/1` as built
-   (`rokh/booth`, `rokh/daemon`, `rokh-home/gate`); then remove its note.
-4. A cryptography document for version 1: what is sealed and what is not,
-   every sentence with a `path:Symbol` that exists.
-5. `rokh key passwd`.
-6. `bring` in the command line: a file above 4,096 bytes through
-   `rokh write`.
-7. Seeds that grow; a reconcile that changes no byte when nothing changed.
-8. The booth: `content.put`, `content.get`, the keyring, seeding between
-   two booths.
-9. The engine out of `rokh-home/native` into a module of its own; then the
-   home on Windows.
-10. The twelve test files behind build tags into a run that exercises them.
-11. Runs on Windows and Android; exFAT and a synced folder; a real engine;
-    vessels of hundreds of megabytes. These are field results, not code.
-
-Every item, when done, is struck from STATE.md in the same change.
+What is owed is kept in [rokh-work](https://github.com/Karvareh/rokh-work):
+the owner's order of work, item by item, as this file held it until Rokh was
+set out in four repositories, and the missions that carry each item, every one
+with the test that says it is done. A mission that lands in this tree strikes
+its line from STATE.md in the same change as the work.
 
 ## How a change is made
 
@@ -118,8 +121,9 @@ Every item, when done, is struck from STATE.md in the same change.
   each one buildable and tested, each with a message that says what changed
   and why, in the present tense, in English. No trailer names a tool.
 - A pull request carries: what changed, why, how it was checked, and the
-  STATE.md line it strikes or adds. The checks in `.github/workflows` must
-  pass. The owner of the repository merges; nobody else does.
+  STATE.md line it strikes or adds; a pull request that carries out a mission
+  names it (`W-13`). The checks in `.github/workflows` must pass. The owner of
+  the repository merges; nobody else does.
 - History is never rewritten. No force push, no amend of a pushed commit,
   no rebase of `main`.
 - A change is done when: it builds on Linux and macOS, `go vet` is clean,

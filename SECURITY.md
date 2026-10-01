@@ -8,7 +8,8 @@ address, and it judges every event's authority in that event's own causal
 past. It does not hide the size of a vessel, the time it changed, or that it
 is a Rokh vessel at all. It cannot protect a ledger on a host that is already
 compromised, and it cannot recover a passphrase that is lost. See
-`rokh/contracts/v1.md`, section 8, for what cannot be proven or promised.
+section 8 of the contract of version 1, `rokh/texts/contracts/v1.md` (kept in
+rokh-docs), for what cannot be proven or promised.
 
 ## Reporting
 

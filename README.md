@@ -74,15 +74,32 @@ cd rokh-home && go vet ./... && go test ./...
 Three tests are skipped in this tree because they fail; they are named in
 [STATE.md](STATE.md), which says what is met, what is not, and what was never
 run. `go test ./conformance` in `rokh/` measures the code against the two
-texts that specify it and writes `rokh/conformance/STATE.md`.
+texts that specify it, as `rokh/texts/` holds them, and writes
+`rokh/conformance/STATE.md`.
+
+## Four repositories
+
+Rokh is kept in four repositories. Each holds one standing of what is said
+about it, so that nobody has to ask whether a sentence is a ruling, a finding
+or a wish.
+
+| repository | standing | holds |
+|---|---|---|
+| **rokh**, this one | source: what runs | the code, its tests, its own documents, and STATE.md |
+| [rokh-docs](https://github.com/Karvareh/rokh-docs) | docs: what is ruled | the treatise, the ledger without consensus, the contract, the register of rulings |
+| [rokh-lab](https://github.com/Karvareh/rokh-lab) | lab: examined, not ruled | studies with their evidence, measurements with their raw data, the questions that wait for a ruling |
+| [rokh-work](https://github.com/Karvareh/rokh-work) | work: to be examined or done | missions anyone, a person or a program, can pick up, each with the test that says it is done |
+
+A thing moves forward only by the act that defines its next standing: work is
+examined into the lab, the lab's questions are ruled into the docs, the docs
+are built into this source; where this source and the docs differ, the
+difference is work. Only the owner rules and merges.
 
 ## Where things are
 
 | | |
 |---|---|
-| [`rokh/رساله.md`](rokh/رساله.md) | The treatise, in Persian: the founding text of Rokh. Thirteen bands, ninety-one propositions. The code conforms to it; the conformance map cites it as `T`. It is the one Persian file in this repository. |
-| [`rokh/without-consensus.md`](rokh/without-consensus.md) | The ledger without consensus: nine sections and seven axioms, an English rendering of the Persian original with its numbering. Cited as `N`. |
-| [`rokh/contracts/v1.md`](rokh/contracts/v1.md) | The contract of version 1: bytes, vessel, envelope, keyring, seed, booth. |
+| [`rokh/texts/`](rokh/texts/README.md) | The texts this tree is measured against, as copies of rokh-docs pinned by SHA-256: the treatise, in Persian, the founding text of Rokh, cited as `T`; the ledger without consensus, its English rendering, cited as `N`; how the two are read; the contract of version 1. Never edited here. |
 | [`rokh/docs/`](rokh/docs/) | Grammar, authority, carrier, bandwidth, inventory, the booth API, peering, the sentence surface, the screen. |
 | [`rokh/`](rokh/README.md) | The core: packages, commands and layers. |
 | [`rokh-home/`](rokh-home/README.md) | The home and its gate. |
@@ -92,7 +109,8 @@ texts that specify it and writes `rokh/conformance/STATE.md`.
 ## Contributing and license
 
 Proposals come as pull requests from a fork; what enters `main` is decided by
-the owner of this repository. See [CONTRIBUTING.md](CONTRIBUTING.md).
+the owner of this repository. See [CONTRIBUTING.md](CONTRIBUTING.md); work to
+pick up is in rokh-work, and questions for the owner are asked in rokh-lab.
 
 Copyright (c) 2026 The Karvareh authors. Rokh is free software under the GNU
 Lesser General Public License, version 3 or later: [LICENSE](LICENSE), with

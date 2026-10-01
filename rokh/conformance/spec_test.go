@@ -95,7 +95,7 @@ func TestTheHarvesterRunsOverTheTreeAndItsGuardsHold(t *testing.T) {
 	// citation is a failure rather than a line nobody reads.
 	known := map[string]bool{}
 	for _, s := range []struct{ path, prefix string }{
-		{"../رساله.md", "T"}, {"../without-consensus.md", "N"},
+		{"../texts/رساله.md", "T"}, {"../texts/without-consensus.md", "N"},
 	} {
 		props, err := ParseSpec(s.path, s.prefix)
 		if err != nil {

@@ -28,7 +28,7 @@ const v1Iter = 1000
 // createV1 makes a v1 carrier in dir whose owner cell opens with pass and
 // holds root, and records the given events on "main" in one commit. root may
 // be nil for a cold carrier whose owner cell holds no signing seed.
-func createV1(t *testing.T, dir, pass string, root ed25519.PrivateKey, anchor frame.ID, events ...event.Signed) *carrier.Carrier {
+func createV1(t testing.TB, dir, pass string, root ed25519.PrivateKey, anchor frame.ID, events ...event.Signed) *carrier.Carrier {
 	t.Helper()
 	salt := make([]byte, 32)
 	vk := make([]byte, 32)
@@ -62,7 +62,7 @@ func createV1(t *testing.T, dir, pass string, root ed25519.PrivateKey, anchor fr
 }
 
 // recordV1 records events and points "main" at the last, in one commit.
-func recordV1(t *testing.T, dir string, c *carrier.Carrier, events ...event.Signed) {
+func recordV1(t testing.TB, dir string, c *carrier.Carrier, events ...event.Signed) {
 	t.Helper()
 	lock, err := turn.Acquire(dir, 5*time.Second)
 	if err != nil {
