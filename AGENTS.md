@@ -9,6 +9,7 @@ and what is owed. It does not repeat the texts it points to; read them.
 ```
 README.md          what Rokh is, in one page; build; check; where things are
 STATE.md           what is met, what is not, what was never run — keep it true
+WORKPLAN.md        every finding of the audit and the scale measurements, and the work they ask for
 rokh/              the core module (Go, standard library only)
   رساله.md         the treatise (Persian): the founding text, cited as T
   without-consensus.md   the ledger without consensus (English rendering), cited as N

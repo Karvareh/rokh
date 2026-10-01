@@ -87,6 +87,7 @@ texts that specify it and writes `rokh/conformance/STATE.md`.
 | [`rokh/`](rokh/README.md) | The core: packages, commands and layers. |
 | [`rokh-home/`](rokh-home/README.md) | The home and its gate. |
 | [`STATE.md`](STATE.md) | What this tree is and is not. |
+| [`WORKPLAN.md`](WORKPLAN.md) | The audit and the scale measurements as findings, with what is ready to do, what is to be looked into, and what is the owner's to decide. |
 | [`AGENTS.md`](AGENTS.md) | The working rules for anyone, person or program, who changes this tree. |
 
 ## Contributing and license
