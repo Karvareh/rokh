@@ -207,4 +207,7 @@ withdrawn, with its title and its labels.
 
 Copyright (c) 2026 The Karvareh authors. Free under the GNU Lesser General
 Public License, version 3 or later, as rokh: [LICENSE](LICENSE), with the GNU
-General Public License it rests on in [GPL-3.0.txt](GPL-3.0.txt).
+General Public License it rests on in [GPL-3.0.txt](GPL-3.0.txt). Whether the
+missions stay under it is question
+[D-23](https://github.com/Karvareh/rokh-lab/blob/main/questions/D-23-license-of-texts.md)
+of rokh-lab, and it stays open until the owner rules.
