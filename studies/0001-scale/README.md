@@ -1,3 +1,11 @@
+---
+id: "0001"
+title: "How far one Rokh goes"
+status: examined
+of: "rokh at 4111458, the release 1.0.0 with the repair of ledger.Load"
+date: 2026-10-01
+---
+
 # Scale: how far one Rokh goes
 
 > What one Rokh, as version 1 builds it, holds and costs as it grows, measured
@@ -8,11 +16,16 @@
 > this implementation, or of its contract. None of the limits found here is
 > shown to be a limit of Rokh as its texts describe it.
 
+*This study was `rokh/docs/11-scale.md` in rokh, with its raw data in
+`rokh/docs/11-scale/`, until commit b8f909a; its history to then is there.
+Paths named here are paths of rokh, and `STATE.md` and `AGENTS.md` are rokh's.
+Its raw data is in [`data/`](data/README.md).*
+
 ## Summary
 
 **What was run.** Fifteen benchmarks, in `rokh/bench` and `rokh/cmd/rokh`, on
 one host (§1), against the production code of commit 4111458; their raw outputs
-are in [`11-scale/`](11-scale/README.md). They measured vessels of 4 MiB to
+are in [`data/`](data/README.md). They measured vessels of 4 MiB to
 1 TiB of *capacity* holding thirteen short notes each (to 16 GiB on a disk,
 beyond that in memory); one thing of 1 MiB to 2 GiB of *content*; one history
 of up to a million events; up to 8,000 keys granted in one ledger and a million
@@ -125,19 +138,19 @@ it holds. The report keeps these apart.
   release, ba7e695, with the repair of `ledger.Load` (§C7). Every later commit
   changes only benchmarks and documents. The commit that holds each benchmark
   as it ran is listed with its raw output in
-  [`11-scale/README.md`](11-scale/README.md).
-- **Raw data.** [`11-scale/`](11-scale/README.md) keeps the seventeen benchmark
+  [`data/README.md`](data/README.md).
+- **Raw data.** [`data/`](data/README.md) keeps the seventeen benchmark
   outputs, the runner's start and end times, the summary of the one processor
   profile, and the logs of the two test suites, with the SHA-256 of each as
   written. One line of each benchmark output was changed: it named the
-  processor's product, which no document of this tree names.
+  processor's product, which no document of Rokh names.
 - **How often.** Each size ran once (`-benchtime 1x`): one sample, no spread.
   Two measurements ran twice: the writers (the second run agrees with the first
   within 15 per cent) and the door at 100,000 events (a write in 366 and
   367 ms, a status in 211 and 213 ms). One measurement ran at a time; short
   checks of seconds ran beside the sparse vessels of 256 GiB and 1 TiB and
   beside the second run of the writers
-  ([`11-scale/README.md`](11-scale/README.md)), so those rows may carry a
+  ([`data/README.md`](data/README.md)), so those rows may carry a
   little of that load.
 - **Memory.** "Held" is the live heap after a collection; "process at most" is
   the process's high-water mark, which only rises within one run, so it is read
@@ -146,7 +159,7 @@ it holds. The report keeps these apart.
 ## M. Measured
 
 Every number in this part was read from a raw output in
-[`11-scale/`](11-scale/README.md), named under each table with the benchmark
+[`data/`](data/README.md), named under each table with the benchmark
 that wrote it.
 
 ### M1. Vessel capacity, in memory
@@ -187,7 +200,7 @@ every capacity.
 "make" is the vessel's own work of making N files, without a disk. The 1 TiB
 vessel is the most slabs the format allows. The process held 7.1 GiB at its
 highest, most of it the medium's record of the files. Raw:
-[`vessel.txt`](11-scale/vessel.txt), `BenchmarkScaleVessel`.
+[`vessel.txt`](data/vessel.txt), `BenchmarkScaleVessel`.
 
 ### M2. Vessel capacity, on the disk
 
@@ -207,7 +220,7 @@ note.
 
 On the disk a note took about twice what it took in memory at the same shape:
 59 ms against 27 at 4 GiB, 1.34 s against 0.72 with slabs of 64 MiB. Raw:
-[`vesseldisk.txt`](11-scale/vesseldisk.txt), `BenchmarkScaleVesselDisk`.
+[`vesseldisk.txt`](data/vesseldisk.txt), `BenchmarkScaleVesselDisk`.
 
 ### M3. A large thing
 
@@ -227,7 +240,7 @@ content is the thing; the capacity is what the vessel grew to.
 | 2 GiB | 80 s | 26 MiB/s | 32 | 2,112 MiB | 8.1 s | 37 s | 8.0 GiB |
 
 From 256 MiB up the process held four times the thing at its highest. Raw:
-[`content.txt`](11-scale/content.txt), `BenchmarkScaleContent`.
+[`content.txt`](data/content.txt), `BenchmarkScaleContent`.
 
 ### M4. One history, in memory
 
@@ -246,7 +259,7 @@ the whole history again from its bytes, verifying every event, as opening does.
 Sign, judge and load are per event; held is the ledger's memory per event;
 stored is an event's bytes, head and body; "newest to first" follows the first
 parent of each event back to the genesis; the causal past is every ancestor of
-the newest, in the ledger's order. Raw: [`chain.txt`](11-scale/chain.txt),
+the newest, in the ledger's order. Raw: [`chain.txt`](data/chain.txt),
 `BenchmarkScaleChain`.
 
 ### M5. A door on the disk, and reconcile
@@ -266,7 +279,7 @@ not measured, is by the byte forms about 560 bytes a note with one reader
 | 100,000 | 14.1 s | 2,709 B | 366 ms | 211 ms | 147 ms | 64 MiB | 0.71 GiB |
 | 300,000 | 43.8 s | 2,952 B | 1,175 ms | 752 ms | 523 ms | 192 MiB | 2.5 GiB |
 
-Raw: [`door.txt`](11-scale/door.txt), `BenchmarkScaleDoor`.
+Raw: [`door.txt`](data/door.txt), `BenchmarkScaleDoor`.
 
 `BenchmarkScaleReconcile` copies such a carrier, records one note in each copy,
 opens each copy as the command line opens it (`keyview.Open`, with the owner's
@@ -279,7 +292,7 @@ judged at its own point), and reconciles the two.
 | 10,000 | 2.2 s | 0.18 s | 2 | 0.18 GiB |
 | 100,000 | 20.6 s | 2.3 s | 2 | 1.4 GiB |
 
-Raw: [`reconcile.txt`](11-scale/reconcile.txt), `BenchmarkScaleReconcile`.
+Raw: [`reconcile.txt`](data/reconcile.txt), `BenchmarkScaleReconcile`.
 
 ### M6. Keys named in one ledger
 
@@ -303,8 +316,8 @@ keyring as seen from the heads, which every sealing asks for. Taken back in the
 order they were granted, the set of revocations after k of them equals the set
 of the first k grants and the ledger's pool keeps it once; that first run,
 which showed about 2 KB a key, is superseded. Raw:
-[`authority.txt`](11-scale/authority.txt) (grants, keyring),
-[`revokes.txt`](11-scale/revokes.txt) (revocations, newest first),
+[`authority.txt`](data/authority.txt) (grants, keyring),
+[`revokes.txt`](data/revokes.txt) (revocations, newest first),
 `BenchmarkScaleAuthority`.
 
 ### M7. Readers of an envelope, and the passphrase
@@ -324,8 +337,8 @@ default cost and tries it on every slot cell.
 | 33 | refused | | | |
 
 The passphrase at the default 600,000 rounds: 128 ms; its key tried on all 32
-slot cells: 132 µs. Raw: [`envelope.txt`](11-scale/envelope.txt) (300 seals a
-size), [`passphrase.txt`](11-scale/passphrase.txt).
+slot cells: 132 µs. Raw: [`envelope.txt`](data/envelope.txt) (300 seals a
+size), [`passphrase.txt`](data/passphrase.txt).
 
 ### M8. Keys at an open address
 
@@ -340,7 +353,7 @@ an envelope, write one note there each: n keys, n events, n operations.
 | 100,000 | 2,111 B | 72 µs | 102 µs | 0.36 GiB |
 | 1,000,000 | 2,447 B | 78 µs | 105 µs | 3.7 GiB |
 
-Raw: [`openaddress.txt`](11-scale/openaddress.txt),
+Raw: [`openaddress.txt`](data/openaddress.txt),
 `BenchmarkScaleOpenAddress`.
 
 ### M9. Writers and readers at once
@@ -368,8 +381,8 @@ the answer.
 The eleven refusals were `turn_busy`. Every write answered `recorded` was in
 the ledger read afresh afterwards (1,000 notes, the genesis and its grant, and
 every recorded write). An earlier run of the first eight rows and of 8 × 8
-agreed within 15 per cent. Raw: [`writers2.txt`](11-scale/writers2.txt), and
-[`writers.txt`](11-scale/writers.txt) for the earlier run.
+agreed within 15 per cent. Raw: [`writers2.txt`](data/writers2.txt), and
+[`writers.txt`](data/writers.txt) for the earlier run.
 
 `BenchmarkScaleReaders` puts readers on a carrier of 10,000 events, each asking
 in turn for the status and the last 50 lines of the log, forty times; first
@@ -385,7 +398,7 @@ all the while.
 | 1 × 4 | one | 32 | 144 ms | 423 ms | 436 ms | 24.6 |
 | 4 × 4 | one | 107 | 72 ms | 417 ms | 486 ms | 17.6 |
 
-No read failed. Raw: [`readers.txt`](11-scale/readers.txt),
+No read failed. Raw: [`readers.txt`](data/readers.txt),
 `BenchmarkScaleReaders`.
 
 ### M10. A bond's leaf
@@ -401,7 +414,7 @@ one have accepted it.
 | 10,000 | 670 KB | 31 ms | 44 ms | 2.4 ms |
 | 1,000,000 | 67 MB | 2.7 s | 3.4 s | 255 ms |
 
-Raw: [`leaf.txt`](11-scale/leaf.txt), `BenchmarkScaleLeaf`.
+Raw: [`leaf.txt`](data/leaf.txt), `BenchmarkScaleLeaf`.
 
 ### M11. Seeds
 
@@ -425,7 +438,7 @@ folder was 4.25 MiB: the 4 MiB of slabs asked for, and the four head files.
 Reconciling the last seed, with its one new note, into the root took 1.76 s for
 the line and 1.87 s for the fan, and brought the note home: the root then held
 100 events (line) and 77 (fan), all but two of them the ledger's own. Raw:
-[`seeds.txt`](11-scale/seeds.txt), `BenchmarkScaleSeeds`.
+[`seeds.txt`](data/seeds.txt), `BenchmarkScaleSeeds`.
 
 `BenchmarkScaleSeedLedger` makes the same four events a seed adds (the keyring
 add of its key, a grant to its signer, the give, the take) for up to 2,000
@@ -445,7 +458,7 @@ its bytes.
 | 2,000 | fan | 8,001 | 6,001 | 926 MiB | 486 KB | 536 µs | 5.9 ms | 4.03 s |
 
 Depth is the number of steps from the last take back to the first event by the
-parents. Raw: [`seedledger.txt`](11-scale/seedledger.txt),
+parents. Raw: [`seedledger.txt`](data/seedledger.txt),
 `BenchmarkScaleSeedLedger`.
 
 ### M12. One processor profile
@@ -455,7 +468,7 @@ write in 367 ms, the status in 213 ms, against 366 and 211 in §M5). Of the
 7.0 s its thirty answers took, 6.5 s were inside `(*carrier.Carrier).Refs`:
 4.6 s opening branch pointers and 1.5 s rebuilding the vessel's index. Across
 both, slabs read again cost 2.5 s of SHA-256 and 1.2 s of AES-GCM. Raw:
-[`door-profile.txt`](11-scale/door-profile.txt).
+[`door-profile.txt`](data/door-profile.txt).
 
 ## C. Read in the code
 
@@ -554,7 +567,7 @@ seed's own key reads nothing for that reason (`cmd/rokh/v1_seedplan.go`).
 
 The walk that loads a history went into the parents of each event by recursion,
 about 1.9 KiB of stack for each generation it descended. A probe kept outside
-the tree loaded chains of 500,000 and 650,000 events and ended the process with
+rokh loaded chains of 500,000 and 650,000 events and ended the process with
 a stack overflow at 1,000,000, whose walk went 645,365 generations deep.
 `(*Ledger).ExtendWith` in `ledger/load.go` now keeps its own stack (commit
 4111458), and `ledger/deep_test.go` loads 3,000 events under a stack of
@@ -909,7 +922,7 @@ For the owner's decision; each row is a meeting, not a verdict.
 None of these is shown here to be a limit of Rokh. Rows 1 and 2 meet the
 version 1 contract, which a new generation may change; rows 3 to 7 meet the
 texts themselves, whose rulings are the owner's, and in row 5 the texts differ
-from each other; row 8 meets the tree's own rule of words.
+from each other; row 8 meets the rule of words of rokh's AGENTS.md.
 
 ## F. Not run, and where there is no evidence
 
@@ -947,8 +960,8 @@ from each other; row 8 meets the tree's own rule of words.
 | what | where | as whom | result | evidence |
 |---|---|---|---|---|
 | `gofmt -l`, `go vet ./...`, both modules | tree of 91f6101 | superuser | clean | the session's reading of the output; no log |
-| `go test -timeout 45m ./...`, the core | tree of 91f6101 | superuser | 35 packages ok, 5 without tests, `rokh/cmd/rokh` FAIL: `TestAMarkerNamingASeedGivenAndTakenIsRefused`, `TestAResumedSeedGivesNoCellToAKeyTakenBackSince` | [`suite-rokh.txt`](11-scale/suite-rokh.txt) |
-| `go test ./...`, the home | tree of 91f6101 | superuser | 8 packages ok, 2 without tests | [`suite-home.txt`](11-scale/suite-home.txt) |
+| `go test -timeout 45m ./...`, the core | tree of 91f6101 | superuser | 35 packages ok, 5 without tests, `rokh/cmd/rokh` FAIL: `TestAMarkerNamingASeedGivenAndTakenIsRefused`, `TestAResumedSeedGivesNoCellToAKeyTakenBackSince` | [`suite-rokh.txt`](data/suite-rokh.txt) |
+| `go test ./...`, the home | tree of 91f6101 | superuser | 8 packages ok, 2 without tests | [`suite-home.txt`](data/suite-home.txt) |
 | `go test ./cmd/rokh` | tree of 91f6101 | an unprivileged account, uid 65534 | ok, 518.347 s | the session's reading of the output; no log |
 | the two tests above | release commit ba7e695 | superuser | both FAIL, as on 91f6101 | the session's reading of the output; no log |
 | the two tests above | release commit ba7e695 | uid 65534 | both pass | the session's reading of the output; no log |
@@ -975,7 +988,7 @@ go test ./cmd/rokh -run '^$' -bench ScaleSeeds -benchtime 1x -timeout 0 -v
 ```
 
 or one benchmark at a time, with the commands listed beside each raw output in
-[`11-scale/README.md`](11-scale/README.md); `BenchmarkScaleEnvelope` wants
+[`data/README.md`](data/README.md); `BenchmarkScaleEnvelope` wants
 `-benchtime 300x`. `go test ./...` runs none of them; of their files it runs
 only the test of the sparse medium.
 
@@ -1001,7 +1014,7 @@ only the test of the sparse medium.
 **The tests.** In `rokh/` and in `rokh-home/`:
 `go vet ./... && go test -timeout 45m ./...`. Run as the superuser, the two
 tests of §T fail. Run by an unprivileged account, they pass: that account needs
-read access to a copy of the tree, the Go toolchain of `go.work`, and a
+read access to a copy of rokh, the Go toolchain of `go.work`, and a
 writable `HOME`, `GOCACHE` and `TMPDIR`.
 
 **The commits.** 4111458 repairs `ledger.Load`; a72bc74, b2c436a, f459779,

@@ -1,11 +1,11 @@
 # Raw data of the scale measurements
 
-These are the outputs that `../11-scale.md` reads its numbers from, as the runs
-wrote them on 2026-09-30, with one change. Each benchmark output's `cpu:` line
-named the processor's product, which no document of this tree names
-(AGENTS.md); it reads here `cpu: [product name removed] Processor @ 2.10GHz`.
+These are the outputs that [the study](../README.md) reads its numbers from, as
+the runs wrote them on 2026-09-30, with one change. Each benchmark output's
+`cpu:` line named the processor's product, which no document of Rokh names
+(rokh's AGENTS.md); it reads here `cpu: [product name removed] Processor @ 2.10GHz`.
 Every other byte is as written. The SHA-256 of each file as written and as kept
-here is listed, so a copy of the originals kept outside the tree can be checked
+here is listed, so a copy of the originals kept outside Rokh can be checked
 against this index.
 
 Every run: one host with four virtual processors at 2.10 GHz, 15.7 GiB of
@@ -54,7 +54,7 @@ revocations at 18:44, the seeds in one ledger at about 18:58) are the reason
 | `suite-rokh.txt` | the whole suite of the core, as the superuser | `go test -timeout 45m ./...` | 91f6101 | about 19:28–19:37 |
 | `suite-home.txt` | the whole suite of the home, as the superuser | `go test ./...` in `rokh-home` | 91f6101 | about 19:37 |
 
-Kept outside the tree, with the person who asked for these measurements: the
+Kept outside Rokh, with the person who asked for these measurements: the
 unedited outputs; the processor profile itself (`cpu.out`, SHA-256 `07c27f4b…`)
 and the test binary that reads it; and the output of a probe, never part of the
 tree, that loaded chains of 500,000, 650,000 and 1,000,000 events with the walk
@@ -65,9 +65,9 @@ with a stack overflow after a walk 645,365 generations deep).
 Not kept anywhere: a log of the run of `go test ./cmd/rokh` by an unprivileged
 account (uid 65534) on the tree of 91f6101, which ended
 `ok rokh/cmd/rokh 518.347s`, and of the two runs, as the superuser and as that
-account, of the two tests named in STATE.md on the release commit; their
-outcome is written in `../11-scale.md`, section T, from the session's own
-reading of the output.
+account, of the two tests named in rokh's STATE.md on the release commit; their
+outcome is written in [the study](../README.md), section T, from the session's
+own reading of the output.
 
 | file | bytes as written | SHA-256 as written | SHA-256 here |
 |---|---|---|---|
