@@ -1,0 +1,41 @@
+name: A defect
+description: The code does what the texts or the contract say it must not, or fails where it should not.
+labels: [defect]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A weakness in what is sealed, granted or judged is never reported here: report it privately, as SECURITY.md says. A question about what Rokh should do is asked in rokh-lab; work to pick up is in rokh-work.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What `rokh version` says, or the commit.
+    validations:
+      required: true
+  - type: textarea
+    id: did
+    attributes:
+      label: What was done
+      description: The commands or the sentences, from the first, on a carrier made for the purpose.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What was expected, and where that is said
+      description: The text, the contract or the document, with its place (T6.4, contract 2.6, docs/08).
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened instead
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: The host
+      description: The system and its version, the file system, and whether it ran as the superuser. No names of machines or persons.

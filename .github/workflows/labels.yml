@@ -1,0 +1,30 @@
+name: labels
+
+# Makes the labels of this repository the ones .github/labels.tsv names, with
+# their colours and descriptions, and leaves every other label as it is. It
+# runs when that file changes on main, and when asked.
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/labels.tsv']
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: apply .github/labels.tsv
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          tab=$(printf '\t')
+          grep -v -e '^#' -e '^$' .github/labels.tsv |
+          while IFS="$tab" read -r name color description; do
+            gh label create "$name" --color "$color" --description "$description" --force
+          done

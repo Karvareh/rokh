@@ -77,6 +77,24 @@ run. `go test ./conformance` in `rokh/` measures the code against the two
 texts that specify it, as `rokh/texts/` holds them, and writes
 `rokh/conformance/STATE.md`.
 
+## Four repositories
+
+Rokh is kept in four repositories. Each holds one standing of what is said
+about it, so that nobody has to ask whether a sentence is a ruling, a finding
+or a wish.
+
+| repository | standing | holds |
+|---|---|---|
+| **rokh**, this one | source: what runs | the code, its tests, its own documents, and STATE.md |
+| [rokh-docs](https://github.com/Karvareh/rokh-docs) | docs: what is ruled | the treatise, the ledger without consensus, the contract, the register of rulings |
+| [rokh-lab](https://github.com/Karvareh/rokh-lab) | lab: examined, not ruled | studies with their evidence, measurements with their raw data, the questions that wait for a ruling |
+| [rokh-work](https://github.com/Karvareh/rokh-work) | work: to be examined or done | missions anyone, a person or a program, can pick up, each with the test that says it is done |
+
+A thing moves forward only by the act that defines its next standing: work is
+examined into the lab, the lab's questions are ruled into the docs, the docs
+are built into this source; where this source and the docs differ, the
+difference is work. Only the owner rules and merges.
+
 ## Where things are
 
 | | |
@@ -86,13 +104,13 @@ texts that specify it, as `rokh/texts/` holds them, and writes
 | [`rokh/`](rokh/README.md) | The core: packages, commands and layers. |
 | [`rokh-home/`](rokh-home/README.md) | The home and its gate. |
 | [`STATE.md`](STATE.md) | What this tree is and is not. |
-| [`WORKPLAN.md`](WORKPLAN.md) | The audit and the scale measurements as findings, with what is ready to do, what is to be looked into, and what is the owner's to decide. |
 | [`AGENTS.md`](AGENTS.md) | The working rules for anyone, person or program, who changes this tree. |
 
 ## Contributing and license
 
 Proposals come as pull requests from a fork; what enters `main` is decided by
-the owner of this repository. See [CONTRIBUTING.md](CONTRIBUTING.md).
+the owner of this repository. See [CONTRIBUTING.md](CONTRIBUTING.md); work to
+pick up is in rokh-work, and questions for the owner are asked in rokh-lab.
 
 Copyright (c) 2026 The Karvareh authors. Rokh is free software under the GNU
 Lesser General Public License, version 3 or later: [LICENSE](LICENSE), with

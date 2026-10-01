@@ -22,10 +22,10 @@ import (
 // They measure one thing each and report it with b.ReportMetric, so the
 // numbers come out in the benchmark format and can be read side by side:
 // the size of a vessel (Vessel, VesselDisk), the length of a history (Chain),
-// the number of people a ledger names (Authority, Envelope, Leaf), the doors
+// the number of keys a ledger names (Authority, Envelope, Leaf), the doors
 // that write at once (Writers) and what one door costs as the ledger grows
-// (Door). docs/11-scale.md holds the numbers this tree gave and the model
-// they fit.
+// (Door). Study 0001 of rokh-lab holds the numbers this tree gave, with their
+// raw outputs, and the model they fit.
 
 // sparseMedium is a vessel.Medium held in memory that keeps the bytes of a
 // file only when they say something. A vessel fills every free slab, and each
