@@ -112,4 +112,7 @@ The `issues` workflow keeps one issue for every open question, labelled
 
 Copyright (c) 2026 The Karvareh authors. Free under the GNU Lesser General
 Public License, version 3 or later, as rokh: [LICENSE](LICENSE), with the GNU
-General Public License it rests on in [GPL-3.0.txt](GPL-3.0.txt).
+General Public License it rests on in [GPL-3.0.txt](GPL-3.0.txt). Whether the
+studies and the questions stay under it is question
+[D-23](questions/D-23-license-of-texts.md), and it stays open until the owner
+rules.
