@@ -1,0 +1,17 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleContent
+BenchmarkScaleContent/size=1MiB
+BenchmarkScaleContent/size=1MiB-4         	       1	 540684981 ns/op	        20.08 bring-MiB/s	         0.04979 bring-s	         0.02191 fetch-s	         0 growth-steps	         0.009159 open-s	         0.01791 peak-rss-GiB	        18.34 peak-rss/size	        64.25 vessel-MiB
+BenchmarkScaleContent/size=16MiB
+BenchmarkScaleContent/size=16MiB-4        	       1	1029327696 ns/op	        78.41 bring-MiB/s	         0.2040 bring-s	         0.3042 fetch-s	         0 growth-steps	         0.04094 open-s	         0.07319 peak-rss-GiB	         4.684 peak-rss/size	        64.25 vessel-MiB
+BenchmarkScaleContent/size=256MiB
+BenchmarkScaleContent/size=256MiB-4       	       1	8950990267 ns/op	        69.65 bring-MiB/s	         3.675 bring-s	         4.515 fetch-s	         4.000 growth-steps	         0.3649 open-s	         1.018 peak-rss-GiB	         4.072 peak-rss/size	       320.2 vessel-MiB
+BenchmarkScaleContent/size=1GiB
+BenchmarkScaleContent/size=1GiB-4         	       1	51121308015 ns/op	        34.97 bring-MiB/s	        29.29 bring-s	        16.90 fetch-s	        16.00 growth-steps	         4.526 open-s	         4.034 peak-rss-GiB	         4.034 peak-rss/size	      1088 vessel-MiB
+BenchmarkScaleContent/size=2GiB
+BenchmarkScaleContent/size=2GiB-4         	       1	125473945027 ns/op	        25.61 bring-MiB/s	        79.96 bring-s	        37.03 fetch-s	        32.00 growth-steps	         8.095 open-s	         8.044 peak-rss-GiB	         4.022 peak-rss/size	      2112 vessel-MiB
+PASS
+ok  	rokh/bench	190.463s

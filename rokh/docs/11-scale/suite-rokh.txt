@@ -1,0 +1,49 @@
+ok  	rokh/announce	0.004s
+ok  	rokh/answer	0.011s
+ok  	rokh/arch	1.122s
+ok  	rokh/bench	4.614s
+ok  	rokh/bond	0.014s
+ok  	rokh/booth	0.015s
+ok  	rokh/bundle	0.034s
+ok  	rokh/canon	0.014s
+ok  	rokh/carrier	0.922s
+ok  	rokh/chest	2.753s
+--- FAIL: TestAMarkerNamingASeedGivenAndTakenIsRefused (3.71s)
+    v1_seedbind_test.go:257: the cut did not leave a folder: exit 0
+--- FAIL: TestAResumedSeedGivesNoCellToAKeyTakenBackSince (3.00s)
+    v1_seedresume_test.go:300: the cut before the give: exit 0
+        seed 03fd7632: give recorded, copy recorded (+11), take recorded (+1)
+FAIL
+FAIL	rokh/cmd/rokh	515.045s
+?   	rokh/cmd/rokh-chest	[no test files]
+?   	rokh/cmd/rokh-courier	[no test files]
+?   	rokh/cmd/rokh-forms	[no test files]
+?   	rokh/cmd/rokh-shell	[no test files]
+ok  	rokh/conformance	1.023s
+ok  	rokh/content	0.098s
+ok  	rokh/covenant	0.010s
+ok  	rokh/daemon	15.266s
+ok  	rokh/event	0.029s
+ok  	rokh/frame	0.004s
+ok  	rokh/generation	0.006s
+ok  	rokh/harness	0.010s
+ok  	rokh/key	0.029s
+ok  	rokh/keyview	0.243s
+ok  	rokh/ledger	0.908s
+ok  	rokh/lineage	0.762s
+ok  	rokh/medium	2.916s
+ok  	rokh/oracle	0.006s
+ok  	rokh/passphrase	0.007s
+ok  	rokh/proof	10.603s
+ok  	rokh/receipt	0.016s
+ok  	rokh/seal	0.005s
+ok  	rokh/selective	0.003s
+ok  	rokh/shell	34.316s
+ok  	rokh/size	0.004s
+?   	rokh/transport	[no test files]
+ok  	rokh/tui	3.656s
+ok  	rokh/turn	1.571s
+ok  	rokh/vessel	99.824s
+ok  	rokh/working	0.035s
+FAIL
+exit 1

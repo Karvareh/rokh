@@ -1,0 +1,21 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleEnvelope
+BenchmarkScaleEnvelope/readers=1
+BenchmarkScaleEnvelope/readers=1-4         	     300	    131578 ns/op	       432.0 envelope-B	        54.32 open-us	       132.0 overhead-B	       131.6 seal-us
+BenchmarkScaleEnvelope/readers=2
+BenchmarkScaleEnvelope/readers=2-4         	     300	    175474 ns/op	       500.0 envelope-B	       109.9 open-us	       200.0 overhead-B	       175.5 seal-us
+BenchmarkScaleEnvelope/readers=4
+BenchmarkScaleEnvelope/readers=4-4         	     300	    257860 ns/op	       636.0 envelope-B	        58.42 open-us	       336.0 overhead-B	       257.9 seal-us
+BenchmarkScaleEnvelope/readers=8
+BenchmarkScaleEnvelope/readers=8-4         	     300	    558400 ns/op	       908.0 envelope-B	        62.33 open-us	       608.0 overhead-B	       558.4 seal-us
+BenchmarkScaleEnvelope/readers=16
+BenchmarkScaleEnvelope/readers=16-4        	     300	    989585 ns/op	      1452 envelope-B	        53.53 open-us	      1152 overhead-B	       989.6 seal-us
+BenchmarkScaleEnvelope/readers=32
+BenchmarkScaleEnvelope/readers=32-4        	     300	   1784761 ns/op	      2540 envelope-B	        53.15 open-us	      2240 overhead-B	      1785 seal-us
+BenchmarkScaleEnvelope/readers=33
+BenchmarkScaleEnvelope/readers=33-4        	     300	      3411 ns/op	         0 refused
+PASS
+ok  	rokh/bench	1.206s
