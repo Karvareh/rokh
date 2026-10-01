@@ -7,7 +7,9 @@ runs on Linux and on macOS; nothing is called met that was not run.
 
 - A carrier is a folder that holds a sealed vessel: fixed in size, or
   growing by itself in whole slabs. Opened without Rokh it shows no name, no
-  address and no count.
+  address and no count. It shows its capacity and when it was written
+  (contract U1), and, in the clear, the salt and the cost of the passphrase,
+  which are the same in every seed of one Rokh (contract 2.3).
 - One owner's passphrase, which has no recovery. Keys that read, keys that
   write, keys with no right, each with a passphrase of its own; a key is
   taken back with `rokh key revoke` and rotated with `rokh key rotate`.
@@ -23,7 +25,9 @@ runs on Linux and on macOS; nothing is called met that was not run.
   `rokh-shell -demo`.
 - The conformance map: 154 evidence-bearing obligations of the two
   specification texts, 140 met, none owed, 7 waiting for a ruling, 5 outside
-  the design, 2 that only use in the field can answer.
+  the design, 2 that only use in the field can answer. Some of the 140 rest
+  on tests that do not compile or on paths nothing reaches; they are named
+  under "Not built, or not finished".
 
 ## Known to fail, and skipped
 
@@ -43,6 +47,18 @@ Run by the superuser, two more fail, and are not skipped:
 cuts a seed by making the source's slab files read-only, and the superuser
 writes them anyway, so the seed is not cut. Run by anyone else, they pass.
 
+Thirty-three more tests do not run in a fresh clone or in the checks, and say
+so only in a verbose run: each wants a short folder for its sockets, looks for
+one six or seven levels above its package, outside the tree, and skips when
+there is none. Sixteen are the core's, in `rokh/daemon`, `rokh/cmd/rokh` and
+`rokh/proof`; seventeen are the gate's. Among them are the tests of two persons
+on two booths of one carrier, of a key's session on the owner's booth, of two
+running daemons writing to one carrier, of the harness, and of the gate's
+enclosure. Given a short folder, the core's sixteen passed in the audit; of the
+gate's, twelve passed and five also want the sandbox the enclosure runs in.
+What "Two booths on one protocol" and "Several doors on one carrier at once"
+say above rests on these tests.
+
 ## Not built, or not finished
 
 - The command line has no `bring`: a file larger than 4,096 bytes is
@@ -61,7 +77,9 @@ writes them anyway, so the seed is not cut. Run by anyone else, they pass.
   engine. It is to move to a module of its own.
 - The home does not build for Windows.
 - Eight test files of the booth of a carrier, and four of the home, are
-  behind a build tag and in no run.
+  behind a build tag (`legacy09`) and in no run; they were written for the
+  carrier of the version before this one and no longer compile. Among them is
+  the only test that an idle daemon writes nothing.
 - The sentences of the surface were carried over from Persian one word at a
   time; some do not read as English (`go` closes the ledger). A pass over
   every sentence a person types or reads is owed.
@@ -78,6 +96,10 @@ writes them anyway, so the seed is not cut. Run by anyone else, they pass.
   vessel's index, the references are found by opening every branch pointer
   ever recorded, and the ledger's order is made again whole. At 300,000
   events a write takes 1.2 s and a status 0.75 s (`rokh/docs/11-scale.md`).
+  The index is made again by reading, verifying and opening every pack,
+  content included, so an opening and the first answer after every commit
+  read all the content a vessel holds: read in the code, and not measured
+  beyond 2 GiB of content (`WORKPLAN.md`).
 - Every grant, revocation and keyring change keeps its own copy of all of
   them in its causal past, so their memory grows as the square of the keys
   named: 2 GiB for grants to 8,000 keys (`rokh/docs/11-scale.md`).
@@ -91,11 +113,78 @@ writes them anyway, so the seed is not cut. Run by anyone else, they pass.
   longer than the rest, and among 128 concurrent writers on 32 doors, all
   with one key, 11 writes of 1,024 were refused after waiting 15 s
   (`rokh/docs/11-scale.md`).
+- `rokh-courier apply`, `rokh bind` and `rokh bound` speak the protocol of
+  the version before this one. Against `rokh daemon` the courier is refused
+  (`hello_first`) at its first request, reports that as one rejected event,
+  and exits 0. A booth's `capabilities` still names its protocol
+  `rokh.daemon/3`. `transport`, `rokh-courier`, `rokh-forms`, `rokh-chest`
+  and the command of `rokh-home` have no tests.
+- On the sentence surface: `see the grants` ends in a panic on a ledger that
+  holds an open grant. After a waiting sentence is rewritten, the answer says
+  `write` records it, but `write` records another waiting sentence, and the
+  rewritten one is let go when the session closes (T9.2). The guides lose
+  every `key: `, taken for the name of a layer. Some refusals end with exit 0
+  and no code; `see the ledgers` prints names without escaping them;
+  `-library` changes nothing.
+- Of the 140 obligations the conformance map counts as met: five rows (T2.2,
+  T2.3, T11.10/enforced, T11.11/enforced, T13.5/covenant) rest on tests behind
+  the build tag above, since the map's index of the tree ignores build tags;
+  sixteen rest on one of eight constants nothing uses (`Measure`, `Witness`,
+  `SeatOfJudgement`, `ClosedAndAlive` in `rokh/ledger`; `Complete`, `Custom`,
+  `Position` in `rokh/arch`; `generation.Profile`); T1.1, T5.1 and N4.3 point
+  at `FreshSize`, under a comment that belongs to `Event`; T6.5 rests on a
+  type, `bond.Bound`, while a grant names no ending event in advance; T13.3
+  rests on `working.Folder`, which nothing in production uses; and T4.1 rests
+  on a search of the source that `weak.tsv` does not list.
+- Five documents describe the version before this one without saying so:
+  `docs/01` (RKH1, four reserved verbs, freshness by an oracle), `docs/04`
+  (sizes its test no longer measures), `docs/05` (`rokh.json`,
+  `.rokh/objects`, temporary files, content outside the carrier, tests that do
+  not exist), `docs/07` (no TCP, no sealing, disclosure by the root alone) and
+  `docs/08` (`seat.json`, the library). `docs/02` cites a test that does not
+  exist. The README's `rokh seed SRC DST [--size …]` fails, since the flags go
+  before the new folder; and it calls `rokh-forms` an adapter on the booth,
+  which runs the command line and writes what it is given, as plaintext, to a
+  folder outside the carrier (contract E5).
+- About forty-five comments cite texts that are not in this tree (`goal 7.1`,
+  `packet C.3`, `DEFECT K1` and the like). The owner's word of 2026-09-29, that
+  nothing reconciles without being asked, is written only in a comment
+  (`rokh/cmd/rokh/v1_vessel.go`, above `cmdReconcile`), while the contract's
+  R6 asks seeds that meet to reconcile without being asked.
+- A booth may listen on TCP at the loopback interface (`transport.Listen`),
+  which the contract allows (B1) and N does not: "not one code path that opens
+  a network socket" (the requirement under Axiom 5), and a door for programs
+  on a Unix socket in its base profile (§4, 4.10). No ruling in this tree
+  settles which holds. Tests open TCP on the loopback interface.
+- A booth reads and parses a message of up to 8 MiB before its session is
+  bound, and its listener takes any number of connections at once
+  (`booth.MaxLine`, `transport.Serve`); one run of the audit, not reproduced,
+  held about 2.3 GB for twelve connections.
+- The home keeps a catalog, a journal or the preview of an import in one
+  pointer record, which must fit in one slab: about 2,000 items in a catalog,
+  or 6,000 files in a preview (one run of the audit, not reproduced). The
+  comment on `BytesWithHash` says its memory does not grow with the file's
+  size; it does, since the store assembles the whole object before the
+  window is cut (`vesselstore.Store.Get`, read in the code).
+- An offer of hosting with an end arms a timer in the gate; when it fires,
+  the gate takes the hosting back, stops the programs and seals the engine's
+  last state, at a moment nobody asked for (`rokh-home/gate/server.go`,
+  `RevokeHosting`).
+- On Windows the command line cannot ask for a passphrase: the prompt opens
+  `/dev/tty` and runs `/bin/stty` (`rokh/passphrase`). `rokh/build.sh` builds
+  for neither Windows nor Android, and passes over a target that fails to
+  build.
+- The checks run on Linux alone, with no look at formatting, no build for
+  another system, no count of skips and no look for files a run changed.
+  Nineteen sleeps in fourteen test files, a test that rewrites
+  `conformance/STATE.md` beside its package, and tests that open TCP on the
+  loopback interface go against the rules AGENTS.md sets for tests.
 
 ## Not promised, by design
 
 - A copy of the folder made while a writer records more than three times
-  is not promised to open. Copy when nothing writes.
+  is not promised to open. Copy when nothing writes. The contract calls this
+  a gap, G1, red until closed, and not a limit of nature (U3).
 - Two machines writing one synced folder is not supported. Each machine
   takes a seed.
 - What a key could read before it was taken back, it may have kept.
