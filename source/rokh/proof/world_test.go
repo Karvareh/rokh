@@ -356,7 +356,7 @@ func shortTemp(t *testing.T, prefix string) (string, error) {
 	t.Helper()
 	base := os.Getenv("ROKH_SHORT_TMP")
 	if base == "" {
-		base = filepath.Join("..", "..", "..", "..", "..", "..", ".t")
+		base = filepath.Join("..", "..", "..", "..", "..", "..", "..", ".t")
 	}
 	if fi, err := os.Stat(base); err != nil || !fi.IsDir() {
 		t.Skip("no short socket folder in this work tree")

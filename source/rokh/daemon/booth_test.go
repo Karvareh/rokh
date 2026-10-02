@@ -148,7 +148,7 @@ func socketFolder(t *testing.T) string {
 	t.Helper()
 	base := os.Getenv("ROKH_SHORT_TMP")
 	if base == "" {
-		base = filepath.Join("..", "..", "..", "..", "..", "..", ".t")
+		base = filepath.Join("..", "..", "..", "..", "..", "..", "..", ".t")
 	}
 	if fi, err := os.Stat(base); err != nil || !fi.IsDir() {
 		t.Skip("no short socket folder: set ROKH_SHORT_TMP to a short folder in the work tree")
