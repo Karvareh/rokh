@@ -1,0 +1,19 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleAuthority
+BenchmarkScaleAuthority/revokes=250
+BenchmarkScaleAuthority/revokes=250-4         	       1	 117132473 ns/op	         0.03417 fold-ms	     10777 heap-B/person	         2.569 heap-MiB	       102.2 judge-us/event	         0 live
+BenchmarkScaleAuthority/revokes=500
+BenchmarkScaleAuthority/revokes=500-4         	       1	 193081202 ns/op	         0.08659 fold-ms	     19135 heap-B/person	         9.124 heap-MiB	        81.07 judge-us/event	         0 live
+BenchmarkScaleAuthority/revokes=1000
+BenchmarkScaleAuthority/revokes=1000-4        	       1	 398339903 ns/op	         0.1497 fold-ms	     35962 heap-B/person	        34.30 heap-MiB	        90.93 judge-us/event	         0 live
+BenchmarkScaleAuthority/revokes=2000
+BenchmarkScaleAuthority/revokes=2000-4        	       1	1074222685 ns/op	         0.3304 fold-ms	     71242 heap-B/person	       135.9 heap-MiB	       163.6 judge-us/event	         0 live
+BenchmarkScaleAuthority/revokes=4000
+BenchmarkScaleAuthority/revokes=4000-4        	       1	2441053412 ns/op	         0.5205 fold-ms	    136857 heap-B/person	       522.1 heap-MiB	       210.7 judge-us/event	         0 live
+BenchmarkScaleAuthority/revokes=8000
+BenchmarkScaleAuthority/revokes=8000-4        	       1	12630729133 ns/op	         1.162 fold-ms	    265615 heap-B/person	      2026 heap-MiB	      1061 judge-us/event	         0 live
+PASS
+ok  	rokh/bench	17.061s

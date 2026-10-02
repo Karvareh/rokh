@@ -1,0 +1,15 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleLeaf
+BenchmarkScaleLeaf/founders=2
+BenchmarkScaleLeaf/founders=2-4         	       1	    184204 ns/op	         0.1305 encode-ms	       200.0 leaf-B	         0.02725 parse-ms	         0.0007560 standing-ms
+BenchmarkScaleLeaf/founders=100
+BenchmarkScaleLeaf/founders=100-4       	       1	    842827 ns/op	         0.3819 encode-ms	      6766 leaf-B	         0.4322 parse-ms	         0.01342 standing-ms
+BenchmarkScaleLeaf/founders=10000
+BenchmarkScaleLeaf/founders=10000-4     	       1	  77903768 ns/op	        30.99 encode-ms	    670066 leaf-B	        44.27 parse-ms	         2.385 standing-ms
+BenchmarkScaleLeaf/founders=1000000
+BenchmarkScaleLeaf/founders=1000000-4   	       1	6399771484 ns/op	      2739 encode-ms	  67000066 leaf-B	      3381 parse-ms	       254.7 standing-ms
+PASS
+ok  	rokh/bench	6.519s

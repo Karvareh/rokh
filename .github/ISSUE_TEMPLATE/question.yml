@@ -1,0 +1,35 @@
+name: A question for the owner's ruling
+description: Something the texts leave open, or settle in a way the evidence questions, and that only the owner can rule.
+labels: [question, needs-ruling]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A question asks the owner to rule. It says what is asked, why, with the evidence, and what would change. A weakness in security is never asked here before it is repaired: report it privately.
+  - type: input
+    id: what
+    attributes:
+      label: What is asked, in a few words
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: The question
+      description: What the owner is asked to rule, and the answers that are open.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it is asked
+      description: The findings, texts or measurements that raise it, as they are cited (T6.4, N4.10, contract 2.6, a finding of a study).
+    validations:
+      required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: What changes once it is ruled
+      description: The texts, the code and the documents a ruling would change, and the missions that wait for it.
+    validations:
+      required: true

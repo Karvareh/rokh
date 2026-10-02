@@ -1,0 +1,108 @@
+File: bench.test
+Build ID: c805c95ba50238a367411802a215d1ad43b0f7b0
+Type: cpu
+Time: 2026-09-30 19:25:25 UTC
+Duration: 46.87s, Total samples = 54.49s (116.25%)
+Active filters:
+   focus=daemon.\(\*Server\).Handle
+Showing nodes accounting for 6.71s, 12.31% of 54.49s total
+Dropped 122 nodes (cum <= 0.27s)
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      7.04s 12.92%  rokh/bench.BenchmarkScaleDoor.func1
+         0     0%     0%      7.04s 12.92%  rokh/bench.BenchmarkScaleDoor.func1.1
+         0     0%     0%      7.04s 12.92%  rokh/daemon.(*Server).Handle
+         0     0%     0%      7.04s 12.92%  testing.(*B).run1.func1
+         0     0%     0%      7.04s 12.92%  testing.(*B).runN
+         0     0%     0%      6.50s 11.93%  rokh/carrier.(*Carrier).Refs
+     0.12s  0.22%  0.22%      6.50s 11.93%  rokh/vessel.(*Vessel).Scan
+     0.01s 0.018%  0.24%      5.57s 10.22%  rokh/vessel.(*Vessel).slab
+         0     0%  0.24%      4.64s  8.52%  rokh/carrier.(*Carrier).Refs.func1
+         0     0%  0.24%      4.63s  8.50%  rokh/vessel.(*Vessel).Body
+         0     0%  0.24%      4.62s  8.48%  rokh/vessel.(*Vessel).body
+         0     0%  0.24%      4.47s  8.20%  rokh/daemon.(*Server).behind
+         0     0%  0.24%      2.57s  4.72%  rokh/daemon.(*Server).dispatch
+     0.01s 0.018%  0.26%      2.47s  4.53%  crypto/sha256.Sum256
+         0     0%  0.26%      2.46s  4.51%  crypto/internal/fips140/sha256.(*Digest).Write
+         0     0%  0.26%      2.46s  4.51%  crypto/internal/fips140/sha256.block
+     2.46s  4.51%  4.77%      2.46s  4.51%  crypto/internal/fips140/sha256.blockSHANI
+         0     0%  4.77%      2.33s  4.28%  rokh/daemon.(*Server).refresh
+         0     0%  4.77%      2.14s  3.93%  rokh/daemon.(*Server).stale
+         0     0%  4.77%      1.95s  3.58%  rokh/medium.Dir.Read
+     0.02s 0.037%  4.81%      1.81s  3.32%  io.ReadAll
+         0     0%  4.81%      1.48s  2.72%  rokh/vessel.(*Vessel).buildIndex
+     0.04s 0.073%  4.88%      1.48s  2.72%  rokh/vessel.(*Vessel).indexOnce
+     1.32s  2.42%  7.30%      1.32s  2.42%  runtime.memclrNoHeapPointers
+         0     0%  7.30%      1.25s  2.29%  rokh/vessel.openSlab
+         0     0%  7.30%      1.23s  2.26%  crypto/internal/fips140/aes/gcm.(*GCM).Open
+         0     0%  7.30%      1.22s  2.24%  rokh/daemon.(*Server).write
+         0     0%  7.30%      1.06s  1.95%  rokh/carrier.(*Carrier).Ref
+         0     0%  7.30%      1.06s  1.95%  rokh/daemon.(*Server).branchHead
+         0     0%  7.30%      0.97s  1.78%  rokh/daemon.(*Server).status
+     0.86s  1.58%  8.88%      0.86s  1.58%  crypto/internal/fips140/aes/gcm.gcmAesDec
+         0     0%  8.88%      0.86s  1.58%  crypto/internal/fips140/aes/gcm.open
+         0     0%  8.88%      0.70s  1.28%  runtime.growslice
+     0.65s  1.19% 10.08%      0.65s  1.19%  runtime.memmove
+     0.62s  1.14% 11.21%      0.62s  1.14%  internal/runtime/syscall/linux.Syscall6
+         0     0% 11.21%      0.62s  1.14%  syscall.RawSyscall6
+         0     0% 11.21%      0.60s  1.10%  syscall.Syscall
+         0     0% 11.21%      0.58s  1.06%  internal/poll.(*FD).Read
+         0     0% 11.21%      0.58s  1.06%  internal/poll.ignoringEINTRIO (inline)
+         0     0% 11.21%      0.58s  1.06%  io.(*LimitedReader).Read
+         0     0% 11.21%      0.58s  1.06%  os.(*File).Read
+         0     0% 11.21%      0.58s  1.06%  os.(*File).read (inline)
+         0     0% 11.21%      0.58s  1.06%  syscall.Read (inline)
+     0.01s 0.018% 11.23%      0.58s  1.06%  syscall.read
+         0     0% 11.23%      0.51s  0.94%  runtime.mallocgc
+     0.04s 0.073% 11.30%      0.38s   0.7%  rokh/daemon.(*Server).log
+         0     0% 11.30%      0.37s  0.68%  crypto/internal/fips140/aes/gcm.sliceForAppend (inline)
+         0     0% 11.30%      0.37s  0.68%  runtime.makeslicecopy
+         0     0% 11.30%      0.34s  0.62%  runtime.mallocgcLarge
+     0.12s  0.22% 11.53%      0.27s   0.5%  rokh/vessel.parsePack
+         0     0% 11.53%      0.22s   0.4%  runtime.memclrNoHeapPointersChunked
+     0.04s 0.073% 11.60%      0.19s  0.35%  rokh/ledger.(*Ledger).Get (inline)
+         0     0% 11.60%      0.18s  0.33%  runtime.systemstack
+         0     0% 11.60%      0.16s  0.29%  rokh/daemon.(*Server).commit
+         0     0% 11.60%      0.15s  0.28%  rokh/carrier.(*Recording).Commit (inline)
+         0     0% 11.60%      0.15s  0.28%  rokh/vessel.(*Tx).Commit
+         0     0% 11.60%      0.15s  0.28%  rokh/vessel.(*Tx).CommitGrowing
+     0.01s 0.018% 11.62%      0.15s  0.28%  runtime.mapaccess2
+         0     0% 11.62%      0.14s  0.26%  runtime.typedslicecopy
+         0     0% 11.62%      0.13s  0.24%  rokh/ledger.(*Ledger).Order (inline)
+     0.04s 0.073% 11.69%      0.13s  0.24%  rokh/ledger.(*Ledger).ordered
+     0.12s  0.22% 11.91%      0.12s  0.22%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+         0     0% 11.91%      0.11s   0.2%  runtime.mallocgcSmallNoscan
+         0     0% 11.91%      0.10s  0.18%  runtime.(*mheap).alloc
+         0     0% 11.91%      0.10s  0.18%  runtime.(*mheap).alloc.func1
+     0.09s  0.17% 12.08%      0.09s  0.17%  memeqbody
+         0     0% 12.08%      0.09s  0.17%  rokh/vessel.(*Vessel).choose
+         0     0% 12.08%      0.09s  0.17%  rokh/vessel.(*Vessel).verify
+         0     0% 12.08%      0.09s  0.17%  runtime.(*mheap).allocSpan
+         0     0% 12.08%      0.08s  0.15%  runtime.(*mcache).allocLarge
+         0     0% 12.08%      0.07s  0.13%  runtime.(*mcache).nextFree
+         0     0% 12.08%      0.07s  0.13%  runtime.(*mcache).refill
+         0     0% 12.08%      0.07s  0.13%  runtime.mapaccess1
+         0     0% 12.08%      0.06s  0.11%  runtime.(*mcentral).cacheSpan
+     0.06s  0.11% 12.19%      0.06s  0.11%  runtime.nextFreeFast (inline)
+         0     0% 12.19%      0.05s 0.092%  runtime.(*mcentral).grow
+         0     0% 12.19%      0.05s 0.092%  runtime.(*mheap).initSpan
+     0.02s 0.037% 12.22%      0.05s 0.092%  runtime.bulkBarrierPreWrite
+         0     0% 12.22%      0.05s 0.092%  runtime.profilealloc
+     0.01s 0.018% 12.24%      0.05s 0.092%  syscall.Syscall6
+         0     0% 12.24%      0.04s 0.073%  os.(*Root).Lstat
+         0     0% 12.24%      0.04s 0.073%  os.(*Root).Open (inline)
+         0     0% 12.24%      0.04s 0.073%  os.(*Root).OpenFile
+         0     0% 12.24%      0.04s 0.073%  os.doInRoot[go.shape.interface { IsDir bool; ModTime time.Time; Mode io/fs.FileMode; Name string; Size int64; Sys interface {} }]
+         0     0% 12.24%      0.04s 0.073%  os.ignoringEINTR (inline)
+         0     0% 12.24%      0.04s 0.073%  os.rootOpenFileNolog
+         0     0% 12.24%      0.04s 0.073%  os.rootStat
+         0     0% 12.24%      0.04s 0.073%  rokh/medium.plain
+         0     0% 12.24%      0.04s 0.073%  rokh/vessel.(*Vessel).load
+         0     0% 12.24%      0.04s 0.073%  rokh/vessel.(*Vessel).refresh (inline)
+         0     0% 12.24%      0.04s 0.073%  runtime.(*unwinder).resolveInternal
+         0     0% 12.24%      0.04s 0.073%  runtime.callers
+         0     0% 12.24%      0.04s 0.073%  runtime.callers.func1
+         0     0% 12.24%      0.04s 0.073%  runtime.funcspdelta (inline)
+         0     0% 12.24%      0.04s 0.073%  runtime.mProf_Malloc
+         0     0% 12.24%      0.04s 0.073%  runtime.mallocgcSmallScanNoHeader
+     0.02s 0.037% 12.28%      0.04s 0.073%  runtime.pcvalue
+     0.02s 0.037% 12.31%      0.04s 0.073%  runtime.tryDeferToSpanScan

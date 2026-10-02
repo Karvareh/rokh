@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        A weakness in what is sealed, granted or judged is never reported here: report it privately, as SECURITY.md says. A question about what Rokh should do is asked in rokh-lab; work to pick up is in rokh-work.
+        A weakness in what is sealed, granted or judged is never reported here: report it privately, as SECURITY.md says. A question about what Rokh should do is asked with the question form; work to pick up is in work/.
   - type: input
     id: version
     attributes:
@@ -24,7 +24,7 @@ body:
     id: expected
     attributes:
       label: What was expected, and where that is said
-      description: The text, the contract or the document, with its place (T6.4, contract 2.6, docs/08).
+      description: The text, the contract or the document, with its place (T6.4, contract 2.6, source/rokh/docs/08).
     validations:
       required: true
   - type: textarea

@@ -1,0 +1,27 @@
+name: An erratum
+description: A text says something unclearly, or has a broken reference or a typing error. It changes no meaning.
+labels: [erratum]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An erratum changes no meaning. To change what a text says, ask with the question form: the owner rules, and the change comes to docs/ with the ruling.
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: The text and the place in it, as it is cited (T3.4, N4.10, contract 2.6).
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What it says, and what it should say
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it changes no meaning
+    validations:
+      required: true

@@ -1,0 +1,21 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleVesselDisk
+BenchmarkScaleVesselDisk/S=256KiB/N=16/V=4MiB
+BenchmarkScaleVesselDisk/S=256KiB/N=16/V=4MiB-4         	       1	 137287152 ns/op	         7.499 commit-ms	       109.9 create-MiB/s	         0.03866 create-s	        20.00 files	         0.002059 open-s	         0.004150 vessel-GiB
+BenchmarkScaleVesselDisk/S=1MiB/N=64/V=64MiB
+BenchmarkScaleVesselDisk/S=1MiB/N=64/V=64MiB-4          	       1	 767601919 ns/op	        33.36 commit-ms	       173.0 create-MiB/s	         0.3715 create-s	        68.00 files	         0.01260 open-s	         0.06274 vessel-GiB
+BenchmarkScaleVesselDisk/S=1MiB/N=1024/V=1GiB
+BenchmarkScaleVesselDisk/S=1MiB/N=1024/V=1GiB-4         	       1	6649672438 ns/op	        38.29 commit-ms	       166.5 create-MiB/s	         6.150 create-s	      1028 files	         0.01292 open-s	         1.000 vessel-GiB
+BenchmarkScaleVesselDisk/S=1MiB/N=4096/V=4GiB
+BenchmarkScaleVesselDisk/S=1MiB/N=4096/V=4GiB-4         	       1	44913462723 ns/op	        58.75 commit-ms	        92.74 create-MiB/s	        44.17 create-s	      4100 files	         0.02871 open-s	         4.000 vessel-GiB
+BenchmarkScaleVesselDisk/S=1MiB/N=16384/V=16GiB
+BenchmarkScaleVesselDisk/S=1MiB/N=16384/V=16GiB-4       	       1	181308022862 ns/op	       162.9 commit-ms	        91.47 create-MiB/s	       179.1 create-s	     16388 files	         0.1076 open-s	        16.00 vessel-GiB
+BenchmarkScaleVesselDisk/S=64MiB/N=16/V=1GiB
+BenchmarkScaleVesselDisk/S=64MiB/N=16/V=1GiB-4          	       1	27032965353 ns/op	      1342 commit-ms	       119.1 create-MiB/s	         8.601 create-s	        20.00 files	         0.3399 open-s	         1.000 vessel-GiB
+BenchmarkScaleVesselDisk/S=64MiB/N=64/V=4GiB
+BenchmarkScaleVesselDisk/S=64MiB/N=64/V=4GiB-4          	       1	51537253008 ns/op	      1394 commit-ms	       123.3 create-MiB/s	        33.23 create-s	        68.00 files	         0.3978 open-s	         4.000 vessel-GiB
+PASS
+ok  	rokh/bench	335.709s

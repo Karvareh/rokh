@@ -1,0 +1,50 @@
+name: A mission
+description: Propose a piece of work that a person or a program can carry out, with the test that says it is done.
+labels: [mission]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A mission says why, with its evidence; the change; where; what it needs; and the test that says it is done. To take up an existing mission, comment on its own issue instead. A weakness in security is never a mission: report it privately.
+  - type: input
+    id: what
+    attributes:
+      label: What changes, in a few words
+    validations:
+      required: true
+  - type: dropdown
+    id: lands
+    attributes:
+      label: Where it lands
+      options:
+        - source
+        - docs
+        - lab
+        - work
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What is wrong or missing, with its evidence (a finding of a study of lab/, a text, a test, a measurement).
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: The change, and where
+    validations:
+      required: true
+  - type: input
+    id: needs
+    attributes:
+      label: What it needs
+      description: Missions (W-nn, I-nn) and questions of lab/ (D-nn) it waits for, or none.
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: The test that says it is done; it fails before the change and passes after it.
+    validations:
+      required: true

@@ -1,0 +1,15 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleOpenAddress
+BenchmarkScaleOpenAddress/people=1000
+BenchmarkScaleOpenAddress/people=1000-4         	       1	 206848750 ns/op	         1.000 grants	      2454 heap-B/person	        75.07 judge-us/event	         0.01273 peak-rss-GiB	       106.7 sign-us/event
+BenchmarkScaleOpenAddress/people=10000
+BenchmarkScaleOpenAddress/people=10000-4        	       1	1961963127 ns/op	         1.000 grants	      2244 heap-B/person	        71.64 judge-us/event	         0.04695 peak-rss-GiB	       102.6 sign-us/event
+BenchmarkScaleOpenAddress/people=100000
+BenchmarkScaleOpenAddress/people=100000-4       	       1	19549030081 ns/op	         1.000 grants	      2111 heap-B/person	        72.36 judge-us/event	         0.3596 peak-rss-GiB	       101.5 sign-us/event
+BenchmarkScaleOpenAddress/people=1000000
+BenchmarkScaleOpenAddress/people=1000000-4      	       1	205256210596 ns/op	         1.000 grants	      2447 heap-B/person	        77.64 judge-us/event	         3.716 peak-rss-GiB	       105.2 sign-us/event
+PASS
+ok  	rokh/bench	227.183s
