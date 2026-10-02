@@ -29,6 +29,9 @@ inside `t.TempDir()`?
   `rokh/daemon/booth_test.go:145-154`, `rokh/daemon/daemon_test.go:360`,
   `rokh/cmd/rokh/harness_test.go:254-259`, `rokh/proof/world_test.go:359`,
   `rokh-home/gate/gate_test.go:384-399`*
+
+  Since the source moved into `source/`, each of these tests climbs one level
+  more, to the same folder; the finding is otherwise as it was.
 - **A-32.** Tests go against AGENTS.md's rules: 19 sleeps in 14 test files;
   `TestReport` rewrites `conformance/STATE.md` in its package folder, as
   AGENTS.md itself says `go test ./conformance` does; tests open TCP on the
@@ -42,10 +45,10 @@ The findings are kept, with their evidence, in [study
 
 AGENTS.md's rules for tests; W-01.
 
-## What it blocks in rokh-work
+## What it blocks in work/
 
-- [**W-01**](https://github.com/Karvareh/rokh-work/blob/main/missions/W-01-short-socket-folder.md)
-  (rokh-work): One short socket folder for every test that listens
+- [**W-01**](../../work/missions/W-01-short-socket-folder.md)
+  (work/): One short socket folder for every test that listens
 
 ## Waits for
 
@@ -57,6 +60,6 @@ AGENTS.md says it.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-01 and
+The owner rules by a record in `docs/rulings/` that answers D-01 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

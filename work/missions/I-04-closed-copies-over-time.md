@@ -18,10 +18,9 @@ evidence: "Q-15"
   and one guess tried on 32 cells (A-08); what a series of copies shows was not
   examined — *evidence: R, C, M (§M7)*
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## What to find out
 
@@ -29,15 +28,15 @@ What closed copies show over time: which files change at each commit, file
 times on ext4, FAT32 and exFAT, which head was written last; two seeds compared
 by their first 64 bytes.
 
-What is found is written as a study of rokh-lab, with its raw data, its
+What is found is written as a study of `lab/`, with its raw data, its
 commands, its host and the commit it ran against; benchmarks and probes that
-stay land in rokh.
+stay land in `source/`.
 
 ## Where
 
 a test in `rokh/vessel`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
@@ -49,5 +48,6 @@ A list of what an observer of closed copies learns, each item with its test.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of
-  rokh-lab.
+- Read the [AGENTS.md of `work/`](../AGENTS.md), the [AGENTS.md of
+  `lab/`](../../lab/AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).

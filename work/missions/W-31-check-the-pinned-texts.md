@@ -3,13 +3,22 @@ id: W-31
 title: "Check the copies of the texts against rokh-docs in the checks"
 kind: mission
 priority: p2
-status: ready
+status: withdrawn
 needs: none
 lands-in: source
 evidence: "rokh/texts/README.md of rokh, and the CHANGELOG of rokh-docs"
 ---
 
 # W-31. Check the copies of the texts against rokh-docs in the checks
+
+## Withdrawn
+
+The texts came back into this repository, in `docs/`, and the source keeps no
+copies of them: the conformance tests read the texts in `docs/`, and the test
+of the pin, `source/rokh/conformance/texts.tsv`, holds those texts to their
+SHA-256. No copy is left to check against the texts where they are ruled, so
+this mission is no longer asked. What it asked is kept below, as it was
+written.
 
 ## Why
 
@@ -33,7 +42,7 @@ than the pin.
 
 `.github/workflows/check.yml` of rokh; `rokh/texts/texts.tsv`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
@@ -51,6 +60,7 @@ and says so in its comment.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of rokh.
+- Read the [AGENTS.md of `work/`](../AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).
 - Ask the owner, on this mission's issue, whether a private repair is under way
   in the same files.

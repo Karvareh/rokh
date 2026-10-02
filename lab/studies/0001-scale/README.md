@@ -18,8 +18,9 @@ date: 2026-10-01
 
 *This study was `rokh/docs/11-scale.md` in rokh, with its raw data in
 `rokh/docs/11-scale/`, until commit b8f909a; its history to then is there.
-Paths named here are paths of rokh, and `STATE.md` and `AGENTS.md` are rokh's.
-Its raw data is in [`data/`](data/README.md).*
+Paths named here are paths of the source as they were then, now under
+`source/`; `STATE.md` is the source's, and `AGENTS.md` the repository's. Its
+raw data is in [`data/`](data/README.md).*
 
 ## Summary
 

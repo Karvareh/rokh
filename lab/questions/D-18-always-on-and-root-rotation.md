@@ -41,6 +41,6 @@ The rulings.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-18 and
+The owner rules by a record in `docs/rulings/` that answers D-18 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

@@ -34,8 +34,8 @@ The findings are kept, with their evidence, in [study
 
 ## Waits for
 
-- [**I-11**](https://github.com/Karvareh/rokh-work/blob/main/missions/I-11-why-the-key-test-fails.md)
-  (rokh-work): Why the key test fails
+- [**I-11**](../../work/missions/I-11-why-the-key-test-fails.md)
+  (work/): Why the key test fails
 
 ## Ruled when
 
@@ -43,6 +43,6 @@ One test kept, the other removed, no skip.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-06 and
+The owner rules by a record in `docs/rulings/` that answers D-06 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

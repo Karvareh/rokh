@@ -26,10 +26,9 @@ evidence: "S-03, A-27, Q-07, Q-09"
   or 320 MiB with slabs of 64 MiB, and takes about 7 s or 1.7 s in memory,
   twice that on a disk — *evidence: X (§X1 from §M1, §M2)*
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## The change
 
@@ -40,7 +39,7 @@ generation whole only when the heads moved.
 
 `rokh/vessel/tx.go`, `rokh/vessel/vessel.go`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
@@ -55,6 +54,7 @@ and the byte vectors pass unchanged.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of rokh.
+- Read the [AGENTS.md of `work/`](../AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).
 - Ask the owner, on this mission's issue, whether a private repair is under way
   in the same files.

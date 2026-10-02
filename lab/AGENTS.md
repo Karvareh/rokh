@@ -1,12 +1,14 @@
-# Working in this repository
+# Working in lab/
 
-This file is for anyone who changes rokh-lab, person or program.
+This file is for anyone who changes `lab/`, person or program. The
+[AGENTS.md of the repository](../AGENTS.md) holds for all of it; this file adds
+what is particular to `lab/`.
 
-## The law of this repository
+## The law of this folder
 
 1. **Nothing here is a ruling, and nothing here reads as one.** A proposal
    says it is proposed; a question says what it asks. Only the owner rules, and
-   a ruling is recorded in rokh-docs, never here.
+   a ruling is recorded in `docs/rulings/`, never here.
 2. **Every statement says its kind:** measured, read in the code,
    extrapolated, or proposed. A number names its command, its host and the
    commit it ran against, and its raw output is kept beside it.
@@ -22,25 +24,27 @@ This file is for anyone who changes rokh-lab, person or program.
    `superseded`, and stays.
 6. **A limit of a version is never called a limit of Rokh**, unless the texts
    make it one.
-7. **A question names what it blocks**, and the missions of rokh-work that
-   wait for it name it in turn.
+7. **A question names what it blocks**, and the missions of `work/` that wait
+   for it name it in turn.
 
 ## Language
 
-As in rokh. English. A person is a *person*, never a *user*; the ledger is
-*an individual's event ledger*. Use the words the texts use, and coin no word
-where one of them serves; a word a study must coin says that it is the
-study's. No name of a person, machine, network address, home directory,
-product, organisation or tool goes into a study. Commits are in English, in
-the present tense; no trailer names a tool. History is never rewritten.
+As in the rest of the repository. English. A person is a *person*, never a
+*user*; the ledger is *an individual's event ledger*. Use the words the texts
+use, and coin no word where one of them serves; a word a study must coin says
+that it is the study's. No name of a person, machine, network address, home
+directory, product, organisation or tool goes into a study. Commits are in
+English, in the present tense; no trailer names a tool. History is never
+rewritten.
 
 ## Check
 
+From the root of the repository:
+
 ```sh
-cd tools/records && go vet ./... && go test ./... && go run . -root ../.. check
-cd tools/records && go run . -root ../.. index    # writes the tables of studies and questions
+cd .github/records && go vet ./... && go test ./... && go run . -root ../.. check
+cd .github/records && go run . -root ../.. index    # writes the tables, those of studies and questions among them
 ```
 
-`tools/records/main.go` is the same program in rokh-docs, rokh-lab and
-rokh-work; a change to it is made in all three. `rules.go` is this
-repository's own.
+`.github/records` is the one program for the records of `docs/`, `lab/` and
+`work/`; the rules of each kind of record are in its `rules.go`.

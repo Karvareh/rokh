@@ -21,10 +21,9 @@ evidence: "S-01, S-02"
   key; taken back newest first, revocations grow as the square, as grants do —
   *evidence: M*
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## The change
 
@@ -35,7 +34,7 @@ The load without recursion; the measurement of revocations.
 `rokh/ledger/load.go`, `rokh/ledger/deep_test.go`,
 `rokh/bench/scale_ledger_test.go`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 

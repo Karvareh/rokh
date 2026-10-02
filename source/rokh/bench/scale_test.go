@@ -24,7 +24,7 @@ import (
 // the size of a vessel (Vessel, VesselDisk), the length of a history (Chain),
 // the number of keys a ledger names (Authority, Envelope, Leaf), the doors
 // that write at once (Writers) and what one door costs as the ledger grows
-// (Door). Study 0001 of rokh-lab holds the numbers this tree gave, with their
+// (Door). Study 0001 of lab/ holds the numbers this tree gave, with their
 // raw outputs, and the model they fit.
 
 // sparseMedium is a vessel.Medium held in memory that keeps the bytes of a

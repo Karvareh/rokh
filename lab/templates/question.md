@@ -22,7 +22,7 @@ The findings, texts or measurements that raise it, with their evidence.
 
 The texts, the code and the documents a ruling would change.
 
-## What it blocks in rokh-work
+## What it blocks in work/
 
 The missions that wait for it, also named in `blocks`; or nothing.
 
@@ -36,7 +36,7 @@ What the ruling must say for this question to be answered.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers this
-question and changes the texts it changes. This record then says
+The owner rules by a record in `docs/rulings/` that answers this question and
+changes the texts it changes. This record then says
 `status: ruled` and names that ruling, and the missions it blocks no longer
 need it.

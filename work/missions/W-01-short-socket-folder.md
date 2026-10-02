@@ -23,13 +23,15 @@ evidence: "A-01, S-15"
   `rokh/daemon/booth_test.go:145-154`, `rokh/daemon/daemon_test.go:360`,
   `rokh/cmd/rokh/harness_test.go:254-259`, `rokh/proof/world_test.go:359`,
   `rokh-home/gate/gate_test.go:384-399`*
+
+  Since the source moved into `source/`, each of these tests climbs one level
+  more, to the same folder; the finding is otherwise as it was.
 - **S-15.** Which conditional skips fired in the suites was not recorded —
   *evidence: R (§T)*
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## The change
 
@@ -43,12 +45,12 @@ outside the tree.
 `rokh/cmd/rokh/harness_test.go`, `rokh/proof/world_test.go`,
 `rokh-home/gate/gate_test.go`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
-- [**D-01**](https://github.com/Karvareh/rokh-lab/blob/main/questions/D-01-socket-folders-and-the-report.md)
-  (rokh-lab): May a test make its socket folder outside t.TempDir(), and may
+- [**D-01**](../../lab/questions/D-01-socket-folders-and-the-report.md)
+  (`lab/`): May a test make its socket folder outside t.TempDir(), and may
   the conformance report rewrite its STATE.md?
 
 ## Done when
@@ -60,6 +62,7 @@ skipped.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of rokh.
+- Read the [AGENTS.md of `work/`](../AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).
 - Ask the owner, on this mission's issue, whether a private repair is under way
   in the same files.

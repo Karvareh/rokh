@@ -45,10 +45,9 @@ evidence: "A-40 to A-47"
 - See **A-46**.
 - See **A-47**.
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## The change
 
@@ -60,13 +59,13 @@ retired; `docs/02`'s citation; the README's `rokh seed` and `rokh-forms`;
 
 `rokh/docs/*.md`, `README.md`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
 Nothing.
 
-The one sentence of `docs/07` about TCP waits for **D-03** (rokh-lab): write
+The one sentence of `docs/07` about TCP waits for **D-03** (`lab/`): write
 what is built, and that the ruling is open.
 
 ## Done when
@@ -76,6 +75,7 @@ describes.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of rokh.
+- Read the [AGENTS.md of `work/`](../AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).
 - Ask the owner, on this mission's issue, whether a private repair is under way
   in the same files.

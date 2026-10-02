@@ -1,117 +1,54 @@
-# Rokh — a graph of addressable data
+# Rokh
 
 An individual's event ledger, built as a graph of addressable data that grows
 across independent copies.
-
-```
-write at home/journal: I walked to the river.
-```
-
-Rokh holds the sentence in working state. Nothing is recorded yet; what the
-record would be is shown.
-
-```
-write
-```
-
-That records an event in an individual's ledger: a graph of addressable data.
-Each event names what it concerns, who recorded it, under whose authority, and
-which events it follows. The graph grows without rewriting its past. Copies of
-the same ledger can develop independently and be brought together when their
-owner chooses. Updates can travel in stages, without keeping every copy in
-lockstep or requiring all devices to be online together. Rights are
-asymmetric: permission in one direction implies no permission in the other.
-Causal links establish order; meaning and judgement remain with the person.
 
 Rokh is not a service, not an account, not a network and not a judge. It
 records what was done, by whom, under what right, after what. Whether it was
 true, or wise, is not its question.
 
-## Implementation in version 1
+## [Read the treatise →](docs/رساله.md)
 
-- **A carrier.** An ordinary folder holding a sealed vessel: fixed in size or
-  growing in whole slabs. Opened without Rokh it shows no name, no address
-  and no count. Copy it, carry it, put it on a stick.
-- **One owner.** One passphrase, which has no recovery. Keys beside it, each
-  with its own passphrase, read or write where the owner said; each key opens
-  its own view and nothing more. A key is taken back or rotated by the owner.
-- **Seeds.** An independently usable, recorded copy of the same ledger, whole
-  or a slice. Two seeds are reconciled only when the owner commands it; where
-  both changed the same thing, both are shown and nothing is chosen.
-- **Booths.** An access point through which a program, or a person with a
-  key, works with the ledger over one protocol, `rokh.booth/1`: the booth of
-  a carrier (`rokh daemon`) and the gate of a home (`rokh-home`), where
-  programs sit behind the gate and hold only what the owner granted them.
-- **Complete without a network.** Nothing in the core opens a listener or
-  needs a peer. A courier carries signed bytes between two ledgers; it holds
-  no key and is trusted with nothing.
+**[رساله](docs/رساله.md)**, the treatise: the founding text of Rokh, in
+Persian, and the original. With the ledger without consensus it specifies
+Rokh. Beside it in `docs/` are [the ledger without
+consensus](docs/without-consensus.md), an English rendering of its Persian
+original, and [the contract of version 1](docs/contracts/v1.md).
 
-## Build
+## The four folders
 
-Go 1.26 or later, and nothing else.
+Each folder holds one standing of what is said about Rokh, so that nobody has
+to ask whether a sentence is a ruling, a finding or a wish.
 
-```sh
-cd rokh      && go build -trimpath -o ../dist/ ./cmd/...
-cd rokh-home && go build -trimpath -o ../dist/ ./cmd/...
-```
-
-The commands are then in `dist/`: `rokh`, `rokh-shell`, `rokh-courier`,
-`rokh-forms`, `rokh-chest` (Linux only) and `rokh-home`. The core builds for
-Linux, macOS, Windows and Android; the home for Linux, macOS and Android. To
-see the screen without making anything:
-
-```sh
-cd rokh && go run ./cmd/rokh-shell -demo
-```
-
-## Check
-
-```sh
-cd rokh      && go vet ./... && go test -timeout 45m ./...
-cd rokh-home && go vet ./... && go test ./...
-```
-
-Three tests are skipped in this tree because they fail; they are named in
-[STATE.md](STATE.md), which says what is met, what is not, and what was never
-run. `go test ./conformance` in `rokh/` measures the code against the two
-texts that specify it, as `rokh/texts/` holds them, and writes
-`rokh/conformance/STATE.md`.
-
-## Four repositories
-
-Rokh is kept in four repositories. Each holds one standing of what is said
-about it, so that nobody has to ask whether a sentence is a ruling, a finding
-or a wish.
-
-| repository | standing | holds |
+| folder | standing | holds |
 |---|---|---|
-| **rokh**, this one | source: what runs | the code, its tests, its own documents, and STATE.md |
-| [rokh-docs](https://github.com/Karvareh/rokh-docs) | docs: what is ruled | the treatise, the ledger without consensus, the contract, the register of rulings |
-| [rokh-lab](https://github.com/Karvareh/rokh-lab) | lab: examined, not ruled | studies with their evidence, measurements with their raw data, the questions that wait for a ruling |
-| [rokh-work](https://github.com/Karvareh/rokh-work) | work: to be examined or done | missions anyone, a person or a program, can pick up, each with the test that says it is done |
+| [`source/`](source/README.md) | what runs | the code, its tests, its own documents, and [STATE.md](source/STATE.md): what is met, what is not, what was never run |
+| [`docs/`](docs/README.md) | what is ruled | the treatise, the ledger without consensus, the contract, and the register of rulings |
+| [`lab/`](lab/README.md) | examined, not ruled | studies with their evidence and raw data, and the questions that wait for the owner's ruling |
+| [`work/`](work/README.md) | to be examined or done | missions anyone, a person or a program, can pick up, each with the test that says it is done |
 
 A thing moves forward only by the act that defines its next standing: work is
-examined into the lab, the lab's questions are ruled into the docs, the docs
-are built into this source; where this source and the docs differ, the
+examined into the lab, the lab's questions are ruled into the docs, and the
+docs are built into the source; where the source and the docs differ, the
 difference is work. Only the owner rules and merges.
 
-## Where things are
+## Where to begin
 
-| | |
-|---|---|
-| [`rokh/texts/`](rokh/texts/README.md) | The texts this tree is measured against, as copies of rokh-docs pinned by SHA-256: the treatise, in Persian, the founding text of Rokh, cited as `T`; the ledger without consensus, its English rendering, cited as `N`; how the two are read; the contract of version 1. Never edited here. |
-| [`rokh/docs/`](rokh/docs/) | Grammar, authority, carrier, bandwidth, inventory, the booth API, peering, the sentence surface, the screen. |
-| [`rokh/`](rokh/README.md) | The core: packages, commands and layers. |
-| [`rokh-home/`](rokh-home/README.md) | The home and its gate. |
-| [`STATE.md`](STATE.md) | What this tree is and is not. |
-| [`AGENTS.md`](AGENTS.md) | The working rules for anyone, person or program, who changes this tree. |
+- **To run it:** [`source/`](source/README.md): build, check, and the screen
+  without a ledger.
+- **To help:** a mission of [`work/`](work/README.md) whose status is `ready`.
+- **To ask the owner:** a question of [`lab/`](lab/README.md), with the
+  question form.
+- **To propose a change:** [CONTRIBUTING.md](.github/CONTRIBUTING.md). Anyone
+  who changes this repository, person or program, reads
+  [AGENTS.md](AGENTS.md) first.
+- **A weakness in security** is reported privately, as [the security
+  policy](.github/SECURITY.md) says; never in an issue.
 
-## Contributing and license
-
-Proposals come as pull requests from a fork; what enters `main` is decided by
-the owner of this repository. See [CONTRIBUTING.md](CONTRIBUTING.md); work to
-pick up is in rokh-work, and questions for the owner are asked in rokh-lab.
+## License
 
 Copyright (c) 2026 The Karvareh authors. Rokh is free software under the GNU
 Lesser General Public License, version 3 or later: [LICENSE](LICENSE), with
 the GNU General Public License it rests on in [GPL-3.0.txt](GPL-3.0.txt).
+Whether the texts, the studies and the missions stay under it is question
+[D-23](lab/questions/D-23-license-of-texts.md), open until the owner rules.

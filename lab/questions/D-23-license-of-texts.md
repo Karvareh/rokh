@@ -12,9 +12,9 @@ ruling: none
 
 ## The question
 
-The texts, the studies and the missions were written in rokh, under its
-license, and carry it in rokh-docs, rokh-lab and rokh-work. Do they stay under
-it, or take a license written for texts rather than programs: some of them, or
+The texts, the studies and the missions were written under the license of
+the code, and carry it in `docs/`, `lab/` and `work/`. Do they stay under it,
+or take a license written for texts rather than programs: some of them, or
 all?
 
 ## Why it is asked
@@ -24,8 +24,9 @@ carried with the texts, the studies and the missions when they moved.
 
 ## What changes once it is ruled
 
-`LICENSE` and the license paragraph of each README in rokh-docs, rokh-lab and
-rokh-work; what a contributor there agrees to.
+The license paragraph of the README of `docs/`, `lab/` and `work/`, and a
+license of their own beside `LICENSE` if they take one; what a contributor
+there agrees to.
 
 ## Waits for
 
@@ -33,10 +34,10 @@ Nothing.
 
 ## Ruled when
 
-Each of the three repositories names its license, and the ruling says why.
+Each of the three folders names its license, and the ruling says why.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-23 and
+The owner rules by a record in `docs/rulings/` that answers D-23 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

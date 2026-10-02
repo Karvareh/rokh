@@ -23,10 +23,9 @@ evidence: "the owner's order, item 2"
   `rokh/shell/testdata/sentences.json`, the golden screens
   (`go test ./tui -update`) and the screen's header line together.
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## The change
 
@@ -37,7 +36,7 @@ The English of the sentence surface.
 `rokh/shell`, `rokh/tui`, `rokh/docs/08-sentences.md`,
 `rokh/shell/testdata/sentences.json`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
@@ -50,6 +49,7 @@ As AGENTS.md says, the vectors and the golden screens changed together.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of rokh.
+- Read the [AGENTS.md of `work/`](../AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).
 - Ask the owner, on this mission's issue, whether a private repair is under way
   in the same files.

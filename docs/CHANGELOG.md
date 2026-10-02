@@ -1,7 +1,8 @@
 # Versions of the texts
 
 Every version of the texts, with the SHA-256 of each. Source names the version
-it is measured against in `rokh/texts/texts.tsv`, by the same digests.
+it is measured against in `source/rokh/conformance/texts.tsv`, by the same
+digests.
 
 ## 1.0.0 — 2026-10-01
 

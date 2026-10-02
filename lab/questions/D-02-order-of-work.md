@@ -13,7 +13,7 @@ ruling: none
 ## The question
 
 Does the repair of the tests and the checks (W-01 to W-06) come before the
-first item of the owner's order (rokh-work's README), which does not name it?
+first item of the owner's order (the README of `work/`), which does not name it?
 
 ## Why it is asked
 
@@ -26,7 +26,7 @@ them. The findings are in [study
 
 ## What changes once it is ruled
 
-The owner's order, which rokh-work's README keeps; it was the list of what is
+The owner's order, which the README of `work/` keeps; it was the list of what is
 owed in rokh's AGENTS.md.
 
 ## Waits for
@@ -39,6 +39,6 @@ The list says it.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-02 and
+The owner rules by a record in `docs/rulings/` that answers D-02 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

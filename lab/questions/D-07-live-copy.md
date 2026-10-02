@@ -42,6 +42,6 @@ STATE.md and the contract say the same.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-07 and
+The owner rules by a record in `docs/rulings/` that answers D-07 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

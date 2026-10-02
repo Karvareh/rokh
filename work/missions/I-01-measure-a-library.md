@@ -30,10 +30,9 @@ evidence: "Q-08, Q-09, Q-10, S-14"
   person; solid-state, removable, FAT32 or exFAT media, synced folders, the
   chest; another host; more than one sample a size — *evidence: R (§F)*
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## What to find out
 
@@ -42,15 +41,15 @@ files of mixed sizes, brought through a door; the time to open, the first
 answer after a commit, a note's commit, the fetch of one file; on a hard disk
 and on a solid-state disk; again after W-14 and W-15.
 
-What is found is written as a study of rokh-lab, with its raw data, its
+What is found is written as a study of `lab/`, with its raw data, its
 commands, its host and the commit it ran against; benchmarks and probes that
-stay land in rokh.
+stay land in `source/`.
 
 ## Where
 
 a benchmark in `rokh/bench`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
@@ -58,10 +57,11 @@ Nothing.
 
 ## Done when
 
-Raw outputs in `rokh/docs/11-scale/` with host, commit and SHA-256; §4.2's
+Raw outputs in a study of `lab/`, with host, commit and SHA-256; §4.2's
 estimates confirmed or replaced.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of
-  rokh-lab.
+- Read the [AGENTS.md of `work/`](../AGENTS.md), the [AGENTS.md of
+  `lab/`](../../lab/AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).

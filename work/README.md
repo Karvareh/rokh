@@ -1,20 +1,23 @@
-# rokh-work
+# work: to be examined or done
 
 **Work: to be examined or done.** Missions that anyone, a person or a program,
 can pick up. Each says what to change or find out, why, where, what it waits
 for, and the test that says it is done.
 
-| repository | standing |
+| folder | standing |
 |---|---|
-| [rokh](https://github.com/Karvareh/rokh) | source: what runs |
-| [rokh-docs](https://github.com/Karvareh/rokh-docs) | docs: what is ruled |
-| [rokh-lab](https://github.com/Karvareh/rokh-lab) | lab: examined, not ruled |
-| **rokh-work**, this one | work: to be examined or done |
+| [`source/`](../source/README.md) | source: what runs |
+| [`docs/`](../docs/README.md) | docs: what is ruled |
+| [`lab/`](../lab/README.md) | lab: examined, not ruled |
+| **`work/`**, this one | work: to be examined or done |
 
 A mission (`W-nn`) changes something: the code, a document, the checks. An
 investigation (`I-nn`) finds something out, and what it finds becomes a study
-of rokh-lab. Most of these were set from the findings of 1.0.0, in rokh-lab,
-study 0002; a question of rokh-lab that a mission waits for is named `D-nn`.
+of [`lab/`](../lab/README.md). Most of these were set from the findings of
+1.0.0, in [study 0002](../lab/studies/0002-findings-of-1.0.0/README.md); a
+question of `lab/` that a mission waits for is named `D-nn`. A path a mission
+names in the source, such as `rokh/key`, is under `source/`, unless the
+mission says otherwise.
 
 ## Missions
 
@@ -52,7 +55,7 @@ study 0002; a question of rokh-lab that a mission waits for is named `D-nn`.
 | [W-28](missions/W-28-bring-on-the-command-line.md) | bring on the command line | p2 | blocked | W-19 | source |
 | [W-29](missions/W-29-growing-seeds.md) | Seeds that grow, and a reconcile that changes no byte when nothing changed | p3 | ready | — | source |
 | [W-30](missions/W-30-booth-content-keyring-seeding.md) | The booth's content, keyring and seeding | p3 | blocked | W-01, W-19 | source |
-| [W-31](missions/W-31-check-the-pinned-texts.md) | Check the copies of the texts against rokh-docs in the checks | p2 | ready | — | source |
+| [W-31](missions/W-31-check-the-pinned-texts.md) | Check the copies of the texts against rokh-docs in the checks | p2 | withdrawn | — | source |
 | [I-01](missions/I-01-measure-a-library.md) | Measure a library | p1 | ready | — | lab |
 | [I-02](missions/I-02-sessions-at-scale.md) | Booth sessions at scale | p2 | blocked | W-01, W-12 | lab |
 | [I-03](missions/I-03-wasteful-use.md) | Wasteful use of resources, as probes | p2 | ready | — | lab |
@@ -74,26 +77,27 @@ study 0002; a question of rokh-lab that a mission waits for is named `D-nn`.
 2. **Claim it** on its issue: say that you take it, and when you expect to
    open a pull request. One claim at a time for a mission. A claim with no word
    for thirty days lapses, and anyone may then ask to take the mission over.
-3. **Read** this repository's [AGENTS.md](AGENTS.md), and the AGENTS.md of
-   the repository the mission lands in.
-4. **Do it there**, in a branch of its own named for the mission
-   (`w-13-key-passwd`): small commits, each buildable and tested, the checks of
-   that repository passing.
-5. **Open a pull request there**, as a draft until the mission's test passes.
-   It names the mission (`W-13`), links its issue, and says how the test was
-   run and what it gave.
+3. **Read** the [AGENTS.md of `work/`](AGENTS.md), the [AGENTS.md of the
+   repository](../AGENTS.md), and the AGENTS.md of the folder the mission
+   lands in, if it has one.
+4. **Do it** in a branch of its own named for the mission
+   (`w-13-key-passwd`): small commits, each buildable and tested, the checks
+   passing.
+5. **Open a pull request**, as a draft until the mission's test passes. It
+   names the mission (`W-13`), links its issue, and says how the test was run
+   and what it gave.
 6. **When the owner merges it**, the mission's record here becomes `done`,
-   naming the commit, by a pull request here; whoever did the work may open
+   naming the commit, by a later pull request; whoever did the work may open
    it. The mission's issue then closes by itself.
 
 If a mission meets an open ruling, a test that cannot be run as written, or a
 fault it does not name, stop and say so on its issue; if a ruling is needed,
-write a question in rokh-lab. Do not decide it.
+write a question in [`lab/`](../lab/README.md). Do not decide it.
 
 ## For programs
 
 Every mission is written to be carried out from its record and the
-repository it lands in. A program that takes one claims it as a person does,
+folder it lands in. A program that takes one claims it as a person does,
 says that it is a program, and works on a person's behalf, who answers for
 what it opens. It never rules, never widens a mission, never merges and never
 marks a mission done itself. It opens draft pull requests only, with the
@@ -119,11 +123,13 @@ waits for nothing.
 
 ## The owner's order
 
-This is the owner's own list of what is owed, in the owner's order. Until Rokh
-was set out in four repositories it was the section *What is owed, in order*
-of rokh's AGENTS.md; it is kept here as the owner wrote it there (rokh,
-ba7e695), unchanged to 45306df, and its history to then is in rokh. Whether the repair of the tests
-and the checks comes before its first item is question D-02 of rokh-lab.
+This is the owner's own list of what is owed, in the owner's order. It was the
+section *What is owed, in order* of the [AGENTS.md of the
+repository](../AGENTS.md); it is kept here as the owner wrote it there
+(ba7e695), unchanged to 45306df, and its history to then is that file's. A path
+it names in the source is under `source/`. Whether the repair of the tests and
+the checks comes before its first item is question
+[D-02](../lab/questions/D-02-order-of-work.md).
 
 1. The three skipped tests: rewrite the delegate test for version 1 keys;
    obtain the ruling the two review tests contradict on, then keep one; make
@@ -152,7 +158,7 @@ and the checks comes before its first item is question D-02 of rokh-lab.
 11. Runs on Windows and Android; exFAT and a synced folder; a real engine;
     vessels of hundreds of megabytes. These are field results, not code.
 
-Every item, when done, is struck from rokh's STATE.md in the same change. The
+Every item, when done, is struck from `source/STATE.md` in the same change. The
 missions that carry each item:
 
 | item | missions |
@@ -171,7 +177,7 @@ missions that carry each item:
 
 ## A proposed order
 
-For the owner to confirm (rokh-lab, D-02). The owner's order, above, stands
+For the owner to confirm (`lab/`, D-02). The owner's order, above, stands
 until then.
 
 1. The rulings that unblock the rest: D-01, D-02, D-03, D-04, D-06.
@@ -182,7 +188,7 @@ until then.
    it names: I-01, then W-14, W-15, W-16, W-17, W-18, W-25.
 5. Documents, once the code they describe stops moving: W-20, W-21, W-27.
 6. The rest of the missions and the investigations: W-22 to W-24, W-28 to
-   W-31, I-02 to I-12.
+   W-30, I-02 to I-12.
 7. New generations, only after their rulings: D-10, D-12 to D-16.
 
 ## Proposing a mission
@@ -191,13 +197,15 @@ Open an issue with the mission form, or a pull request with a new record made
 from [the template](templates/mission.md). A mission says why, with its
 evidence; the change; where; what it needs; and the test that says it is done.
 A mission that would settle an open ruling is not a mission yet: it is a
-question for rokh-lab.
+question for [`lab/`](../lab/README.md).
 
 ## Check
 
+From the root of the repository:
+
 ```sh
-cd tools/records && go vet ./... && go test ./... && go run . -root ../.. check
-cd tools/records && go run . -root ../.. index    # writes the table of missions
+cd .github/records && go vet ./... && go test ./... && go run . -root ../.. check
+cd .github/records && go run . -root ../.. index    # writes the tables, the missions' among them
 ```
 
 The `issues` workflow keeps one issue for every mission that is not done or
@@ -206,8 +214,8 @@ withdrawn, with its title and its labels.
 ## License
 
 Copyright (c) 2026 The Karvareh authors. Free under the GNU Lesser General
-Public License, version 3 or later, as rokh: [LICENSE](LICENSE), with the GNU
-General Public License it rests on in [GPL-3.0.txt](GPL-3.0.txt). Whether the
-missions stay under it is question
-[D-23](https://github.com/Karvareh/rokh-lab/blob/main/questions/D-23-license-of-texts.md)
-of rokh-lab, and it stays open until the owner rules.
+Public License, version 3 or later, as the whole of this repository is:
+[LICENSE](../LICENSE), with the GNU General Public License it rests on in
+[GPL-3.0.txt](../GPL-3.0.txt). Whether the missions stay under it is question
+[D-23](../lab/questions/D-23-license-of-texts.md) of `lab/`, and it stays open
+until the owner rules.

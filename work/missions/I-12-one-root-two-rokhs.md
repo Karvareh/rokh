@@ -17,24 +17,23 @@ evidence: "Q-14"
   is refused by a provisional guard while T13.8 is open; whether one root key
   may found two Rokhs was not examined — *evidence: R, C*
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## What to find out
 
 One root key founding two Rokhs: what each sees, and what a bond makes of it.
 
-What is found is written as a study of rokh-lab, with its raw data, its
+What is found is written as a study of `lab/`, with its raw data, its
 commands, its host and the commit it ran against; benchmarks and probes that
-stay land in rokh.
+stay land in `source/`.
 
 ## Where
 
 `rokh/ledger`, `rokh/bond`.
 
-Paths are of rokh unless they say otherwise.
+Paths are of the source, under `source/`, unless they say otherwise.
 
 ## Waits for
 
@@ -46,5 +45,6 @@ A test that shows it.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of
-  rokh-lab.
+- Read the [AGENTS.md of `work/`](../AGENTS.md), the [AGENTS.md of
+  `lab/`](../../lab/AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).

@@ -34,8 +34,8 @@ Contract 4.5; T6.
 
 ## Waits for
 
-- [**I-03**](https://github.com/Karvareh/rokh-work/blob/main/missions/I-03-wasteful-use.md)
-  (rokh-work): Wasteful use of resources, as probes
+- [**I-03**](../../work/missions/I-03-wasteful-use.md)
+  (work/): Wasteful use of resources, as probes
 
 ## Ruled when
 
@@ -43,6 +43,6 @@ The ruling.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-22 and
+The owner rules by a record in `docs/rulings/` that answers D-22 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

@@ -42,8 +42,8 @@ The findings are kept, with their evidence, in [study
 N, contract B1, `rokh/transport`, `docs/07`.
 
 One sentence of `docs/07`, in
-[**W-20**](https://github.com/Karvareh/rokh-work/blob/main/missions/W-20-true-documents.md)
-(rokh-work): The documents of rokh made true, also waits for it; the rest of
+[**W-20**](../../work/missions/W-20-true-documents.md)
+(work/): The documents of rokh made true, also waits for it; the rest of
 that mission does not.
 
 ## Waits for
@@ -56,6 +56,6 @@ The texts say it; code and tests follow.
 
 ## How it is ruled
 
-The owner rules in rokh-docs, by a record in `rulings/` that answers D-03 and
+The owner rules by a record in `docs/rulings/` that answers D-03 and
 changes the texts it changes. This record then says `status: ruled` and names
 that ruling, and the missions it blocks no longer need it.

@@ -21,10 +21,9 @@ evidence: "S-14; the owner's order, item 11"
   Windows and Android; exFAT and a synced folder; a real engine; vessels of
   hundreds of megabytes. These are field results, not code.
 
-The findings are kept, with their evidence, in rokh-lab, [study
-0002](https://github.com/Karvareh/rokh-lab/blob/main/studies/0002-findings-of-1.0.0/README.md);
-the measurements in [study
-0001](https://github.com/Karvareh/rokh-lab/blob/main/studies/0001-scale/README.md).
+The findings are kept, with their evidence, in `lab/`, [study
+0002](../../lab/studies/0002-findings-of-1.0.0/README.md); the measurements in
+[study 0001](../../lab/studies/0001-scale/README.md).
 
 ## What to find out
 
@@ -32,9 +31,9 @@ Field results: Windows, Android, macOS; exFAT; a synced folder; FAT32 on
 removable media; vessels of hundreds of megabytes; a real engine; a solid-state
 disk's bytes written for each note.
 
-What is found is written as a study of rokh-lab, with its raw data, its
+What is found is written as a study of `lab/`, with its raw data, its
 commands, its host and the commit it ran against; benchmarks and probes that
-stay land in rokh.
+stay land in `source/`.
 
 ## Waits for
 
@@ -49,5 +48,6 @@ Results in STATE.md, under Measured or Never run.
 
 ## Before beginning
 
-- Read this repository's [AGENTS.md](../AGENTS.md), and the AGENTS.md of
-  rokh-lab.
+- Read the [AGENTS.md of `work/`](../AGENTS.md), the [AGENTS.md of
+  `lab/`](../../lab/AGENTS.md) and the [AGENTS.md of the
+  repository](../../AGENTS.md).

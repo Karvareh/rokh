@@ -15,23 +15,23 @@ date: 2026-10-01
 > the documents (§4). What was measured, read, extrapolated and proposed are
 > told apart, each with its evidence (§5). Nothing here is a ruling, and a
 > limit of version 1 is never called a limit of Rokh. The work these findings
-> ask for is in rokh-work, and the questions they put to the owner are in
-> `questions/` of this repository (§6).
+> ask for is in `work/`, and the questions they put to the owner are in
+> `lab/questions/` (§6).
 
 *This study was `WORKPLAN.md` in rokh at commit b8f909a, where it was written
-as a plan of work; its plan is now the missions of rokh-work and the questions
-of this repository, and the study keeps the findings. Paths named here are
-paths of rokh, and `STATE.md` and `AGENTS.md` are rokh's. Where a finding says
-"AGENTS.md, owed n", that list is now the owner's order, kept in the README of
-rokh-work.*
+as a plan of work; its plan is now the missions of `work/` and the questions of
+`lab/`, and the study keeps the findings. Paths named here are paths of the
+source as they were then, now under `source/`; `STATE.md` is the source's, and
+`AGENTS.md` the repository's. Where a finding says "AGENTS.md, owed n", that
+list is now the owner's order, kept in the README of `work/`.*
 
 ## 0. How to read this study
 
 **Identifiers.** A finding of the audit is `A-nn`, of the scale study `S-nn`,
 of its page on seeds by role `R-nn`, and of the comparison with the three
 requirements `Q-nn`. A mission is `W-nn` and an investigation `I-nn`, both in
-`missions/` of rokh-work; a question for the owner is `D-nn`, in `questions/`
-of this repository. Section numbers such as §M5 are those of
+`work/missions/`; a question for the owner is `D-nn`, in `lab/questions/`.
+Section numbers such as §M5 are those of
 [study 0001](../0001-scale/README.md).
 
 **The state of a finding.**
@@ -490,15 +490,16 @@ The plan this study was written with is kept as records, so that each item can
 be taken up, claimed and closed on its own:
 
 - **Missions and investigations**, `W-nn` and `I-nn`: in
-  [rokh-work](https://github.com/Karvareh/rokh-work), `missions/`, each with
-  its priority, evidence, change, files, what it needs and the test that says
-  it is done. W-00 is done (4111458, f459779). W-31, the check of the texts'
-  pin, was added when the texts moved to rokh-docs.
-- **Questions for the owner**, `D-nn`: in [`questions/`](../../questions/) of
-  this repository, each with what it blocks. D-23 to D-25 were added when Rokh
-  was set out in four repositories.
-- **The order** proposed for them, and how they meet the owed list of rokh's
-  AGENTS.md: in the README of rokh-work.
+  [`work/missions/`](../../../work/missions/), each with its priority,
+  evidence, change, files, what it needs and the test that says it is done.
+  W-00 is done (4111458, f459779). W-31, a check of the copies of the texts,
+  was added while the texts were kept in a repository of their own, and
+  withdrawn when they came back into `docs/`.
+- **Questions for the owner**, `D-nn`: in [`lab/questions/`](../../questions/),
+  each with what it blocks. D-23 to D-25 were added when Rokh was set out in
+  four repositories, before the four became folders of one.
+- **The order** proposed for them, and how they meet the owed list of the
+  repository's AGENTS.md: in the README of [`work/`](../../../work/README.md).
 
 When a mission is done or a question ruled, the state of its findings in §3
 changes here, by a commit that says so.

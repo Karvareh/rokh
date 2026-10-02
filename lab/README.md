@@ -1,4 +1,4 @@
-# rokh-lab
+# lab: examined, not ruled
 
 **Lab: examined, not ruled.** Studies of Rokh as it is built and as its texts
 describe it, measurements with their raw data, proposals, and the questions
@@ -6,12 +6,16 @@ that wait for the owner's ruling. Nothing here binds. A proposal here is not a
 plan of source; a finding here is not a ruling; a number here holds for the
 commit and the host it was measured on.
 
-| repository | standing |
+| folder | standing |
 |---|---|
-| [rokh](https://github.com/Karvareh/rokh) | source: what runs |
-| [rokh-docs](https://github.com/Karvareh/rokh-docs) | docs: what is ruled |
-| **rokh-lab**, this one | lab: examined, not ruled |
-| [rokh-work](https://github.com/Karvareh/rokh-work) | work: to be examined or done |
+| [`source/`](../source/README.md) | source: what runs |
+| [`docs/`](../docs/README.md) | docs: what is ruled |
+| **`lab/`**, this one | lab: examined, not ruled |
+| [`work/`](../work/README.md) | work: to be examined or done |
+
+A path the studies and the questions name in the source, such as
+`rokh/ledger` or `rokh-home/gate`, is under [`source/`](../source/README.md);
+a study's paths are as they were at the commit it names.
 
 ## Studies
 
@@ -64,8 +68,8 @@ A study examines one thing, and keeps its evidence beside it.
 - **Every statement says its kind:** measured (M), read in the code (C),
   extrapolated (X) or proposed (P). A finding that was reproduced says so, and
   one that was not says that too.
-- **Every measurement names its command, its host and the commit** of rokh it
-  ran against, and its raw output is kept in the study's folder, with its
+- **Every measurement names its command, its host and the commit** it ran
+  against, and its raw output is kept in the study's folder, with its
   SHA-256. A size that ran once says so.
 - **What was not run is written down**, as plainly as what was.
 - **A limit of a version is called a limit of that version.** Nothing found in
@@ -81,11 +85,12 @@ and its data; [the template](templates/study.md) shows its front matter.
 1. It is written as `questions/D-nn-words.md`, from
    [the template](templates/question.md), or opened as an issue with the
    question form: what is asked, why, with the evidence, what changes once it
-   is ruled, and what it blocks in rokh-work.
+   is ruled, and what it blocks in [`work/`](../work/README.md).
 2. Anyone may examine it: on its issue, or by a study.
-3. The owner rules, in rokh-docs: a record in `rulings/` that answers it.
+3. The owner rules: a record in [`docs/rulings/`](../docs/rulings/README.md)
+   that answers it.
 4. Its record here becomes `ruled`, naming that ruling, and its issue closes.
-   The missions it blocked in rokh-work no longer wait for it.
+   The missions it blocked in `work/` no longer wait for it.
 
 ## Statuses
 
@@ -100,9 +105,11 @@ and its data; [the template](templates/study.md) shows its front matter.
 
 ## Check
 
+From the root of the repository:
+
 ```sh
-cd tools/records && go vet ./... && go test ./... && go run . -root ../.. check
-cd tools/records && go run . -root ../.. index    # writes the two tables above
+cd .github/records && go vet ./... && go test ./... && go run . -root ../.. check
+cd .github/records && go run . -root ../.. index    # writes the tables, the two above among them
 ```
 
 The `issues` workflow keeps one issue for every open question, labelled
@@ -111,8 +118,8 @@ The `issues` workflow keeps one issue for every open question, labelled
 ## License
 
 Copyright (c) 2026 The Karvareh authors. Free under the GNU Lesser General
-Public License, version 3 or later, as rokh: [LICENSE](LICENSE), with the GNU
-General Public License it rests on in [GPL-3.0.txt](GPL-3.0.txt). Whether the
-studies and the questions stay under it is question
-[D-23](questions/D-23-license-of-texts.md), and it stays open until the owner
-rules.
+Public License, version 3 or later, as the whole of this repository is:
+[LICENSE](../LICENSE), with the GNU General Public License it rests on in
+[GPL-3.0.txt](../GPL-3.0.txt). Whether the studies and the questions stay under
+it is question [D-23](questions/D-23-license-of-texts.md), and it stays open
+until the owner rules.

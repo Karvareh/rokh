@@ -69,7 +69,7 @@ say above rests on these tests.
   on one side, though no event, head or key changes.
 - A large file that goes in or out through the home takes memory several
   times its size, and through the core (`content.Bring`, `content.Fetch`)
-  four times: 8 GiB for a file of 2 GiB (rokh-lab, study 0001).
+  four times: 8 GiB for a file of 2 GiB (`lab/`, study 0001).
 - A booth does not serve `content.put`, `content.get`, the keyring, or
   seeding between two booths; those are done with the command line on the
   folder.
@@ -91,28 +91,28 @@ say above rests on these tests.
   changed ones (2.6), and verifies every segment twice: once a vessel passes
   4 GiB of capacity, each recording writes 1/4096 of the capacity (256 MiB at
   1 TiB), however little it holds, and takes about 5 µs for every slab
-  (rokh-lab, study 0001).
+  (`lab/`, study 0001).
 - A door's answers take longer as the history grows: each commit drops the
   vessel's index, the references are found by opening every branch pointer
   ever recorded, and the ledger's order is made again whole. At 300,000
-  events a write takes 1.2 s and a status 0.75 s (rokh-lab, study 0001).
+  events a write takes 1.2 s and a status 0.75 s (`lab/`, study 0001).
   The index is made again by reading, verifying and opening every pack,
   content included, so an opening and the first answer after every commit
   read all the content a vessel holds: read in the code, and not measured
-  beyond 2 GiB of content (rokh-lab, study 0002, Q-08).
+  beyond 2 GiB of content (`lab/`, study 0002, Q-08).
 - Every grant, revocation and keyring change keeps its own copy of all of
   them in its causal past, so their memory grows as the square of the keys
-  named: 2 GiB for grants to 8,000 keys (rokh-lab, study 0001).
+  named: 2 GiB for grants to 8,000 keys (`lab/`, study 0001).
 - Every opening verifies the whole history again and holds it in memory, and
   nothing keeps a verification from one opening to the next: a door opened on
   300,000 events in 44 s and held about 3 KB for each. N2.6 asks that one
   person can verify the whole ledger, not that every opening does
-  (rokh-lab, study 0001).
+  (`lab/`, study 0001).
 - The writing turn goes to whichever door tries first once it is free, not to
   the one that asked first: with many doors writing, the slowest wait far
   longer than the rest, and among 128 concurrent writers on 32 doors, all
   with one key, 11 writes of 1,024 were refused after waiting 15 s
-  (rokh-lab, study 0001).
+  (`lab/`, study 0001).
 - `rokh-courier apply`, `rokh bind` and `rokh bound` speak the protocol of
   the version before this one. Against `rokh daemon` the courier is refused
   (`hello_first`) at its first request, reports that as one rejected event,
@@ -202,12 +202,13 @@ and one thing of 2 GiB of content; a history of a million events; grants to
 8,000 keys in one ledger and a million keys at an open address; 128
 concurrent writers with one key; two thousand seeds in one lineage and
 twenty-four through the command line. What was measured, what was read in the
-code, what is extrapolated and what is proposed are kept apart in study 0001
-of [rokh-lab](https://github.com/Karvareh/rokh-lab), "How far one Rokh goes",
+code, what is extrapolated and what is proposed are kept apart in [study
+0001](../lab/studies/0001-scale/README.md) of `lab/`, "How far one Rokh goes",
 with its raw data; the benchmarks are in `rokh/bench` and `rokh/cmd/rokh`, and
 run only when asked. Every finding of the audit of 1.0.0 and of that study,
-with its evidence and its state, is in study 0002 of rokh-lab, and the work
-they ask for is in [rokh-work](https://github.com/Karvareh/rokh-work).
+with its evidence and its state, is in [study
+0002](../lab/studies/0002-findings-of-1.0.0/README.md), and the work they ask
+for is in [`work/`](../work/README.md).
 
 ## Never run
 
@@ -218,4 +219,4 @@ they ask for is in [rokh-work](https://github.com/Karvareh/rokh-work).
 - Vessels of more than 16 GiB of capacity on a disk. Larger capacities, to
   1 TiB, were made, opened and written only in memory, with the slabs nobody
   wrote kept as their length, and held a few notes each
-  (rokh-lab, study 0001).
+  (`lab/`, study 0001).

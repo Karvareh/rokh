@@ -5,7 +5,7 @@ kind: mission
 priority: p2
 status: ready
 needs: none
-lands-in: rokh
+lands-in: source
 evidence: "the findings or the texts it rests on: A-nn, T6.4, contract 2.6"
 ---
 
@@ -13,8 +13,8 @@ evidence: "the findings or the texts it rests on: A-nn, T6.4, contract 2.6"
 
 ## Why
 
-What is wrong or missing, with its evidence: the finding of rokh-lab, the
-text, the test, the measurement. Enough that a person or a program who has
+What is wrong or missing, with its evidence: a finding of a study of `lab/`,
+the text, the test, the measurement. Enough that a person or a program who has
 read nothing else knows why the change is wanted.
 
 ## The change
@@ -25,11 +25,11 @@ out*.
 
 ## Where
 
-The files and packages, as paths of the repository it lands in.
+The files and packages, as paths of the folder it lands in.
 
 ## Waits for
 
-The missions it needs (`W-nn`, `I-nn`) and the questions of rokh-lab it waits
+The missions it needs (`W-nn`, `I-nn`) and the questions of `lab/` it waits
 for (`D-nn`), each also named in `needs`; or *Nothing.*
 
 ## Done when
@@ -39,5 +39,5 @@ before the change and pass after it.
 
 ## Before beginning
 
-- Read this repository's AGENTS.md, and the AGENTS.md of the repository it
-  lands in.
+- Read the AGENTS.md of `work/` and of the repository, and the AGENTS.md of
+  the folder it lands in, if it has one.

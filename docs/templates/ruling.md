@@ -12,7 +12,7 @@ replaced-by: none
 
 ## The question
 
-What was asked, and where: a question of rokh-lab (`D-nn`), named in
+What was asked, and where: a question of `lab/` (`D-nn`), named in
 `answers`. If the owner rules without a question, why.
 
 ## The ruling
@@ -31,5 +31,7 @@ The rulings it replaces, named in `replaces`, and why. Each of them is marked
 
 ## What source must now do
 
-The mission of rokh-work that takes this version of the texts up in rokh, or
-`none`, if nothing in source changes.
+What changes in the source with this version of the texts: its pin,
+`source/rokh/conformance/texts.tsv`, and the obligations and the code the new
+version asks for, which change in the same pull request as the texts; or
+`none`, if nothing in the source changes.
