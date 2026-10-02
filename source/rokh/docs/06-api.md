@@ -1,7 +1,8 @@
 # The daemon API
 
 > This document describes the booth of the version before 1.0.0. The protocol
-> of 1.0.0, `rokh.booth/1`, is in `texts/contracts/v1.md` section 5 and in the code
+> of 1.0.0, `rokh.booth/1`, is in [the contract of version
+> 1](../../../docs/contracts/v1.md), section 5, and in the code
 > of `booth/`, `daemon/` and `rokh-home/gate`; the examples and the op names
 > below may differ from it. Rewriting this document against 1.0.0 is owed;
 > see `STATE.md`.

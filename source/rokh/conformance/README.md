@@ -2,6 +2,16 @@
 
 This folder adds nothing to Rokh. **It measures.**
 
+## What it measures against
+
+The map reads the two specification texts, the treatise (`T`) and the ledger
+without consensus (`N`), where they are kept: [`docs/`](../../../docs/README.md)
+of this repository. `texts.tsv` pins the version of the texts this code is
+measured against, by the SHA-256 of each, and a test fails while a text in
+`docs/` differs from its pin. A text changes in `docs/` by a ruling; the code
+takes the new version up by changing the pin, with the obligations and the
+code the new version asks for, in one change.
+
 ## Why it was written again
 
 The first version had two structural faults, and a review caught both:
