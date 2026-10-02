@@ -1,0 +1,32 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleWriters
+BenchmarkScaleWriters/doors=1/writers=1
+BenchmarkScaleWriters/doors=1/writers=1-4         	       1	1224476352 ns/op	      1010 accepted-after	         0 failed	        29.51 max-ms	        26.27 p50-ms	        28.59 p99-ms	        37.57 writes/s
+BenchmarkScaleWriters/doors=1/writers=4
+BenchmarkScaleWriters/doors=1/writers=4-4         	       1	1749349902 ns/op	      1034 accepted-after	         0 failed	       147.9 max-ms	        96.82 p50-ms	       130.2 p99-ms	        38.48 writes/s
+BenchmarkScaleWriters/doors=1/writers=16
+BenchmarkScaleWriters/doors=1/writers=16-4        	       1	4973086854 ns/op	      1130 accepted-after	         0 failed	       574.1 max-ms	       482.5 p50-ms	       550.2 p99-ms	        32.35 writes/s
+BenchmarkScaleWriters/doors=1/writers=64
+BenchmarkScaleWriters/doors=1/writers=64-4        	       1	17509238696 ns/op	      1514 accepted-after	         0 failed	      2296 max-ms	      1956 p50-ms	      2283 p99-ms	        31.19 writes/s
+BenchmarkScaleWriters/doors=2/writers=1
+BenchmarkScaleWriters/doors=2/writers=1-4         	       1	1665813538 ns/op	      1018 accepted-after	         0 failed	       252.9 max-ms	        28.42 p50-ms	        36.66 p99-ms	        34.00 writes/s
+BenchmarkScaleWriters/doors=4/writers=1
+BenchmarkScaleWriters/doors=4/writers=1-4         	       1	2557528684 ns/op	      1034 accepted-after	         0 failed	       753.7 max-ms	        28.07 p50-ms	       504.9 p99-ms	        33.24 writes/s
+BenchmarkScaleWriters/doors=8/writers=1
+BenchmarkScaleWriters/doors=8/writers=1-4         	       1	3824453223 ns/op	      1066 accepted-after	         0 failed	      1491 max-ms	        24.54 p50-ms	      1255 p99-ms	        37.63 writes/s
+BenchmarkScaleWriters/doors=16/writers=1
+BenchmarkScaleWriters/doors=16/writers=1-4        	       1	6377882238 ns/op	      1130 accepted-after	         0 failed	      2972 max-ms	        22.09 p50-ms	      2512 p99-ms	        40.31 writes/s
+BenchmarkScaleWriters/doors=32/writers=1
+BenchmarkScaleWriters/doors=32/writers=1-4        	       1	12002838214 ns/op	      1258 accepted-after	         0 failed	      6213 max-ms	        21.68 p50-ms	      5465 p99-ms	        39.99 writes/s
+BenchmarkScaleWriters/doors=8/writers=8
+BenchmarkScaleWriters/doors=8/writers=8-4         	       1	15380756232 ns/op	      1514 accepted-after	         0 failed	     11698 max-ms	       204.2 p50-ms	     11635 p99-ms	        38.31 writes/s
+BenchmarkScaleWriters/doors=16/writers=4
+BenchmarkScaleWriters/doors=16/writers=4-4        	       1	16140717907 ns/op	      1514 accepted-after	         0 failed	     12083 max-ms	        93.56 p50-ms	     11060 p99-ms	        39.27 writes/s
+BenchmarkScaleWriters/doors=32/writers=4
+    scale_door_test.go:218: failed writes by code: map[turn_busy:11]
+BenchmarkScaleWriters/doors=32/writers=4-4        	       1	33247849799 ns/op	      2015 accepted-after	        11.00 failed	     25466 max-ms	        96.44 p50-ms	     23103 p99-ms	        36.66 writes/s
+PASS
+ok  	rokh/bench	117.501s

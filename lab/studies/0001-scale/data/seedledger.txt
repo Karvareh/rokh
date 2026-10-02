@@ -1,0 +1,23 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleSeedLedger
+BenchmarkScaleSeedLedger/line/seeds=250
+BenchmarkScaleSeedLedger/line/seeds=250-4         	       1	 409283794 ns/op	      1000 depth	      1001 events	     96957 heap-B/seed	        23.12 heap-MiB	       148.6 judge-us/event	       482.3 last-take-us	         0.1206 load-s	         0.05439 peak-rss-GiB
+BenchmarkScaleSeedLedger/line/seeds=500
+BenchmarkScaleSeedLedger/line/seeds=500-4         	       1	1010342117 ns/op	      2000 depth	      2001 events	    185398 heap-B/seed	        88.40 heap-MiB	       199.1 judge-us/event	       268.4 last-take-us	         0.3735 load-s	         0.1810 peak-rss-GiB
+BenchmarkScaleSeedLedger/line/seeds=1000
+BenchmarkScaleSeedLedger/line/seeds=1000-4        	       1	3432381628 ns/op	      4000 depth	      4001 events	    352716 heap-B/seed	       336.4 heap-MiB	       375.1 judge-us/event	       284.1 last-take-us	         1.367 load-s	         0.6648 peak-rss-GiB
+BenchmarkScaleSeedLedger/line/seeds=2000
+BenchmarkScaleSeedLedger/line/seeds=2000-4        	       1	10423511541 ns/op	      8000 depth	      8001 events	    679148 heap-B/seed	      1295 heap-MiB	       623.4 judge-us/event	       876.7 last-take-us	         4.309 load-s	         2.544 peak-rss-GiB
+BenchmarkScaleSeedLedger/fan/seeds=250
+BenchmarkScaleSeedLedger/fan/seeds=250-4          	       1	 400496077 ns/op	       751.0 depth	      1001 events	     71856 heap-B/seed	        17.13 heap-MiB	       141.0 judge-us/event	       535.1 last-take-us	         0.1305 load-s	         2.544 peak-rss-GiB
+BenchmarkScaleSeedLedger/fan/seeds=500
+BenchmarkScaleSeedLedger/fan/seeds=500-4          	       1	 975463502 ns/op	      1501 depth	      2001 events	    130743 heap-B/seed	        62.34 heap-MiB	       189.5 judge-us/event	       320.9 last-take-us	         0.3540 load-s	         2.544 peak-rss-GiB
+BenchmarkScaleSeedLedger/fan/seeds=1000
+BenchmarkScaleSeedLedger/fan/seeds=1000-4         	       1	2736678077 ns/op	      3001 depth	      4001 events	    253439 heap-B/seed	       241.7 heap-MiB	       288.6 judge-us/event	      2878 last-take-us	         1.106 load-s	         2.544 peak-rss-GiB
+BenchmarkScaleSeedLedger/fan/seeds=2000
+BenchmarkScaleSeedLedger/fan/seeds=2000-4         	       1	9316377032 ns/op	      6001 depth	      8001 events	    485547 heap-B/seed	       926.1 heap-MiB	       536.3 judge-us/event	      5863 last-take-us	         4.034 load-s	         2.544 peak-rss-GiB
+PASS
+ok  	rokh/bench	28.878s

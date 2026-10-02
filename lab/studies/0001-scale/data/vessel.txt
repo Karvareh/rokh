@@ -1,0 +1,35 @@
+goos: linux
+goarch: amd64
+pkg: rokh/bench
+cpu: [product name removed] Processor @ 2.10GHz
+BenchmarkScaleVessel
+BenchmarkScaleVessel/S=256KiB/N=16/V=4MiB
+BenchmarkScaleVessel/S=256KiB/N=16/V=4MiB-4         	       1	  75140918 ns/op	         4.645 commit-ms	         0.007152 create-s	         3.000 files-written/commit	         0.2609 open-heap-MiB	         0.5000 open-read-MiB	         0.0008305 open-s	         0.01930 peak-rss-GiB	         1.812 read-MiB/commit	         1.000 segments	         0.004150 vessel-GiB	         0.5625 write-MiB/commit	      1157 write-amp
+BenchmarkScaleVessel/S=256KiB/N=256/V=64MiB
+BenchmarkScaleVessel/S=256KiB/N=256/V=64MiB-4       	       1	 106582756 ns/op	         4.933 commit-ms	         0.02669 create-s	         3.000 files-written/commit	         0.2734 open-heap-MiB	         0.5000 open-read-MiB	         0.001689 open-s	         0.02240 peak-rss-GiB	         1.812 read-MiB/commit	         1.000 segments	         0.06274 vessel-GiB	         0.5625 write-MiB/commit	      1157 write-amp
+BenchmarkScaleVessel/S=256KiB/N=4096/V=1GiB
+BenchmarkScaleVessel/S=256KiB/N=4096/V=1GiB-4       	       1	 928728266 ns/op	        23.42 commit-ms	         0.6093 create-s	         3.000 files-written/commit	         0.4789 open-heap-MiB	         0.5000 open-read-MiB	         0.01959 open-s	         0.02555 peak-rss-GiB	         1.812 read-MiB/commit	         1.000 segments	         1.000 vessel-GiB	         0.5625 write-MiB/commit	      1157 write-amp
+BenchmarkScaleVessel/S=256KiB/N=16384/V=4GiB
+BenchmarkScaleVessel/S=256KiB/N=16384/V=4GiB-4      	       1	3864674662 ns/op	        67.26 commit-ms	         2.861 create-s	         6.000 files-written/commit	         1.135 open-heap-MiB	         1.250 open-read-MiB	         0.05889 open-s	         0.05116 peak-rss-GiB	         3.312 read-MiB/commit	         4.000 segments	         4.000 vessel-GiB	         1.312 write-MiB/commit	      2699 write-amp
+BenchmarkScaleVessel/S=256KiB/N=65536/V=16GiB
+BenchmarkScaleVessel/S=256KiB/N=65536/V=16GiB-4     	       1	12963968845 ns/op	       296.6 commit-ms	         8.855 create-s	        18.00 files-written/commit	         3.761 open-heap-MiB	         4.250 open-read-MiB	         0.2409 open-s	         0.1569 peak-rss-GiB	         9.312 read-MiB/commit	        16.00 segments	        16.00 vessel-GiB	         4.312 write-MiB/commit	      8867 write-amp
+BenchmarkScaleVessel/S=256KiB/N=262144/V=64GiB
+BenchmarkScaleVessel/S=256KiB/N=262144/V=64GiB-4    	       1	44472018222 ns/op	      1260 commit-ms	        26.33 create-s	        66.00 files-written/commit	        14.26 open-heap-MiB	        16.25 open-read-MiB	         1.392 open-s	         0.5466 peak-rss-GiB	        33.31 read-MiB/commit	        64.00 segments	        64.00 vessel-GiB	        16.31 write-MiB/commit	     33539 write-amp
+BenchmarkScaleVessel/S=256KiB/N=1048576/V=256GiB
+BenchmarkScaleVessel/S=256KiB/N=1048576/V=256GiB-4  	       1	166006043671 ns/op	      5169 commit-ms	        93.51 create-s	       258.0 files-written/commit	        56.27 open-heap-MiB	        64.25 open-read-MiB	         4.747 open-s	         2.079 peak-rss-GiB	       129.3 read-MiB/commit	       256.0 segments	       256.0 vessel-GiB	        64.31 write-MiB/commit	    132229 write-amp
+BenchmarkScaleVessel/S=256KiB/N=4194304/V=1TiB
+BenchmarkScaleVessel/S=256KiB/N=4194304/V=1TiB-4    	       1	599161718087 ns/op	     23216 commit-ms	       346.2 create-s	      1026 files-written/commit	       224.3 open-heap-MiB	       256.2 open-read-MiB	        19.14 open-s	         7.103 peak-rss-GiB	       513.3 read-MiB/commit	      1024 segments	      1024 vessel-GiB	       256.3 write-MiB/commit	    526987 write-amp
+BenchmarkScaleVessel/S=1MiB/N=16/V=16MiB
+BenchmarkScaleVessel/S=1MiB/N=16/V=16MiB-4          	       1	 141149689 ns/op	         9.191 commit-ms	         0.008813 create-s	         3.000 files-written/commit	         0.2610 open-heap-MiB	         1.250 open-read-MiB	         0.001665 open-s	         7.102 peak-rss-GiB	         5.562 read-MiB/commit	         1.000 segments	         0.01587 vessel-GiB	         2.062 write-MiB/commit	      4241 write-amp
+BenchmarkScaleVessel/S=1MiB/N=4096/V=4GiB
+BenchmarkScaleVessel/S=1MiB/N=4096/V=4GiB-4         	       1	1834402412 ns/op	        26.94 commit-ms	         1.432 create-s	         3.000 files-written/commit	         0.4787 open-heap-MiB	         1.250 open-read-MiB	         0.02039 open-s	         7.102 peak-rss-GiB	         5.562 read-MiB/commit	         1.000 segments	         4.000 vessel-GiB	         2.062 write-MiB/commit	      4241 write-amp
+BenchmarkScaleVessel/S=1MiB/N=65536/V=64GiB
+BenchmarkScaleVessel/S=1MiB/N=65536/V=64GiB-4       	       1	40626209951 ns/op	       372.7 commit-ms	        35.72 create-s	        18.00 files-written/commit	         3.761 open-heap-MiB	        16.25 open-read-MiB	         0.2802 open-s	         7.102 peak-rss-GiB	        35.56 read-MiB/commit	        16.00 segments	        64.00 vessel-GiB	        17.06 write-MiB/commit	     35081 write-amp
+BenchmarkScaleVessel/S=64MiB/N=16/V=1GiB
+BenchmarkScaleVessel/S=64MiB/N=16/V=1GiB-4          	       1	11162425933 ns/op	       716.6 commit-ms	         0.4184 create-s	         3.000 files-written/commit	         0.2610 open-heap-MiB	        64.25 open-read-MiB	         0.1688 open-s	         7.102 peak-rss-GiB	       320.6 read-MiB/commit	         1.000 segments	         1.000 vessel-GiB	       128.1 write-MiB/commit	    263301 write-amp
+BenchmarkScaleVessel/S=64MiB/N=64/V=4GiB
+BenchmarkScaleVessel/S=64MiB/N=64/V=4GiB-4          	       1	11301597136 ns/op	       757.5 commit-ms	         1.020 create-s	         3.000 files-written/commit	         0.2641 open-heap-MiB	        64.25 open-read-MiB	         0.1077 open-s	         7.102 peak-rss-GiB	       320.6 read-MiB/commit	         1.000 segments	         4.000 vessel-GiB	       128.1 write-MiB/commit	    263301 write-amp
+BenchmarkScaleVessel/S=64MiB/N=256/V=16GiB
+BenchmarkScaleVessel/S=64MiB/N=256/V=16GiB-4        	       1	15753812994 ns/op	       840.0 commit-ms	         3.580 create-s	         3.000 files-written/commit	         0.2738 open-heap-MiB	        64.25 open-read-MiB	         0.1486 open-s	         7.102 peak-rss-GiB	       320.6 read-MiB/commit	         1.000 segments	        16.00 vessel-GiB	       128.1 write-MiB/commit	    263301 write-amp
+PASS
+ok  	rokh/bench	908.620s

@@ -1,0 +1,36 @@
+== chain 18:37:45
+   exit 0 18:42:54
+== authority 18:42:54
+   exit 0 18:43:23
+== envelope 18:43:23
+   exit 0 18:43:24
+== passphrase 18:43:24
+   exit 0 18:43:25
+== leaf 18:43:25
+   exit 0 18:43:32
+== seeds 18:43:32
+   exit 0 18:44:42
+== writers 18:44:42
+   exit 0 18:45:38
+== door 18:45:38
+   exit 0 18:48:56
+== vessel 18:48:56
+   exit 0 19:04:05
+== vesseldisk 19:04:05
+   exit 0 19:09:41
+== all done 19:09:41
+== revokes 19:09:44
+   exit 0 19:10:01
+== openaddress 19:10:01
+   exit 0 19:13:49
+== seedledger 19:13:49
+   exit 0 19:14:18
+== reconcile 19:14:18
+   exit 0 19:16:25
+== content 19:16:25
+   exit 0 19:19:36
+== readers 19:19:36
+   exit 0 19:20:26
+== writers2 19:20:26
+   exit 0 19:22:24
+== round two done 19:22:24
