@@ -5,7 +5,7 @@ kind: investigation
 priority: p3
 status: blocked
 needs: W-03, W-22
-lands-in: rokh-lab
+lands-in: lab
 evidence: "S-14; the owner's order, item 11"
 ---
 

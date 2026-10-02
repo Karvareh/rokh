@@ -5,7 +5,7 @@ kind: mission
 priority: p3
 status: blocked
 needs: W-01, W-19
-lands-in: rokh
+lands-in: source
 evidence: "the owner's order, item 8"
 ---
 

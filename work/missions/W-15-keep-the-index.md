@@ -5,7 +5,7 @@ kind: mission
 priority: p2
 status: blocked
 needs: I-01
-lands-in: rokh
+lands-in: source
 evidence: "S-04, S-13, Q-08"
 ---
 

@@ -1,0 +1,57 @@
+name: issues
+
+# Keeps one issue for every question of lab/ and every mission of work/:
+# opened while the record is open, with the record's title, its place and its
+# labels, closed when the record is. The record is the truth; its issue is
+# where it is claimed and talked about.
+#
+# On a push it runs only while the repository variable RECORDS_ISSUES is
+# "on". Set it once every open record's issue is in this repository: a record
+# whose issue is elsewhere would be given a second one. Asked for by hand, it
+# runs, and only says what it would do unless it is asked to act.
+
+on:
+  push:
+    branches: [main]
+    paths: ['lab/questions/**', 'work/missions/**']
+  workflow_dispatch:
+    inputs:
+      act:
+        description: 'Open, edit, close and reopen the issues; unset, only say what would be done'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: issues
+  cancel-in-progress: false
+
+jobs:
+  issues:
+    if: github.event_name == 'workflow_dispatch' || vars.RECORDS_ISSUES == 'on'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: .github/records/go.mod
+      - name: the labels first, so that every issue can carry them
+        if: github.event_name == 'push' || inputs.act
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          tab=$(printf '\t')
+          grep -v -e '^#' -e '^$' .github/labels.tsv |
+          while IFS="$tab" read -r name color description; do
+            gh label create "$name" --color "$color" --description "$description" --force
+          done
+      - name: one issue for every record
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          DRY: ${{ (github.event_name == 'workflow_dispatch' && !inputs.act) && '-dry' || '' }}
+        run: cd .github/records && go run . -root ../.. issues $DRY

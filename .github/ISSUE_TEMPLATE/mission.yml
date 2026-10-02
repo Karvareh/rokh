@@ -17,17 +17,17 @@ body:
     attributes:
       label: Where it lands
       options:
-        - rokh
-        - rokh-docs
-        - rokh-lab
-        - rokh-work
+        - source
+        - docs
+        - lab
+        - work
     validations:
       required: true
   - type: textarea
     id: why
     attributes:
       label: Why
-      description: What is wrong or missing, with its evidence (a finding of rokh-lab, a text, a test, a measurement).
+      description: What is wrong or missing, with its evidence (a finding of a study of lab/, a text, a test, a measurement).
     validations:
       required: true
   - type: textarea
@@ -40,7 +40,7 @@ body:
     id: needs
     attributes:
       label: What it needs
-      description: Missions (W-nn, I-nn) and questions of rokh-lab (D-nn) it waits for, or none.
+      description: Missions (W-nn, I-nn) and questions of lab/ (D-nn) it waits for, or none.
   - type: textarea
     id: done
     attributes:

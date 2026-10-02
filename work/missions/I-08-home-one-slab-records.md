@@ -5,7 +5,7 @@ kind: investigation
 priority: p3
 status: ready
 needs: none
-lands-in: rokh-lab
+lands-in: lab
 evidence: "A-28"
 ---
 

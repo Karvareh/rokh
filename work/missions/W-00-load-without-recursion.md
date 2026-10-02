@@ -5,7 +5,7 @@ kind: mission
 priority: p1
 status: done
 needs: none
-lands-in: rokh
+lands-in: source
 evidence: "S-01, S-02"
 ---
 

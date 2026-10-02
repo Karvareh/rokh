@@ -5,7 +5,7 @@ kind: mission
 priority: p2
 status: ready
 needs: none
-lands-in: rokh
+lands-in: source
 evidence: "rokh/texts/README.md of rokh, and the CHANGELOG of rokh-docs"
 ---
 

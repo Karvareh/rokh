@@ -5,7 +5,7 @@ kind: mission
 priority: p2
 status: ready
 needs: none
-lands-in: rokh
+lands-in: source
 evidence: "A-15 to A-20"
 ---
 

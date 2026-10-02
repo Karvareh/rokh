@@ -5,7 +5,7 @@ kind: mission
 priority: p2
 status: blocked
 needs: W-19
-lands-in: rokh
+lands-in: source
 evidence: "Q-10; the owner's order, item 6"
 ---
 

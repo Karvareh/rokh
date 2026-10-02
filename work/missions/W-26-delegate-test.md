@@ -5,7 +5,7 @@ kind: mission
 priority: p1
 status: ready
 needs: none
-lands-in: rokh
+lands-in: source
 evidence: "A-04"
 ---
 

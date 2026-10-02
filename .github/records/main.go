@@ -1,24 +1,24 @@
-// Command records keeps the records of a repository of Rokh true to their
-// form.
+// Command records keeps the records of Rokh true to their form: the rulings
+// of docs/, the studies and the questions of lab/, and the missions of work/.
 //
-// A record is a Markdown file that begins with front matter: a mission, a
-// question, a study, a ruling. This program checks that every record carries
+// A record is a Markdown file that begins with front matter: a ruling, a
+// study, a question, a mission. This program checks that every record carries
 // the fields its kind asks for, with values its kind allows; that every
-// identifier is unique and begins the name of its file; that what the fields
-// say together holds; that every index table is the one its records make;
+// identifier is unique among the records of its kind and begins the name of
+// its file; that what the fields say together holds, within a record and
+// across the folders; that every index table is the one its records make;
 // and that every relative link in every document of the repository leads
 // somewhere. It can also keep one issue for every record that has one: open
-// while the record is, labelled with what the record says.
+// while the record is, with the record's title and place, and labelled with
+// what the record says.
 //
-// Run it from tools/records:
+// Run it from .github/records:
 //
 //	go run . -root ../.. check    report every fault, and fail if there is one
 //	go run . -root ../.. index    write the index tables again from the records
 //	go run . -root ../.. issues   open, label, close and reopen the issues
 //
-// The rules of this repository's records are in rules.go. This file is the
-// same in every repository of Rokh that keeps records; change it in all of
-// them together.
+// The rules of the records are in rules.go.
 package main
 
 import (
@@ -90,8 +90,8 @@ type Collection struct {
 	Prefixes []string // the order of identifiers: by prefix, then by number
 	Fields   []Field
 	// Rules returns what is wrong with r when its fields are read together
-	// and beside every other record, which all holds by identifier.
-	Rules   func(r *Record, all map[string]*Record) []string
+	// and beside every other record, which all holds by kind and identifier.
+	Rules   func(r *Record, all Records) []string
 	Index   string // the file that lists the collection, relative to the root
 	Columns []Column
 	Empty   string // what the index says while the collection is empty
@@ -107,6 +107,17 @@ type Record struct {
 
 // ID is the record's identifier.
 func (r *Record) ID() string { return r.Fields["id"] }
+
+// Records holds every record read, by the name of its collection and then by
+// its identifier. An identifier is unique among the records of one kind: a
+// study and a ruling may share a number.
+type Records map[string]map[string]*Record
+
+// Get is the record of the collection named col whose identifier is id.
+func (rs Records) Get(col, id string) (*Record, bool) {
+	r, ok := rs[col][id]
+	return r, ok
+}
 
 // Get is the value of one field.
 func (r *Record) Get(k string) string { return r.Fields[k] }
@@ -320,18 +331,23 @@ var slug = regexp.MustCompile(`^(?:[A-Z]+-)?[0-9]+-[a-z0-9.]+(?:-[a-z0-9.]+)*$`)
 // root. None means everything holds.
 func Check(root string, cols []Collection) []string {
 	recs, faults := Load(root, cols)
-	all := map[string]*Record{}
+	all := Records{}
 	for _, r := range recs {
 		faults = append(faults, fields(r)...)
 		id := r.ID()
 		if id == "" {
 			continue
 		}
-		if prev, dup := all[id]; dup {
+		mine := all[r.Col.Name]
+		if mine == nil {
+			mine = map[string]*Record{}
+			all[r.Col.Name] = mine
+		}
+		if prev, dup := mine[id]; dup {
 			faults = append(faults, fmt.Sprintf("%s: %s is already the identifier of %s", r.Path, id, prev.Path))
 			continue
 		}
-		all[id] = r
+		mine[id] = r
 	}
 	for _, r := range recs {
 		if r.Col.Rules != nil {
@@ -614,6 +630,7 @@ type Issue struct {
 	Number int    `json:"number"`
 	Title  string `json:"title"`
 	State  string `json:"state"`
+	Body   string `json:"body"`
 	Labels []struct {
 		Name string `json:"name"`
 	} `json:"labels"`
@@ -621,10 +638,12 @@ type Issue struct {
 
 // Issues keeps one issue for every record of a collection that has an
 // IssueRule: it opens the issue of an open record that has none, sets its
-// title and managed labels to what the record says, and closes or reopens
-// it as the record is closed or open. It never opens an issue for a record
-// that is already closed, and touches no issue whose title does not begin
-// with a record's identifier and a colon. Dry, it says what it would do.
+// title, its body and its managed labels to what the record says, and closes
+// or reopens it as the record is closed or open. The body says where the
+// record is kept, so an issue moved here from elsewhere is brought to the
+// record's place. It never opens an issue for a record that is already
+// closed, and touches no issue whose title does not begin with a record's
+// identifier and a colon. Dry, it says what it would do.
 func Issues(root string, cols []Collection, dry bool, from string, w io.Writer) error {
 	recs, faults := Load(root, cols)
 	if len(faults) > 0 {
@@ -636,7 +655,7 @@ func Issues(root string, cols []Collection, dry bool, from string, w io.Writer) 
 		raw, err = os.ReadFile(from)
 	} else {
 		raw, err = exec.Command("gh", "issue", "list", "--state", "all", "--limit", "5000",
-			"--json", "number,title,state,labels").Output()
+			"--json", "number,title,state,labels,body").Output()
 	}
 	if err != nil {
 		return fmt.Errorf("listing the issues: %v", err)
@@ -699,6 +718,8 @@ func Issues(root string, cols []Collection, dry bool, from string, w io.Writer) 
 			continue
 		}
 		num := strconv.Itoa(is.Number)
+		body := issueBody(r)
+		sameBody := strings.TrimSpace(strings.ReplaceAll(is.Body, "\r\n", "\n")) == strings.TrimSpace(body)
 		hasLabel := map[string]bool{}
 		for _, l := range is.Labels {
 			hasLabel[l.Name] = true
@@ -716,10 +737,13 @@ func Issues(root string, cols []Collection, dry bool, from string, w io.Writer) 
 				remove = append(remove, l)
 			}
 		}
-		if is.Title != title || len(add)+len(remove) > 0 {
+		if is.Title != title || !sameBody || len(add)+len(remove) > 0 {
 			args := []string{"issue", "edit", num}
 			if is.Title != title {
 				args = append(args, "--title", title)
+			}
+			if !sameBody {
+				args = append(args, "--body", body)
 			}
 			if len(add) > 0 {
 				args = append(args, "--add-label", strings.Join(add, ","))

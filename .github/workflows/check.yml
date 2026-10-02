@@ -32,3 +32,15 @@ jobs:
         run: cd source/rokh-home && go vet ./...
       - name: test
         run: cd source/rokh-home && go test -timeout 30m ./...
+
+  records:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: .github/records/go.mod
+      - name: vet and test the program that checks the records
+        run: cd .github/records && go vet ./... && go test ./...
+      - name: check every record, index and link
+        run: cd .github/records && go run . -root ../.. check

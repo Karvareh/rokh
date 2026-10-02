@@ -21,50 +21,50 @@ study 0002; a question of rokh-lab that a mission waits for is named `D-nn`.
 <!-- records:missions -->
 | Mission | What | Priority | Status | Needs | Lands in |
 |---|---|---|---|---|---|
-| [W-00](missions/W-00-load-without-recursion.md) | Load a long history without a call per generation, and measure revocations newest first | p1 | done | — | rokh |
-| [W-01](missions/W-01-short-socket-folder.md) | One short socket folder for every test that listens | p1 | blocked | D-01 | rokh |
-| [W-02](missions/W-02-cut-without-permission-bits.md) | Cut a seed in two tests without permission bits | p1 | ready | — | rokh |
-| [W-03](missions/W-03-checks.md) | Checks that see formatting, other systems, skips and changed files | p1 | blocked | W-01 | rokh |
-| [W-04](missions/W-04-legacy-tests.md) | The twelve legacy test files in version 1, beginning with an idle daemon | p1 | blocked | W-01 | rokh |
-| [W-05](missions/W-05-index-honours-build-tags.md) | A conformance index that honours build constraints | p1 | blocked | W-04 | rokh |
-| [W-06](missions/W-06-rows-on-reached-paths.md) | Conformance rows that rest on reached paths | p2 | blocked | W-05 | rokh |
-| [W-07](missions/W-07-courier-on-booth-1.md) | A courier that opens a session and says when it is refused | p2 | blocked | W-01 | rokh |
-| [W-08](missions/W-08-bind-and-bound.md) | rokh bind and rokh bound on rokh.booth/1 | p2 | blocked | W-01 | rokh |
-| [W-09](missions/W-09-booth-answers.md) | The booth's answers as the contract names them | p2 | ready | — | rokh |
-| [W-10](missions/W-10-sentence-surface-defects.md) | Six defects of the sentence surface | p2 | ready | — | rokh |
-| [W-11](missions/W-11-untested-commands.md) | Tests for the commands and the adapter that have none | p2 | blocked | W-01 | rokh |
-| [W-12](missions/W-12-bounds-before-binding.md) | Bounds on what a booth reads before a session is bound | p2 | blocked | W-01 | rokh |
-| [W-13](missions/W-13-key-passwd.md) | rokh key passwd | p1 | ready | — | rokh |
-| [W-14](missions/W-14-changed-segments.md) | Write only the changed inventory segments | p2 | blocked | W-03 | rokh |
-| [W-15](missions/W-15-keep-the-index.md) | Keep the vessel's index across commits | p2 | blocked | I-01 | rokh |
-| [W-16](missions/W-16-ledger-order.md) | Extend the ledger's order, and read a log from its end | p2 | ready | — | rokh |
-| [W-17](missions/W-17-shared-authority-sets.md) | Authority sets that share their structure | p2 | ready | — | rokh |
-| [W-18](missions/W-18-fair-turn.md) | A fair turn, and one commit for the writers waiting | p2 | ready | — | rokh |
-| [W-19](missions/W-19-bounded-content.md) | Content in bounded memory, both ways | p1 | ready | — | rokh |
-| [W-20](missions/W-20-true-documents.md) | The documents of rokh made true | p2 | ready | — | rokh |
-| [W-21](missions/W-21-cryptography-document.md) | The cryptography document of version 1 | p2 | blocked | W-20 | rokh |
-| [W-22](missions/W-22-windows-prompt-and-builds.md) | A passphrase prompt on Windows, and builds that stop at a failure | p3 | blocked | W-03 | rokh |
-| [W-23](missions/W-23-home-records-past-a-slab.md) | The home's records past one slab | p3 | blocked | I-08 | rokh |
-| [W-24](missions/W-24-engine-by-manifest.md) | No product's name in the code; the engine by its manifest | p3 | ready | — | rokh |
-| [W-25](missions/W-25-reconcile-what-differs.md) | A reconcile that moves only what differs | p3 | blocked | W-15 | rokh |
-| [W-26](missions/W-26-delegate-test.md) | The delegate test, for the keys of version 1 | p1 | ready | — | rokh |
-| [W-27](missions/W-27-english-of-the-surface.md) | The English of the sentence surface | p2 | blocked | W-10 | rokh |
-| [W-28](missions/W-28-bring-on-the-command-line.md) | bring on the command line | p2 | blocked | W-19 | rokh |
-| [W-29](missions/W-29-growing-seeds.md) | Seeds that grow, and a reconcile that changes no byte when nothing changed | p3 | ready | — | rokh |
-| [W-30](missions/W-30-booth-content-keyring-seeding.md) | The booth's content, keyring and seeding | p3 | blocked | W-01, W-19 | rokh |
-| [W-31](missions/W-31-check-the-pinned-texts.md) | Check the copies of the texts against rokh-docs in the checks | p2 | ready | — | rokh |
-| [I-01](missions/I-01-measure-a-library.md) | Measure a library | p1 | ready | — | rokh-lab |
-| [I-02](missions/I-02-sessions-at-scale.md) | Booth sessions at scale | p2 | blocked | W-01, W-12 | rokh-lab |
-| [I-03](missions/I-03-wasteful-use.md) | Wasteful use of resources, as probes | p2 | ready | — | rokh-lab |
-| [I-04](missions/I-04-closed-copies-over-time.md) | What closed copies show over time | p2 | ready | — | rokh-lab |
-| [I-05](missions/I-05-plaintext-in-use.md) | Plaintext left behind in use | p3 | ready | — | rokh-lab |
-| [I-06](missions/I-06-cold-seed-from-warm.md) | A cold seed from a warm source | p2 | blocked | W-13 | rokh-lab |
-| [I-07](missions/I-07-spread-and-branches.md) | Spread, branches and merges in the measurements | p2 | ready | — | rokh-lab |
-| [I-08](missions/I-08-home-one-slab-records.md) | The home's one-slab records, reproduced | p3 | ready | — | rokh-lab |
-| [I-09](missions/I-09-field-results.md) | Field results | p3 | blocked | W-03, W-22 | rokh-lab |
-| [I-10](missions/I-10-people-and-programs.md) | People and programs, each with keys of their own | p2 | ready | — | rokh-lab |
-| [I-11](missions/I-11-why-the-key-test-fails.md) | Why the key test fails | p3 | ready | — | rokh-lab |
-| [I-12](missions/I-12-one-root-two-rokhs.md) | One root key founding two Rokhs | p3 | ready | — | rokh-lab |
+| [W-00](missions/W-00-load-without-recursion.md) | Load a long history without a call per generation, and measure revocations newest first | p1 | done | — | source |
+| [W-01](missions/W-01-short-socket-folder.md) | One short socket folder for every test that listens | p1 | blocked | D-01 | source |
+| [W-02](missions/W-02-cut-without-permission-bits.md) | Cut a seed in two tests without permission bits | p1 | ready | — | source |
+| [W-03](missions/W-03-checks.md) | Checks that see formatting, other systems, skips and changed files | p1 | blocked | W-01 | source |
+| [W-04](missions/W-04-legacy-tests.md) | The twelve legacy test files in version 1, beginning with an idle daemon | p1 | blocked | W-01 | source |
+| [W-05](missions/W-05-index-honours-build-tags.md) | A conformance index that honours build constraints | p1 | blocked | W-04 | source |
+| [W-06](missions/W-06-rows-on-reached-paths.md) | Conformance rows that rest on reached paths | p2 | blocked | W-05 | source |
+| [W-07](missions/W-07-courier-on-booth-1.md) | A courier that opens a session and says when it is refused | p2 | blocked | W-01 | source |
+| [W-08](missions/W-08-bind-and-bound.md) | rokh bind and rokh bound on rokh.booth/1 | p2 | blocked | W-01 | source |
+| [W-09](missions/W-09-booth-answers.md) | The booth's answers as the contract names them | p2 | ready | — | source |
+| [W-10](missions/W-10-sentence-surface-defects.md) | Six defects of the sentence surface | p2 | ready | — | source |
+| [W-11](missions/W-11-untested-commands.md) | Tests for the commands and the adapter that have none | p2 | blocked | W-01 | source |
+| [W-12](missions/W-12-bounds-before-binding.md) | Bounds on what a booth reads before a session is bound | p2 | blocked | W-01 | source |
+| [W-13](missions/W-13-key-passwd.md) | rokh key passwd | p1 | ready | — | source |
+| [W-14](missions/W-14-changed-segments.md) | Write only the changed inventory segments | p2 | blocked | W-03 | source |
+| [W-15](missions/W-15-keep-the-index.md) | Keep the vessel's index across commits | p2 | blocked | I-01 | source |
+| [W-16](missions/W-16-ledger-order.md) | Extend the ledger's order, and read a log from its end | p2 | ready | — | source |
+| [W-17](missions/W-17-shared-authority-sets.md) | Authority sets that share their structure | p2 | ready | — | source |
+| [W-18](missions/W-18-fair-turn.md) | A fair turn, and one commit for the writers waiting | p2 | ready | — | source |
+| [W-19](missions/W-19-bounded-content.md) | Content in bounded memory, both ways | p1 | ready | — | source |
+| [W-20](missions/W-20-true-documents.md) | The documents of rokh made true | p2 | ready | — | source |
+| [W-21](missions/W-21-cryptography-document.md) | The cryptography document of version 1 | p2 | blocked | W-20 | source |
+| [W-22](missions/W-22-windows-prompt-and-builds.md) | A passphrase prompt on Windows, and builds that stop at a failure | p3 | blocked | W-03 | source |
+| [W-23](missions/W-23-home-records-past-a-slab.md) | The home's records past one slab | p3 | blocked | I-08 | source |
+| [W-24](missions/W-24-engine-by-manifest.md) | No product's name in the code; the engine by its manifest | p3 | ready | — | source |
+| [W-25](missions/W-25-reconcile-what-differs.md) | A reconcile that moves only what differs | p3 | blocked | W-15 | source |
+| [W-26](missions/W-26-delegate-test.md) | The delegate test, for the keys of version 1 | p1 | ready | — | source |
+| [W-27](missions/W-27-english-of-the-surface.md) | The English of the sentence surface | p2 | blocked | W-10 | source |
+| [W-28](missions/W-28-bring-on-the-command-line.md) | bring on the command line | p2 | blocked | W-19 | source |
+| [W-29](missions/W-29-growing-seeds.md) | Seeds that grow, and a reconcile that changes no byte when nothing changed | p3 | ready | — | source |
+| [W-30](missions/W-30-booth-content-keyring-seeding.md) | The booth's content, keyring and seeding | p3 | blocked | W-01, W-19 | source |
+| [W-31](missions/W-31-check-the-pinned-texts.md) | Check the copies of the texts against rokh-docs in the checks | p2 | ready | — | source |
+| [I-01](missions/I-01-measure-a-library.md) | Measure a library | p1 | ready | — | lab |
+| [I-02](missions/I-02-sessions-at-scale.md) | Booth sessions at scale | p2 | blocked | W-01, W-12 | lab |
+| [I-03](missions/I-03-wasteful-use.md) | Wasteful use of resources, as probes | p2 | ready | — | lab |
+| [I-04](missions/I-04-closed-copies-over-time.md) | What closed copies show over time | p2 | ready | — | lab |
+| [I-05](missions/I-05-plaintext-in-use.md) | Plaintext left behind in use | p3 | ready | — | lab |
+| [I-06](missions/I-06-cold-seed-from-warm.md) | A cold seed from a warm source | p2 | blocked | W-13 | lab |
+| [I-07](missions/I-07-spread-and-branches.md) | Spread, branches and merges in the measurements | p2 | ready | — | lab |
+| [I-08](missions/I-08-home-one-slab-records.md) | The home's one-slab records, reproduced | p3 | ready | — | lab |
+| [I-09](missions/I-09-field-results.md) | Field results | p3 | blocked | W-03, W-22 | lab |
+| [I-10](missions/I-10-people-and-programs.md) | People and programs, each with keys of their own | p2 | ready | — | lab |
+| [I-11](missions/I-11-why-the-key-test-fails.md) | Why the key test fails | p3 | ready | — | lab |
+| [I-12](missions/I-12-one-root-two-rokhs.md) | One root key founding two Rokhs | p3 | ready | — | lab |
 <!-- /records:missions -->
 
 ## How to pick one up

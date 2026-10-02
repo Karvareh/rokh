@@ -5,7 +5,7 @@ kind: investigation
 priority: p2
 status: blocked
 needs: W-13
-lands-in: rokh-lab
+lands-in: lab
 evidence: "R-09, Q-04"
 ---
 

@@ -5,7 +5,7 @@ kind: mission
 priority: p3
 status: blocked
 needs: I-08
-lands-in: rokh
+lands-in: source
 evidence: "A-28, A-29"
 ---
 

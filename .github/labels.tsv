@@ -13,6 +13,13 @@ good first issue	7057ff	A good first piece of work in Rokh
 help wanted	008672	Help is welcome
 agent-ready	0052cc	Its test can be run by a program from the command line alone
 defect	d73a4a	Source does what the texts or the contract say it must not, or fails
-core	c5def5	The core module, rokh/
-home	c5def5	The home module, rokh-home/
+core	c5def5	The core module, source/rokh/
+home	c5def5	The home module, source/rokh-home/
 checks	c5def5	The tests, the conformance map and the checks
+erratum	c2e0c6	Changes no meaning: a clearer sentence, a broken reference, a typing error
+ruling	0e8a16	Records a ruling of the owner
+question	d4c5f9	Asks for the owner's ruling
+study	c5def5	A study, with its evidence
+proposal	fef2c0	Proposed, not ruled
+mission	c5def5	Changes something: the code, a document, the checks
+investigation	d4c5f9	Finds something out; what it finds becomes a study of lab/

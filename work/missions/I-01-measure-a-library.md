@@ -5,7 +5,7 @@ kind: investigation
 priority: p1
 status: ready
 needs: none
-lands-in: rokh-lab
+lands-in: lab
 evidence: "Q-08, Q-09, Q-10, S-14"
 ---
 

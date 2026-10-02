@@ -5,7 +5,7 @@ kind: mission
 priority: p3
 status: ready
 needs: none
-lands-in: rokh
+lands-in: source
 evidence: "Q-06; the owner's order, item 7"
 ---
 

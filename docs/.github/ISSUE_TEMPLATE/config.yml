@@ -1,8 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: A change of what a text says
-    url: https://github.com/Karvareh/rokh-lab/issues/new/choose
-    about: Ask it in rokh-lab, as a question. The owner rules there, and the change comes here with the ruling.
-  - name: A weakness in security
-    url: https://github.com/Karvareh/rokh/security/advisories/new
-    about: Report it privately, never in an issue.
