@@ -65,7 +65,9 @@ What was found:
    ledger records every answer. A holder who takes a note into their own
    ledger records who handed it to them. A note refused later is then a claim
    against that person, before whatever court they chose. Rokh proves who
-   did what, and it prevents nothing.
+   did what, and it prevents nothing. The ledger without consensus says the
+   same of any unique item: it needs an external ritual, or custody with
+   bounded authority (N 2.10), and here the issuer is that custody.
 
 ## What was run, where, and on what
 
@@ -139,6 +141,17 @@ before RKH3: its table is out of date, which mission W-20 covers.
 
 ## Read in the code
 
+- **A unique item is a higher layer's, and needs custody** (C, N 2.7, 2.9,
+  2.10 and 9.4).
+  - Rokh makes no common history. A layer above it that makes an item unique
+    and spendable brings back the problem consensus answers.
+  - Rokh has no way of its own for such an item. Each stakeholder closing the
+    same work in their own ledger is enough for shared work, not for a unique
+    item, which needs an external ritual that keeps uniqueness and order, or
+    custody with bounded authority.
+  - The issuer who answers each presentation at contact (P2) is that
+    custody. Value and property are a realm that Rokh is not and does not
+    judge.
 - **One ledger per issuer** (C, contract 3.4). Every event names its carrier,
   the anchor of one ledger. A note or a coin is bound to its issuer's
   ledger wherever its bytes travel, and cannot be moved under another.
