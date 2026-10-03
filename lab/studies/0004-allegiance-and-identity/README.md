@@ -102,10 +102,12 @@ writes its payload as canonical JSON, with a declared type.
 
 ## Read in the code
 
-- **One ledger, one anchor** (C, `source/rokh/ledger/ledger.go`). A ledger
-  takes only events that name its own genesis as their carrier. An identity
-  cannot be written by anyone but the holder of its keys, and nobody's record
-  can be put into it from outside.
+- **One ledger, one anchor** (C, `source/rokh/ledger/ledger.go` and contract
+  4.5). A ledger takes only events that name its own genesis as their
+  carrier, so an event of another ledger cannot be put into it. Nobody writes
+  into an identity's ledger but its root and the keys holding a grant there,
+  each grant leading back to the root; an open grant, which only the root
+  writes, lets any key write within its scope.
 - **A bond never merges two ledgers** (C, `source/rokh/bond/bond.go`).
   - A leaf names its founders' anchors and the work undertaken, and its name
     is the hash of its bytes.
@@ -130,11 +132,12 @@ writes its payload as canonical JSON, with a declared type.
   - Credit spreads only through records written by ledgers that already have
     some. That is a web of knowing, not a register.
   - It is as strong as the care with which people record whom they know.
-- **The size of a voice** (X). A pledge and its acceptance are under 1 KB
-  together. A ruler with a thousand pledges holds about 1 MB of them, and
-  showing them all fits a vessel and a courier easily. On the narrow mesh a
-  pledge is three frames at 222 bytes, so a pledge can be given by radio, and
-  a count cannot.
+- **The size of a voice** (X). A pledge, the ruler's acceptance of it, and
+  the leaf both name are 1,086 bytes together. The leaf is needed to check
+  them, for an acceptance names it only by its hash. A ruler with a thousand
+  pledges holds about 1 MB of them, and showing them all fits a vessel and a
+  courier easily. On the narrow mesh a pledge with its leaf is three frames at
+  222 bytes, so a pledge can be given by radio, and a count cannot.
 
 ## Proposed
 
@@ -158,9 +161,9 @@ ruler's, doing `allegiance`.
 
 **P3. A count as far as known.**
 - A ruler's count is the pledges it holds that are live as far as it knows.
-- Each is shown with the person's acceptance and the ruler's own. Whoever
-  reads the count can check every one, and can ask the pledgers' ledgers for
-  any leaving the ruler has not seen.
+- Each is shown with its leaf, the person's acceptance and the ruler's own.
+  Whoever reads the count can check every one, and can ask the pledgers'
+  ledgers for any leaving the ruler has not seen.
 - A count states the moment of its making as testimony.
 
 **P4. An identity shown as much as its owner wants.** Others' records about a

@@ -49,10 +49,11 @@ What was found:
 1. **The core already carries both (M, C).** Every event of both models is
    an ordinary RKH3 event, and the core accepts each one. No byte form
    changes.
-2. **A note is small, and holds many tokens (M).**
+2. **A note is small, and holds many tokens (M, X).**
    - A note of one token is 363 bytes, and each further token adds 20.
-   - A tag of 888 bytes holds a note of 25 tokens, and one event holds up to
-     200 tokens (4,343 bytes) under the payload limit of 4,096.
+   - A tag of 888 bytes holds a note of up to 26 tokens.
+   - One event holds up to 203 tokens under the payload limit of 4,096 bytes;
+     a note of 200 is 4,343 bytes.
    - In model B a coin is 347 bytes when issued and 380 per hand-over.
 3. **Who holds what is the harness's question, never the core's (M).** In
    model B the core accepts a double hand-over as two heads. It also accepts
@@ -158,8 +159,8 @@ before RKH3: its table is out of date, which mission W-20 covers.
   on it, and it is why the core cannot say who holds a coin there.
 - **A head only proves lineage and authorship, nothing of content** (C,
   contract 3.4). A token is in the body, so it cannot travel as a head alone.
-- **Concurrent events stay concurrent** (C, contract 4.4). A reconcile shows
-  both and chooses neither.
+- **Concurrent events stay concurrent** (C, contract 4.4 and 4.8). A
+  reconcile shows both and chooses neither.
 - **The narrow mesh carries news, not events** (C, `source/rokh/announce`,
   `04-bandwidth.md`). An announcement of 19 to 51 bytes says that something
   changed. The event follows over whatever link can carry it, fragmented on
@@ -169,15 +170,16 @@ before RKH3: its table is out of date, which mission W-20 covers.
 
 - **Containers** (X: read in the specifications of common tags, not
   measured). The small near-field tags offer about 144, 504 or 888 bytes of
-  user memory, less a few bytes of record framing; larger ones offer 2 to
-  8 KiB.
+  memory for data, less the framing of their records; larger ones offer 2 to
+  8 KiB. The table takes 12 bytes of framing for one record of a short type,
+  and 7 more for each further record.
 
-  | container | model A (one note) | model B (one coin) |
+  | container | model A (notes) | model B (one coin) |
   |---|---|---|
   | 144 bytes | nothing | nothing |
   | 504 bytes | a note of up to 7 tokens | the issue alone |
-  | 888 bytes | a note of up to 25 tokens | the issue and one hand-over |
-  | 8 KiB | about two notes of 200 tokens | the issue and about 20 hand-overs |
+  | 888 bytes | a note of up to 26 tokens | the issue and one hand-over |
+  | 8 KiB | two notes, about 370 tokens in all | the issue and about 20 hand-overs |
 
 - **The narrow mesh** (X: arithmetic on the frame sizes of `04-bandwidth.md`,
   which that document says must be measured on real hardware). A note of one
@@ -241,8 +243,9 @@ on real tags and real radios: the write time of 843 bytes, and the airtime of
 - whether a ledger may take another ledger's event in whole, as an event and
   not as content, which would change what a carrier binds;
 - whether a smaller note is wanted badly enough for a new generation of the
-  event, since an RKH3 event carries at least about 330 bytes of its own
-  (law 2 of AGENTS.md).
+  event, since an RKH3 event of one parent, written by its root, carries 291
+  bytes of its own apart from its address, verb and payload: a note of one
+  token is 363 bytes, and those three are 72 of them (law 2 of AGENTS.md).
 
 ## Not run
 
