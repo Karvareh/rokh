@@ -24,6 +24,7 @@ a study's paths are as they were at the commit it names.
 |---|---|---|---|---|
 | [0001](studies/0001-scale/) | How far one Rokh goes | rokh at 4111458, the release 1.0.0 with the repair of ledger.Load | examined | 2026-10-01 |
 | [0002](studies/0002-findings-of-1.0.0/) | The findings of 1.0.0 | rokh 1.0.0 (ba7e695), and the branch of the scale study to b8f909a | examined | 2026-10-01 |
+| [0003](studies/0003-offline-money/) | Private money by hand: a coin on a tag, and banking by its issuer | rokh at 91889d8, the event RKH3 of contract 3.4, and a design the owner described | examined | 2026-10-03 |
 <!-- /records:studies -->
 
 ## Questions waiting for a ruling

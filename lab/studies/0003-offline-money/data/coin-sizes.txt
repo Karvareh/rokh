@@ -1,0 +1,27 @@
+command: cp lab/studies/0003-offline-money/data/coin_size_test.go source/rokh/oracle/ && cd source/rokh && go test -count=1 -run TestCoinSize -v ./oracle
+commit: 91889d8 (main)
+go: go version go1.26.4 linux/amd64
+host: a Linux container, x86-64
+date: 2026-10-03
+
+=== RUN   TestCoinSize
+    coin_size_test.go:57: issue                         347 bytes (head 235, body 112)
+    coin_size_test.go:58: issuer genesis                232 bytes
+    coin_size_test.go:59: open grant over the coins     334 bytes
+    coin_size_test.go:78: transfer                      380 bytes (head 273, body 107)
+    coin_size_test.go:79: transfer, head only           273 bytes
+    coin_size_test.go:81: issue and 1 transfer(s)       727 bytes
+    coin_size_test.go:81: issue and 2 transfer(s)      1107 bytes
+    coin_size_test.go:81: issue and 3 transfer(s)      1487 bytes
+    coin_size_test.go:93: event 1 of the coin's ledger: accepted <nil>
+    coin_size_test.go:93: event 2 of the coin's ledger: accepted <nil>
+    coin_size_test.go:93: event 3 of the coin's ledger: accepted <nil>
+    coin_size_test.go:93: event 4 of the coin's ledger: accepted <nil>
+    coin_size_test.go:93: event 5 of the coin's ledger: accepted <nil>
+    coin_size_test.go:107: a second hand-over of the same step: accepted <nil>
+    coin_size_test.go:107: a second hand-over of the same step: accepted <nil>
+    coin_size_test.go:109: heads after the double hand-over: 2
+    coin_size_test.go:121: a hand-over by a key that never held the coin: accepted <nil>
+--- PASS: TestCoinSize (0.01s)
+PASS
+ok  	rokh/oracle	0.009s
