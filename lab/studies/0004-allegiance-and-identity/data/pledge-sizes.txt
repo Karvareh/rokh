@@ -1,0 +1,14 @@
+command: cp lab/studies/0004-allegiance-and-identity/data/pledge_size_test.go source/rokh/oracle/ && cd source/rokh && go test -count=1 -run TestPledgeSize -v ./oracle
+commit: 91889d8 (main)
+go: go version go1.26.4 linux/amd64
+host: a Linux container, x86-64
+date: 2026-10-03
+
+=== RUN   TestPledgeSize
+    pledge_size_test.go:43: a genesis, the anchor of an identity      232 bytes
+    pledge_size_test.go:50: the leaf of a pledge                      187 bytes
+    pledge_size_test.go:67: an acceptance, "I pledge"                 446 bytes, accepted <nil>
+    pledge_size_test.go:67: an acceptance, "I answer for it"          453 bytes, accepted <nil>
+--- PASS: TestPledgeSize (0.00s)
+PASS
+ok  	rokh/oracle	0.005s

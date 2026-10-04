@@ -1,0 +1,70 @@
+command: cp lab/studies/0004-allegiance-and-identity/data/count_test.go source/rokh/oracle/ && cd source/rokh && go test -count=1 -run TestPledgeCount -v ./oracle
+commit: 3aa461d (the branch of this study), whose source/ is that of 91889d8 (main)
+go: go version go1.26.4 linux/amd64
+host: a Linux container, x86-64
+date: 2026-10-03
+
+=== RUN   TestPledgeCount
+    count_test.go:129: a genesis, the anchor of a person                        232 bytes
+    count_test.go:130: a pledge naming one anchor                               429 bytes
+    count_test.go:131: a pledge naming two anchors                              496 bytes
+    count_test.go:132: a pledge naming nobody: the pledge taken back            363 bytes
+    count_test.go:152: every pledge of the village: 21, 21 accepted            9077 bytes
+    count_test.go:153: heads of the ledger of two-seeds                           2
+    count_test.go:313: the count; two concurrent pledges are read by the rule "union"
+    count_test.go:325:   village     pledges to ;                        carries   16.5000  ends with it  16.5000
+    count_test.go:325:   neighbour   pledges to ;                        carries    1.5000  ends with it   1.5000
+    count_test.go:325:   elder-1     pledges to village;                 carries    8.5000  ends with it   0.0000
+    count_test.go:325:   elder-2     pledges to village;                 carries    3.5000  ends with it   0.0000
+    count_test.go:325:   head-1      pledges to elder-1;                 carries    4.5000  ends with it   0.0000
+    count_test.go:325:   head-2      pledges to elder-1;                 carries    3.0000  ends with it   0.0000
+    count_test.go:325:   head-3      pledges to elder-2;                 carries    2.5000  ends with it   0.0000
+    count_test.go:325:   member-1.1  pledges to head-1;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-1.2  pledges to head-1;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-1.3  pledges to head-1;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-2.1  pledges to head-2;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-2.2  pledges to head-2;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-3.1  pledges to head-3;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   direct      pledges to village;                 carries    1.0000  ends with it   0.0000
+    count_test.go:325:   split       pledges to head-3, head-1;          carries    1.0000  ends with it   0.0000
+    count_test.go:325:   pact-a      pledges to pact-b;                  carries    no end  ends with it   0.0000
+    count_test.go:325:   pact-b      pledges to pact-a;                  carries    no end  ends with it   0.0000
+    count_test.go:325:   loop-a      pledges to loop-b, village;         carries    4.0000  ends with it   0.0000
+    count_test.go:325:   loop-b      pledges to loop-a;                  carries    3.0000  ends with it   0.0000
+    count_test.go:325:   two-seeds   pledges to village, neighbour;      carries    1.0000  ends with it   0.0000
+    count_test.go:325:   withdrawn   pledges to ;                        carries    1.0000  ends with it   1.0000
+    count_test.go:329:   voices 21: ended 19.0000, held in a closed cycle 2.0000
+    count_test.go:313: the count; two concurrent pledges are read by the rule "neither"
+    count_test.go:325:   village     pledges to ;                        carries   16.0000  ends with it  16.0000
+    count_test.go:325:   neighbour   pledges to ;                        carries    1.0000  ends with it   1.0000
+    count_test.go:325:   elder-1     pledges to village;                 carries    8.5000  ends with it   0.0000
+    count_test.go:325:   elder-2     pledges to village;                 carries    3.5000  ends with it   0.0000
+    count_test.go:325:   head-1      pledges to elder-1;                 carries    4.5000  ends with it   0.0000
+    count_test.go:325:   head-2      pledges to elder-1;                 carries    3.0000  ends with it   0.0000
+    count_test.go:325:   head-3      pledges to elder-2;                 carries    2.5000  ends with it   0.0000
+    count_test.go:325:   member-1.1  pledges to head-1;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-1.2  pledges to head-1;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-1.3  pledges to head-1;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-2.1  pledges to head-2;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-2.2  pledges to head-2;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   member-3.1  pledges to head-3;                  carries    1.0000  ends with it   0.0000
+    count_test.go:325:   direct      pledges to village;                 carries    1.0000  ends with it   0.0000
+    count_test.go:325:   split       pledges to head-3, head-1;          carries    1.0000  ends with it   0.0000
+    count_test.go:325:   pact-a      pledges to pact-b;                  carries    no end  ends with it   0.0000
+    count_test.go:325:   pact-b      pledges to pact-a;                  carries    no end  ends with it   0.0000
+    count_test.go:325:   loop-a      pledges to loop-b, village;         carries    4.0000  ends with it   0.0000
+    count_test.go:325:   loop-b      pledges to loop-a;                  carries    3.0000  ends with it   0.0000
+    count_test.go:325:   two-seeds   pledges to ;                        carries    1.0000  ends with it   1.0000
+    count_test.go:325:   withdrawn   pledges to ;                        carries    1.0000  ends with it   1.0000
+    count_test.go:329:   voices 21: ended 19.0000, held in a closed cycle 2.0000
+    count_test.go:332: where one voice ends, by the rule "union"
+    count_test.go:344:   member-1.1  village 1.0000
+    count_test.go:344:   direct      village 1.0000
+    count_test.go:344:   split       village 1.0000
+    count_test.go:344:   two-seeds   village 0.5000, neighbour 0.5000
+    count_test.go:344:   loop-a      village 1.0000
+    count_test.go:344:   pact-a      held in a closed cycle 1.0000
+    count_test.go:344:   withdrawn   withdrawn 1.0000
+--- PASS: TestPledgeCount (0.03s)
+PASS
+ok  	rokh/oracle	0.029s

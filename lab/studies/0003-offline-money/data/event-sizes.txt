@@ -1,0 +1,11 @@
+command: go test -count=1 -run TestEventSizeBudget -v ./oracle (in source/rokh)
+commit: 91889d8 (main)
+
+=== RUN   TestEventSizeBudget
+    size_test.go:97: genesis             311 bytes  (budget 330)  ~ 2 SF7 frames, 7 SF12 frames
+    size_test.go:97: grant               431 bytes  (budget 450)  ~ 2 SF7 frames, 9 SF12 frames
+    size_test.go:97: delegated write     436 bytes  (budget 460)  ~ 2 SF7 frames, 9 SF12 frames
+    size_test.go:120: default testimony    63 bytes
+--- PASS: TestEventSizeBudget (0.00s)
+PASS
+ok  	rokh/oracle	0.005s

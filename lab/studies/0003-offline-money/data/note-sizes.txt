@@ -1,0 +1,15 @@
+command: cp lab/studies/0003-offline-money/data/note_size_test.go source/rokh/oracle/ && cd source/rokh && go test -count=1 -run TestNoteSize -v ./oracle
+commit: 91889d8 (main)
+go: go version go1.26.4 linux/amd64
+host: a Linux container, x86-64
+date: 2026-10-03
+
+=== RUN   TestNoteSize
+    note_size_test.go:51: a note of   1 tokens         363 bytes
+    note_size_test.go:51: a note of  10 tokens         543 bytes
+    note_size_test.go:51: a note of  25 tokens         843 bytes
+    note_size_test.go:51: a note of 100 tokens        2343 bytes
+    note_size_test.go:51: a note of 200 tokens        4343 bytes
+--- PASS: TestNoteSize (0.00s)
+PASS
+ok  	rokh/oracle	0.005s
