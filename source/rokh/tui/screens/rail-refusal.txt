@@ -17,4 +17,4 @@ recorded. To make room, leave and run: rokh
 grow /path/to/rokh/ledgers/home --to 128M
 [vessel_full; not recorded]
 › █ try write  ·  ? for the list
-  ? sentences   "go" or Ctrl-C leaves
+  ? sentences   "leave" or Ctrl-C ends

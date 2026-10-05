@@ -17,4 +17,4 @@ room 58 MB free of 64 MB
 │ Taking authority back closes the future; it …
 │ 
 › █ try see the grants  ·  ? for the list
-  ? sentences   "go" or Ctrl-C leaves
+  ? sentences   "leave" or Ctrl-C ends

@@ -84,7 +84,7 @@ func buildVectors() []vector {
 			func(v *vector) { v.Slot.Name = "خانه" }),
 		mk("open new", "open a new ledger named خانه", opOpenNew,
 			func(v *vector) { v.Slot.Name = "خانه" }),
-		mk("close", "go", opClose, nil),
+		mk("close", "leave", opClose, nil),
 		mk("write", "write at کارها: نخستین سطر", opWrite,
 			func(v *vector) { v.Slot.Address = "کارها"; v.Slot.Text = "نخستین سطر" }),
 		mk("write zwnj payload", "write at کارها: می‌خواهیم نیم‌فاصله‌ها بمانند", opWrite,

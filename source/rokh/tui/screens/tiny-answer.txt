@@ -5,4 +5,4 @@ ROKH · home · custody warm
 — home/journal/day02
 (1–4 of 37 lines ↓)
 › █ try write
-  go or Ctrl-C leaves
+  leave or Ctrl-C ends

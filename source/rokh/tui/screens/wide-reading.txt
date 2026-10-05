@@ -33,4 +33,4 @@
 
 
 
-  ↑↓ PgUp PgDn page the answer   esc back   "go" or Ctrl-C leaves
+  ↑↓ PgUp PgDn page the answer   esc back   "leave" or Ctrl-C ends

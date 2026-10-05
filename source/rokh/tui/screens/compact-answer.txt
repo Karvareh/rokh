@@ -9,4 +9,4 @@
 — home/journal/day06 (3a7c2046): the note of day 6, as it was written
 (lines 1–6 of 13 · ↓ or PgDn reads the rest · esc closes)
 › █ try write  ·  ? for the list
-  ↓ or PgDn reads the whole answer   esc closes it   "go" or Ctrl-C leaves
+  ↓ or PgDn reads the whole answer   esc closes it   "leave" or Ctrl-C ends

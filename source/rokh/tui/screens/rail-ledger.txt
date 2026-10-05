@@ -17,4 +17,4 @@ room 58 MB free of 64 MB
 │   signed by assistant · under grant 5f20c331…
 │ No clock orders this list; parentage does.
 › █ try write  ·  ? for the list
-  ? sentences   "go" or Ctrl-C leaves
+  ? sentences   "leave" or Ctrl-C ends

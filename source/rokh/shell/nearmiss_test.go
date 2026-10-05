@@ -23,7 +23,7 @@ func TestANearMissIsToldTheShape(t *testing.T) {
 		"take back":             `"take back the grant" needs the grant's whole id`,
 		"see everything":        `"see" goes with the ledger`,
 		"write something":       `a new one begins "write at"`,
-		"GO now":                `"go" is said alone`,
+		"LEAVE now":             `"leave" is said alone`,
 	} {
 		if _, err := parse(line); err == nil {
 			t.Fatalf("%q parsed; it is no near miss", line)

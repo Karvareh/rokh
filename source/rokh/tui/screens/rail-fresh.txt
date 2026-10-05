@@ -8,7 +8,7 @@ room 58 MB free of 64 MB
 │ START HERE
 │ 1  write at home/journal: my first note   pu…
 │ 2  write   records it; there is no undo
-│ "?" lists every sentence; "go" leaves.
+│ "?" lists every sentence; "leave" ends.
 │ 
 │ ● ACCEPTED  5d21c0e9  system  rokh.keyring a…
 │   the owner's key added, generation 1
@@ -17,4 +17,4 @@ room 58 MB free of 64 MB
 │   made: my notes
 │   signed by root · under the owner's own rig…
 › █ try write at home/journal: my first note
-  ? sentences   "go" or Ctrl-C leaves
+  ? sentences   "leave" or Ctrl-C ends

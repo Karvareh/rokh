@@ -322,8 +322,8 @@ func TestEnterSaysTheLineAndShowsTheAnswer(t *testing.T) {
 	h := Hooks{
 		Say: func(s string) (string, bool, error) {
 			said = s
-			if s == "go" {
-				return "gone.", true, nil
+			if s == "leave" {
+				return "left.", true, nil
 			}
 			if strings.HasPrefix(s, "write at") {
 				return "at کارها, 19 bytes — nothing is recorded yet.", false, nil
@@ -343,9 +343,9 @@ func TestEnterSaysTheLineAndShowsTheAnswer(t *testing.T) {
 	if !v.Failed || !strings.HasPrefix(v.Reply[0], "no — ") {
 		t.Fatalf("a refusal was not shown as one: %+v", v)
 	}
-	_, quit, _ = press(v, h, append(typed("go"), Key{Kind: KindEnter})...)
+	_, quit, _ = press(v, h, append(typed("leave"), Key{Kind: KindEnter})...)
 	if !quit {
-		t.Fatal("\"go\" did not end the session")
+		t.Fatal("\"leave\" did not end the session")
 	}
 }
 
@@ -376,7 +376,7 @@ func TestNavigationYieldsToTyping(t *testing.T) {
 
 func TestStem(t *testing.T) {
 	for say, want := range map[string]string{
-		"write at {address}: {text}": "write at ", "go": "go", "carry {address} to {path}": "carry ",
+		"write at {address}: {text}": "write at ", "leave": "leave", "carry {address} to {path}": "carry ",
 	} {
 		if got := Stem(say); got != want {
 			t.Errorf("Stem(%q) = %q, want %q", say, got, want)
@@ -449,7 +449,7 @@ func TestCtrlDLeavesOnlyAnEmptyPrompt(t *testing.T) {
 func TestTheHintsSayHowToLeave(t *testing.T) {
 	for _, w := range []int{30, 47, 60, 79, 115} {
 		h := visible(Render(Options{Columns: w + 1, Rows: 40}, View{}, fixture()))
-		if !strings.Contains(h, "Ctrl-C leaves") || !strings.Contains(h, "go") {
+		if !strings.Contains(h, "Ctrl-C ends") || !strings.Contains(h, "leave") {
 			t.Errorf("at %d columns the screen does not say how to leave:\n%s", w+1, h)
 		}
 	}
@@ -486,7 +486,7 @@ func TestTheScreenFillsTheWindowAndEndsWithTheHints(t *testing.T) {
 					t.Fatalf("%s: %d rows", where, len(got))
 				}
 				last := got[rows-1]
-				if !strings.Contains(last, "leaves") && !(v.MenuOpen && strings.Contains(last, "closes")) {
+				if !strings.Contains(last, "Ctrl-C ends") && !(v.MenuOpen && strings.Contains(last, "closes")) {
 					t.Fatalf("%s: the last row does not say how to leave: %q", where, last)
 				}
 				screen := strings.Join(got, "\n")
@@ -556,7 +556,7 @@ func TestTheTabsShortenBeforeTheyAreCut(t *testing.T) {
 // event, instead of falling to four rows.
 func TestAWideShortWindowKeepsThePromptAndTheNewestEvent(t *testing.T) {
 	got := Render(Options{Columns: 120, Rows: 12}, View{}, fixture())
-	for _, want := range []string{"›", "leaves", fixture().Events[0].ID, fixture().Events[0].Payload, "custody warm"} {
+	for _, want := range []string{"›", "Ctrl-C ends", fixture().Events[0].ID, fixture().Events[0].Payload, "custody warm"} {
 		if !strings.Contains(got, want) {
 			t.Fatalf("120x12 lost %q:\n%s", want, got)
 		}

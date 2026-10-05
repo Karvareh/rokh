@@ -17,4 +17,4 @@ vault /path/to/rokh
 │ 
 │ 
 › █ say a sentence, or ? for the list
-  ? sentences   "go" or Ctrl-C leaves
+  ? sentences   "leave" or Ctrl-C ends

@@ -40,7 +40,7 @@ import (
 const (
 	opOpen       = "open"        // open the ledger {name}
 	opOpenNew    = "open_new"    // open a new ledger named {name}
-	opClose      = "close"       // go
+	opClose      = "close"       // leave
 	opWrite      = "write"       // write at {address}: {text}
 	opWriteClose = "write_close" // write, or write {n} — closing a sentence already written
 	// opCancel — cancel, or cancel {n} — is declared with the home's sentences
@@ -179,7 +179,7 @@ func parse(line string) (command, error) {
 	}
 
 	switch {
-	case len(ts) == 1 && is(ts[0], "go"):
+	case len(ts) == 1 && is(ts[0], "leave"):
 		c.Op = opClose
 		return c, nil
 

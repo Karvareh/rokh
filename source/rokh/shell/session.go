@@ -2,7 +2,7 @@
 //
 // Opening loads a carrier, verifies everything, and stands at the heads. The
 // session lives in memory only; an idle session writes nothing, and there is
-// a test in the same style as the daemon's that says so. "go" closes it and
+// a test in the same style as the daemon's that says so. "leave" closes it and
 // confirms the carrier is exactly as the last accepted operation left it.
 //
 // One session may hold several ledgers open; the vault folder is the

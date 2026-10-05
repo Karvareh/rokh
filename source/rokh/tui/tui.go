@@ -106,7 +106,7 @@ var Sentences = []Sentence{
 	{"carry {address} to {path}", "copy what is written somewhere out as files", "reads only: puts checked content out as files; moves no event", RoleLineage, ScreenLedger, false},
 	{"carry the bundle for {who}", "pack what one reader may have, to hand over", "reads only: writes a file of what one live disclosure permits", RoleLineage, ScreenAuthority, false},
 	{"reconcile", "make two versions of the ledger one", "records one event: joins two clean heads of one ledger; erases and crowns neither", RoleBoundary, ScreenLedger, true},
-	{"go", "leave", "closes the ledger and leaves; records nothing", RolePlace, ScreenLedger, false},
+	{"leave", "close the ledger", "closes the ledger and leaves; records nothing", RolePlace, ScreenLedger, false},
 }
 
 // Asking reports whether a line asks for the sentences rather than being one

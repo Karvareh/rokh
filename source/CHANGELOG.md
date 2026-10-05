@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- The sentence that ends the conversation is `leave`. It was `go`, carried
+  over from Persian one word at a time, and in English a bare `go` reads as a
+  start rather than an end; it is no longer a sentence. The reply begins
+  `left.`, and the greeting, the hints and the list of sentences say `leave`.
 - Rokh keeps its four standings as four folders of its repository: the
   source, which is this folder, `source/`; `docs/`, for what is ruled; `lab/`,
   for what is examined and not ruled; and `work/`, for the missions that

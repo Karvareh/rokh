@@ -17,4 +17,4 @@ day 3, as it was written
 day 4, as it was written
 (lines 1–8 of 25 · ↓ reads the rest)
 › █ try write  ·  ? for the list
-  ↓ reads on  go or Ctrl-C leaves
+  ↓ reads on  leave or Ctrl-C ends

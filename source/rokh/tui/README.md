@@ -27,7 +27,8 @@ and records nothing. To walk through the screens with the keys:
     go run ./cmd/rokh-shell -state tui/sample.json
 
 Every sentence said to that picture is answered that there is no ledger
-behind it; `go` leaves. Any snapshot written as JSON is drawn the same way.
+behind it; `leave` closes the picture. Any snapshot written as JSON is drawn
+the same way.
 
 ## The screens
 
@@ -63,7 +64,7 @@ The ledger at 80×24:
 ╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
 │ › █ try write  ·  ? for the list                                            │
 ╰─────────────────────────────────────────────────────────────────────────────╯
-  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves
+  tab or ←→ view   ? sentences   1–4 jump   "leave" or Ctrl-C ends
 ```
 
 A long answer being read, at 80×24:
@@ -93,7 +94,7 @@ A long answer being read, at 80×24:
 ╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────╮
 │ › █ try write  ·  ? for the list                                            │
 ╰─────────────────────────────────────────────────────────────────────────────╯
-  ↑↓ PgUp PgDn page the answer   esc back   "go" or Ctrl-C leaves
+  ↑↓ PgUp PgDn page the answer   esc back   "leave" or Ctrl-C ends
 ```
 
 The sentence view in the rail, at 48×20:
@@ -119,7 +120,7 @@ room 58 MB free of 64 MB
 │ 
 │ 
 › █ try write  ·  ? for the list
-  ? sentences   "go" or Ctrl-C leaves
+  ? sentences   "leave" or Ctrl-C ends
 ```
 
 The layers of a wide window that is short, at 120×12:
@@ -137,7 +138,7 @@ Planet  work  ·  1 event  ·  Moons plans
 
 
 › █ try read home  ·  ? for the list
-  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves
+  tab or ←→ view   ? sentences   1–4 jump   "leave" or Ctrl-C ends
 ```
 
 ## The views
@@ -215,7 +216,7 @@ sentence a line, the same answers.
 | `Esc` | out of a long answer; again, close it; close the list |
 | `Tab` `←` `→` `1`–`4` | change view, while nothing is typed |
 | a paste | text only: a line break in it never presses `Enter` |
-| `go`, `Ctrl-C`, `Ctrl-D` on an empty prompt | leave |
+| `leave`, `Ctrl-C`, `Ctrl-D` on an empty prompt | leave |
 
 ## The golden screens
 

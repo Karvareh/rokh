@@ -21,8 +21,8 @@ import (
 const (
 	tplOpened     = "opened; I am standing at the head of the chain. %s, %s."
 	tplOpenedNew  = "a new ledger is open; its anchor is %s."
-	tplClosed     = "gone. The ledger is closed, everything where it was."
-	tplHomeClosed = "gone. The home stays open behind its gate, everything where it was."
+	tplClosed     = "left. The ledger is closed, everything where it was."
+	tplHomeClosed = "left. The home stays open behind its gate, everything where it was."
 	tplWritten    = "written and recorded. %s — signed by %s under %s, through %s."
 	tplDrafted    = "waiting as sentence %s: at %s, %s bytes, to be signed by %s under %s — nothing is recorded yet. \"write\" records it; \"cancel\" lets it go."
 	tplCancelled  = "let go. Sentence %s left working state; nothing was recorded."

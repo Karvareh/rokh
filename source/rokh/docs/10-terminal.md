@@ -180,7 +180,7 @@ are marked `● records`.
 | `Esc` | out of a long answer; again, close it and clear the prompt; close the list |
 | `Tab` `←` `→` `1` `2` `3` `4` | change view, while nothing is typed |
 | a paste | is text: a line break in it is kept and drawn as `\n`, and never presses `Enter` |
-| `go`, `Ctrl-C`, or `Ctrl-D` on an empty prompt | leave; sentences still waiting are named as let go |
+| `leave`, `Ctrl-C`, or `Ctrl-D` on an empty prompt | leave; sentences still waiting are named as let go |
 
 A slash inside a sentence is part of the sentence: `read home/journal` means
 what it says. The list opens only when the prompt is empty. While nothing is
