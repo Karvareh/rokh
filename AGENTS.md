@@ -24,7 +24,7 @@ in `source/` when it must change in the same change as the code it describes.
 ## The map
 
 ```
-README.md            a short entry: the treatise, and the four folders
+README.md            what Rokh is, the treatise, and the four folders
 AGENTS.md            this file; CLAUDE.md points to it
 LICENSE              the GNU Lesser General Public License, version 3 or later; GPL-3.0.txt beside it
 source/              what runs
