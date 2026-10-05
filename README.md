@@ -91,22 +91,24 @@ same time.
 
 Checking needs no server, no token, and no majority: you check the copy you
 hold, alone and offline, though no check can prove you were shown every branch.
-Mathematics does not vote for the majority, and a model gets no vote either. An
-AI can help you read and search your ledger, but what is accepted is settled by
+Mathematics does not vote for the majority, and a model gets no vote either. It
+can help you read and search your ledger, but what is accepted is settled by
 the plain check of bytes, signatures, and authority, and no confidence score
 turns into "accepted".
 
-Rokh is also meant to live inside robots and AI agents, as their long-term
-memory, and we hope the tools that build them will carry it and run it
-axiomatically. As machines begin to act in the world, the edges of authority
-matter more. When a machine works for someone, we should be able to ask which
-key acted, who authorized the step, what it intended, what it reported
-afterward, and whom it affected. A program built on Rokh should record its
-intent before each step and its result after, failure included; a step whose
-end is lost closes as unknown, never as success. Owning a machine gives a
-person authority to assign it work within their own boundary, never authority
-over the people it reaches. Rokh does not decide who answers for harm; it keeps
-the record that lets people ask.
+Any machine a person owns can be given a key to read and write in Rokh: a
+mechanical arm or a greenhouse, a home server or a data centre, a banking
+system. Together they are the widest circle of a person's hardware, software,
+and electronics, and all of it stays under that person's ownership, each
+machine working on a narrow right lent to it. Rokh is meant to be their
+long-term memory, and we hope the tools that build them will carry it and run
+it axiomatically. When a machine acts, we should be able to ask which key
+acted, who authorized the step, what it intended, what it reported afterward,
+and whom it affected. It should record its intent before each step and its
+result after, failure included; a step whose end is lost closes as unknown,
+never as success. Owning a machine gives the owner authority to assign it work
+within their own boundary, never authority over the people it reaches. Rokh
+does not decide who answers for harm; it keeps the record that lets people ask.
 
 The same ground can carry exchange without turning anyone's ledger into a
 currency. Rokh has no coin of its own, and writing in it needs none. A shop or
