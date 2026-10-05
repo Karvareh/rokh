@@ -53,11 +53,11 @@ it. Rokh records that the sentence was written, not that the walk happened. An
 accepted event is never rewritten; a correction is another event.
 
 Time in Rokh is not a clock; it is lineage. Every event sits at an address,
-like `home/journal`, and names the events before it, so your ledger is a graph
-of addressable events that rolls forward without lockstep. Its copies can live
-apart, at home and at work, grow on their own, and come back together without
-either erasing the other. Another person's ledger stays another person's, even
-when you work together.
+like `home/journal`, and names the events before it, so your ledger, an
+individual's event ledger, is a graph of addressable events that rolls forward
+without lockstep. Its copies can live apart, at home and at work, grow on their
+own, and come back together without either erasing the other. Another person's
+ledger stays another person's, even when you work together.
 
 Rights in Rokh are asymmetric. Keeping a record is not sharing it, writing is
 not reading, and acting for someone is not acting without limit. You can let a
