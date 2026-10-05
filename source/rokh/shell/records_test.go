@@ -92,7 +92,7 @@ func TestASentenceRecordsExactlyWhenTheListSaysSo(t *testing.T) {
 		{"bring the returned ledger", nil, nil},
 		{"reconcile", nil, nil},
 		{"open a new ledger named {name}", func() string { return "open a new ledger named second" }, nil},
-		{"go", nil, nil},
+		{"leave", nil, nil},
 	}
 	said := map[string]bool{}
 	for _, step := range script {

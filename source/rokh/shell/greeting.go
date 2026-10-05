@@ -33,7 +33,7 @@ func showSentences(w io.Writer) {
 // pipe, where it would be noise in somebody's script.
 func greet(w io.Writer, vault string) {
 	fmt.Fprintf(w, "rokh — your event ledger.  vault: %s\n", vault)
-	fmt.Fprintln(w, "\"?\" or \"/\" lists the sentences. \"go\" leaves.")
+	fmt.Fprintln(w, "\"?\" or \"/\" lists the sentences. \"leave\" ends the conversation.")
 	fmt.Fprintln(w)
 }
 
@@ -43,7 +43,7 @@ func greet(w io.Writer, vault string) {
 // block does not carry. Both surfaces open the same way on purpose.
 func greetHome(w io.Writer) {
 	fmt.Fprintln(w, "rokh — your event ledger.  through a home's gate.")
-	fmt.Fprintln(w, "\"?\" or \"/\" lists the sentences. \"go\" leaves.")
+	fmt.Fprintln(w, "\"?\" or \"/\" lists the sentences. \"leave\" ends the conversation.")
 	fmt.Fprintln(w)
 }
 

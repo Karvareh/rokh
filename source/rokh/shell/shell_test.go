@@ -746,7 +746,7 @@ func TestLeavingNamesTheSentencesStillWaiting(t *testing.T) {
 		t.Fatal(err)
 	}
 	before := s.current.led.Len()
-	for _, in := range []string{"write at home/a: one\nwrite at home/b: two\ngo\n", "write at home/c: three\n"} {
+	for _, in := range []string{"write at home/a: one\nwrite at home/b: two\nleave\n", "write at home/c: three\n"} {
 		var out, notes strings.Builder
 		if code := runLines(s, strings.NewReader(in), &out, &notes, false); code != 0 {
 			t.Fatalf("exit %d: %s", code, notes.String())

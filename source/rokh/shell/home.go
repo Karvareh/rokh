@@ -841,7 +841,7 @@ func runHome(stream io.ReadWriteCloser, oneShot string, in io.Reader, out, notes
 	if hs.draft != nil {
 		fmt.Fprintf(notes, "(draft %s at %s remains available; inspect its recording status)\n", hs.draft.id, hs.draft.path)
 	}
-	// End of input closes like "go" and says so the same way — otherwise the
+	// End of input closes like "leave" and says so the same way — otherwise the
 	// prompt just written is left hanging and the next thing on that line is
 	// somebody else's shell. What became of a draft is the gate's word, not
 	// this line's, so the note above is left exactly as it was. A gate that
@@ -896,7 +896,7 @@ func showHomeSentences(w io.Writer) {
   write at {path}: {text}       draught a version; nothing is recorded
   write                         close it — one recorded version
   cancel                        let the draught go; nothing is recorded
-  go                            end the conversation
+  leave                         end the conversation
 
 Everything else in the carrier surface's grammar is refused here by name:
 a program does not open a home, does not grant, does not take back and does

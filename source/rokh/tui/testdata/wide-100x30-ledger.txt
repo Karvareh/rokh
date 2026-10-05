@@ -27,4 +27,4 @@
 ╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────────────────────────╮
 │ › █ try write  ·  ? for the list                                                                │
 ╰─────────────────────────────────────────────────────────────────────────────────────────────────╯
-  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves
+  tab or ←→ view   ? sentences   1–4 jump   "leave" or Ctrl-C ends

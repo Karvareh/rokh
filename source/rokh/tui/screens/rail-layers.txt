@@ -17,4 +17,4 @@ room 58 MB free of 64 MB
 │ 
 │ 
 › █ try read home  ·  ? for the list
-  ? sentences   "go" or Ctrl-C leaves
+  ? sentences   "leave" or Ctrl-C ends

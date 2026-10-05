@@ -9,4 +9,4 @@
 — home/journal/day07 (3a7c20a7): the note of day 7, as it was written
 (lines 1–7 of 13 · ↑↓ PgUp PgDn page · esc back)
 › █ try write  ·  ? for the list
-  ↑↓ PgUp PgDn page the answer   esc back   "go" or Ctrl-C leaves
+  ↑↓ PgUp PgDn page the answer   esc back   "leave" or Ctrl-C ends

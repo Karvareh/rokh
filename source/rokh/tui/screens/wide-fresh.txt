@@ -11,7 +11,7 @@
 │ START HERE                                                                       │ │ ANCHOR     a0b6443e         │
 │ 1  write at home/journal: my first note   puts it down, waiting                  │ │ HEAD       5d21c0e9         │
 │ 2  write   records it; there is no undo                                          │ │ CUSTODY    warm             │
-│ "?" lists every sentence; "go" leaves.                                           │ │ ROOM       64 MB            │
+│ "?" lists every sentence; "leave" ends.                                          │ │ ROOM       64 MB            │
 │                                                                                  │ │ FREE NOW   58 MB            │
 │ ● ACCEPTED  5d21c0e9  system  rokh.keyring at rokh                               │ │ GROWTH     fixed            │
 │   the owner's key added, generation 1                                            │ │                             │
@@ -33,4 +33,4 @@
 ╭─ SAY ONE SENTENCE ───────────────────────────────────────────────────────────────────────────────────────────────╮
 │ › █ try write at home/journal: my first note  ·  ? for the list                                                  │
 ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-  tab or ←→ view   ? sentences   1–4 jump   "go" or Ctrl-C leaves
+  tab or ←→ view   ? sentences   1–4 jump   "leave" or Ctrl-C ends

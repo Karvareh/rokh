@@ -30,18 +30,18 @@ func TestHomeSurfaceAddsNothingForADriver(t *testing.T) {
 	}
 }
 
-// "go" ends the conversation on any stream, and says the one sentence both
+// "leave" ends the conversation on any stream, and says the one sentence both
 // this and the end of input say.
 func TestHomeCloseSaysTheSameSentence(t *testing.T) {
 	g, _ := fakeGate(t, func(op string, req map[string]any) map[string]any {
 		return hello()
 	})
 	var out, notes strings.Builder
-	if code := runHome(g.rw, "", strings.NewReader("go\n"), &out, &notes); code != 0 {
+	if code := runHome(g.rw, "", strings.NewReader("leave\n"), &out, &notes); code != 0 {
 		t.Fatalf("exit=%d notes=%q", code, notes.String())
 	}
 	if !strings.Contains(out.String(), tplHomeClosed) {
-		t.Errorf("go said nothing: out=%q", out.String())
+		t.Errorf("leave said nothing: out=%q", out.String())
 	}
 }
 

@@ -35,7 +35,7 @@ person did not ask for in a sentence.
 
 `open` loads the carrier, verifies everything, stands at the heads. The
 session lives in memory only; **an idle session writes nothing**, with the
-same style of test as the daemon's. `go` closes: nothing new is flushed, and
+same style of test as the daemon's. `leave` closes: nothing new is flushed, and
 each carrier is re-read and compared, confirming it is exactly as the last
 accepted operation left it.
 
@@ -106,7 +106,7 @@ Parsing rules:
 ```
 open the ledger {name}
 open a new ledger named {name}
-go
+leave
 write at {address}: {text}
 write            write {n}
 cancel           cancel {n}
@@ -125,8 +125,8 @@ carry the bundle for {who}
 reconcile
 ```
 
-Eight verbs — read, write, bring, see, entrust, open, go, carry — and a few
-small words that are not verbs: `go` and `reconcile` stand alone, `take back`
+Eight verbs — read, write, bring, see, entrust, open, leave, carry — and a few
+small words that are not verbs: `leave` and `reconcile` stand alone, `take back`
 is entrusting's opposite, and `cancel` is the working state's own word for
 letting a waiting sentence go. The count on the screen says so; it does not
 call them eight when they are more.
@@ -166,7 +166,7 @@ JSON escape so the file documents its own invisibles.
 |---|---|---|
 | open | load, verify, stand at heads | shell session |
 | open (new) | genesis in `ledgers/<name>`; the first page is the typed sentence itself; refuse an existing name; refused inside a carrier made by `rokh init` | existing init pattern |
-| go | close; confirm the carrier untouched | shell session |
+| leave | close; confirm the carrier untouched | shell session |
 | write at | one waiting `note` sentence; payload = the exact bytes of {text}; nothing recorded | working state |
 | write, write {n} | one `note` event from the waiting sentence; the reply names the id, the signing key, the grant and the door | existing write |
 | cancel, cancel {n} | the waiting sentence leaves working state; nothing recorded | working state |
@@ -193,7 +193,7 @@ auxiliary detail goes to stderr.
 ```
 opened; I am standing at the head of the chain. {n} events and {s} system events, {k} heads.
 a new ledger is open; its anchor is {id}.
-gone. The ledger is closed, everything where it was.
+left. The ledger is closed, everything where it was.
 waiting as sentence {n} of {m}: at {address}, {bytes} bytes, to be signed by {key} under {authority} — nothing is recorded yet. "write" records it; "cancel" lets it go.
 written and recorded. {full id} — signed by {key} under {authority}, through {door}.
 let go. Sentence {n} left working state; nothing was recorded.

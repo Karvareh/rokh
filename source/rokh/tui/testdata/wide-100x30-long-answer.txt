@@ -27,4 +27,4 @@
 ╭─ SAY ONE SENTENCE ──────────────────────────────────────────────────────────────────────────────╮
 │ › █ try write  ·  ? for the list                                                                │
 ╰─────────────────────────────────────────────────────────────────────────────────────────────────╯
-  ↓ or PgDn reads the whole answer   esc closes it   "go" or Ctrl-C leaves
+  ↓ or PgDn reads the whole answer   esc closes it   "leave" or Ctrl-C ends

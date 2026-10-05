@@ -17,4 +17,4 @@ day 6, as it was written
 (lines 1–12 of 25 · ↑↓ page)
 › █ try write  ·  ? for the list
 
-  ↑↓ page   esc back   "go" or Ctrl-C leaves
+  ↑↓ page   esc back   "leave" or Ctrl-C ends

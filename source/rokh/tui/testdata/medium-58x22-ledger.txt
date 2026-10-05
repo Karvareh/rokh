@@ -19,4 +19,4 @@
 ╭─ SAY ONE SENTENCE ────────────────────────────────────╮
 │ › █ try write  ·  ? for the list                      │
 ╰───────────────────────────────────────────────────────╯
-  tab or ←→ view   ? sentences   "go" or Ctrl-C leaves
+  tab or ←→ view   ? sentences   "leave" or Ctrl-C ends

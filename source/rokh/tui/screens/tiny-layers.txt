@@ -5,4 +5,4 @@ ROKH · home · custody warm
 
 
 › █ try read home
-  go or Ctrl-C leaves
+  leave or Ctrl-C ends

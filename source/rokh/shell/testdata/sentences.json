@@ -28,7 +28,7 @@
  },
  {
   "name": "close",
-  "sentence": "go",
+  "sentence": "leave",
   "op": "close",
   "slots": {},
   "reply_template": "closed"

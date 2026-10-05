@@ -81,8 +81,9 @@ say above rests on these tests.
   carrier of the version before this one and no longer compile. Among them is
   the only test that an idle daemon writes nothing.
 - The sentences of the surface were carried over from Persian one word at a
-  time; some do not read as English (`go` closes the ledger). A pass over
-  every sentence a person types or reads is owed.
+  time; some do not read as English (`see the ledgers`, `bring the returned
+  ledger`, `carry the ledger`). A pass over every sentence a person types or
+  reads is owed.
 - `rokh/docs/06-api.md` describes the booth of the version before this one
   and carries a note saying so. The cryptography document of the previous
   version was withdrawn from this tree: its statements about the carrier no

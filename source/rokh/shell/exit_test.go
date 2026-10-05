@@ -74,13 +74,13 @@ func TestTheLineSurfaceEndsTheWayItWent(t *testing.T) {
 		code    int
 		said    string
 	}{
-		{"a clean session", good, "see the ledger\nsee the ledgers\ngo\n", 0, ""},
-		{"one refused line", good, "see the ledger\nopen the ledger nosuch\nsee the ledger\ngo\n", 1, "no — there is no ledger named nosuch"},
+		{"a clean session", good, "see the ledger\nsee the ledgers\nleave\n", 0, ""},
+		{"one refused line", good, "see the ledger\nopen the ledger nosuch\nsee the ledger\nleave\n", 1, "no — there is no ledger named nosuch"},
 		{"a line that is no sentence, then the end of input", good, "sing a song\n", 1, "[unknown_sentence]"},
 		{"a disk that will not write", func(t *testing.T) *session { return underFailingDisk(t, failingDisk{slabs: true}) },
-			"write at home/a: one\nwrite\ngo\n", 1, "Nothing was recorded. [storage_failed; not recorded]"},
+			"write at home/a: one\nwrite\nleave\n", 1, "Nothing was recorded. [storage_failed; not recorded]"},
 		{"an ending nobody knows", func(t *testing.T) *session { return underFailingDisk(t, failingDisk{heads: true}) },
-			"write at home/a: one\nwrite\nsee the ledger\ngo\n", 4, "whether it was recorded is unknown"},
+			"write at home/a: one\nwrite\nsee the ledger\nleave\n", 4, "whether it was recorded is unknown"},
 	} {
 		t.Run(c.name, func(t *testing.T) {
 			s := c.session(t)

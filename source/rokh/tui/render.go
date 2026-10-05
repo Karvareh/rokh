@@ -404,7 +404,7 @@ func ledgerBody(st Snapshot, n, w int) []line {
 			strong("START HERE", RoleWorking),
 			pieces(s("1  ", RoleMuted), sb("write at home/journal: my first note", RoleWorking), s("   puts it down, waiting", RoleMuted)),
 			pieces(s("2  ", RoleMuted), sb("write", RoleBoundary), s("   records it; there is no undo", RoleMuted)),
-			pieces(s("\"?\" lists every sentence; \"go\" leaves.", RoleMuted)),
+			pieces(s("\"?\" lists every sentence; \"leave\" ends.", RoleMuted)),
 			text(""))
 	}
 	// The events come before everything below them: the newest is what a
@@ -931,7 +931,7 @@ func lastCells(v string, n int) string {
 // long answer, and above all how to leave. When the row is narrow, the least
 // needed hint goes first; how to leave goes last of all.
 func hints(v View, w int, pg *pager) line {
-	leave := s("\"go\" or Ctrl-C leaves", RoleMuted)
+	leave := s("\"leave\" or Ctrl-C ends", RoleMuted)
 	var tries []line
 	switch {
 	case v.MenuOpen:
@@ -944,23 +944,23 @@ func hints(v View, w int, pg *pager) line {
 		tries = []line{
 			pieces(s("  ↑↓ PgUp PgDn page the answer", RoleLineage), s("   esc back", RoleMuted), s("   ", RoleMuted), leave),
 			pieces(s("  ↑↓ page", RoleLineage), s("   esc back", RoleMuted), s("   ", RoleMuted), leave),
-			pieces(s("  ↑↓ page", RoleLineage), s("  go or Ctrl-C leaves", RoleMuted)),
-			pieces(s("  go or Ctrl-C leaves", RoleMuted)),
+			pieces(s("  ↑↓ page", RoleLineage), s("  leave or Ctrl-C ends", RoleMuted)),
+			pieces(s("  leave or Ctrl-C ends", RoleMuted)),
 		}
 	case pg.overflows():
 		tries = []line{
 			pieces(s("  ↓ or PgDn reads the whole answer", RoleLineage), s("   esc closes it", RoleMuted), s("   ", RoleMuted), leave),
 			pieces(s("  ↓ reads on", RoleLineage), s("   esc closes", RoleMuted), s("   ", RoleMuted), leave),
-			pieces(s("  ↓ reads on", RoleLineage), s("  go or Ctrl-C leaves", RoleMuted)),
-			pieces(s("  go or Ctrl-C leaves", RoleMuted)),
+			pieces(s("  ↓ reads on", RoleLineage), s("  leave or Ctrl-C ends", RoleMuted)),
+			pieces(s("  leave or Ctrl-C ends", RoleMuted)),
 		}
 	default:
 		tries = []line{
 			pieces(s("  tab or ←→ view", RoleMuted), s("   ? sentences", RolePlace), s("   1–4 jump", RoleMuted), s("   ", RoleMuted), leave),
 			pieces(s("  tab or ←→ view", RoleMuted), s("   ? sentences", RolePlace), s("   ", RoleMuted), leave),
 			pieces(s("  ? sentences", RolePlace), s("   ", RoleMuted), leave),
-			pieces(s("  ? list", RolePlace), s("  go or Ctrl-C leaves", RoleMuted)),
-			pieces(s("  go or Ctrl-C leaves", RoleMuted)),
+			pieces(s("  ? list", RolePlace), s("  leave or Ctrl-C ends", RoleMuted)),
+			pieces(s("  leave or Ctrl-C ends", RoleMuted)),
 		}
 	}
 	for _, t := range tries {

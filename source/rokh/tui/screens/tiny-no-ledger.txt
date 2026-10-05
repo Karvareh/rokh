@@ -5,4 +5,4 @@ ROKH · no ledger open
 
 
 › █ say a sentence, or ? f…
-  go or Ctrl-C leaves
+  leave or Ctrl-C ends

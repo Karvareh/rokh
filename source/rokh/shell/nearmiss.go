@@ -70,7 +70,7 @@ func shapeOf(line string) string {
 		return `"carry" goes with the ledger, an address or the bundle: carry home/journal to /path/to/folder`
 	case "cancel":
 		return `"cancel" alone lets the newest waiting sentence go, and "cancel 2" the second`
-	case "go", "reconcile":
+	case "leave", "reconcile":
 		return `"` + first + `" is said alone`
 	}
 	return ""

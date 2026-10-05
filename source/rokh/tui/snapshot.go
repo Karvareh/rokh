@@ -40,7 +40,7 @@ func WriteSnapshot(w io.Writer, st Snapshot) error {
 
 // errPicture is what the screen answers when a sentence is said to a
 // picture: there is no ledger behind it to hear it.
-var errPicture = errors.New(`this screen is drawn from a snapshot file: no ledger is open and nothing is recorded. "go" leaves [picture]`)
+var errPicture = errors.New(`this screen is drawn from a snapshot file: no ledger is open and nothing is recorded. "leave" ends [picture]`)
 
 // Picture draws a snapshot as the screen would draw a ledger, and runs it
 // until the person leaves: the views, the list, the prompt and its keys all
@@ -50,7 +50,7 @@ var errPicture = errors.New(`this screen is drawn from a snapshot file: no ledge
 func Picture(in, out *os.File, st Snapshot, signals []os.Signal) error {
 	err := Run(in, out, Hooks{
 		Say: func(line string) (string, bool, error) {
-			if strings.EqualFold(strings.TrimSpace(line), "go") {
+			if strings.EqualFold(strings.TrimSpace(line), "leave") {
 				return "", true, nil
 			}
 			return "", false, errPicture

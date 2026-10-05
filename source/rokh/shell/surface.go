@@ -221,7 +221,7 @@ func RunWithHome(name string, args []string, openHome func(int) (io.ReadWriteClo
 		case errors.As(err, &noScreen):
 			// A terminal that cannot be drawn on gets the same sentences one
 			// line at a time, and is told why in one sentence.
-			fmt.Fprintf(os.Stderr, "%s, so this is the line surface: type a sentence and press Enter; \"?\" lists them, \"go\" leaves.\n", noScreen.Error())
+			fmt.Fprintf(os.Stderr, "%s, so this is the line surface: type a sentence and press Enter; \"?\" lists them, \"leave\" ends the conversation.\n", noScreen.Error())
 			return runLines(s, os.Stdin, os.Stdout, os.Stderr, true)
 		case errors.As(err, &signalled):
 			if n := len(s.drafts); n > 0 {
@@ -279,7 +279,7 @@ func runLines(s *session, in io.Reader, out, notes io.Writer, person bool) int {
 			showSentences(notes)
 			continue
 		}
-		// "go" ends the conversation, and a sentence still waiting is named
+		// "leave" ends the conversation, and a sentence still waiting is named
 		// before the parting line: it was never recorded.
 		c, perr := parse(line)
 		leaving := perr == nil && c.Op == opClose
@@ -297,7 +297,7 @@ func runLines(s *session, in io.Reader, out, notes io.Writer, person bool) int {
 			return code
 		}
 	}
-	// EOF closes like "go", and says so the same way.
+	// EOF closes like "leave", and says so the same way.
 	if err := s.closeAll(); err != nil {
 		fmt.Fprintln(notes, "no —", s.plain(err))
 		return max(code, 1)
