@@ -114,14 +114,14 @@ stays with the person.
 If you cannot pick it up and go, you are not the owner. Leaving Rokh needs no
 permission, because entering did not need it either.
 
-Rokh is written twice, as a [treatise](docs/رساله.md) in Persian and as
-[code](source/README.md), and the two have grown as one piece of work. A
-sentence gives a rule its use; an axiom sets its boundary; a data structure and
-a running program test what follows. Code can uncover an ambiguity in the
-words, and the words can expose a fault in the code. Run it, test its rules
-against real situations, and bring counterexamples: an issue may question a
-rule as well as report a bug, and a pull request may propose a clearer sentence
-as well as a feature.
+Rokh is written twice, as a [treatise](docs/رساله.md) in Persian, its founding
+text, and as [code](source/README.md), and the two have grown as one piece of
+work. A sentence gives a rule its use; an axiom sets its boundary; a data
+structure and a running program test what follows. Code can uncover an
+ambiguity in the words, and the words can expose a fault in the code. Run it,
+test its rules against real situations, and bring counterexamples: an issue may
+question a rule as well as report a bug, and a pull request may propose a
+clearer sentence as well as a feature.
 
 The test ahead is simple: whether anyone but its authors comes to write in it.
 
