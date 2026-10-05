@@ -52,6 +52,20 @@ came before it. The first sentence prepared the writing; the second recorded
 it. Rokh records that the sentence was written, not that the walk happened. An
 accepted event is never rewritten; a correction is another event.
 
+Your ledger lives in one carrier that you hold: the events and their bytes, the
+files you bring in, the keys, and every grant you have made. Rokh trusts
+nothing but bytes. Each event is one string of bytes, signed with a key and
+named by its own hash, and what is signed, what is hashed, and what is stored
+are the same bytes.
+
+The carrier is sealed with encryption: without a key nothing in it can be read,
+not even the names of its files. From outside it shows little more than its
+size and when it was last written. Its cryptography is the standard kind,
+Ed25519 for signatures, SHA-256 for names, and AES-256-GCM for sealing, all
+from Go's own library, because hand-made cryptography is broken cryptography.
+Your passphrase opens it and has no recovery: keeping the key and keeping
+copies are the owner's work.
+
 Time in Rokh is not a clock; it is lineage. Every event sits at an address,
 like `home/journal`, and names the events before it, so your ledger, an
 individual's event ledger, is a graph of addressable events that rolls forward
